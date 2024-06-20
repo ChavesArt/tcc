@@ -18,12 +18,14 @@
 <section class="area-login">
     <div calss="login">
         <div >
-        <img src="" alt="logo">
+        <img src="furia_logo.png">
         </div>
 
         <form action="" method="post">
-            <input type="text" name="nome" placeholder="nome de usuário">
-            <input type="password" name="senha" placeholder="senha">
+           <label for="nome">Nome</label> 
+           <input type="text" name="nome" id="nome" placeholder="nome de usuário">
+           <label for="senha">Senha</label> 
+           <input type="password" name="senha" id="senha" placeholder="senha">
             <input type="submit" value="Entrar">
         </form>
         <p>Ainda não tem uma conta?<a href="formcad.php">Criar uma conta</a></p>
