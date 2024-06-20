@@ -86,32 +86,5 @@
 </main>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<nav id="menu-horizontal">
-    Criando o menu 
-    <ul id ="menu-horizontal">
-    <li><a href="index.php">Home</a></li>
-    <li><a href="tirar_duvidas.php">Quem somos</a></li>
-    <li><a href="formcad.php">Cadastrar</a></li>
-    <li><a href="login.php">Entrar</a></li>
-    </nav>
-    </ul>
-    -->
 </body>
 </html>
