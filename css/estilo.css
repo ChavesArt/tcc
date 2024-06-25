@@ -26,7 +26,7 @@ p,li{
 /*Barra de navegação*/
 
 header,.navbar{
-    background-color: brown;
+    background-color: lightseagreen;
 }
 #nav-container{
     padding-top: 0;
@@ -85,7 +85,7 @@ header,.navbar{
     background-color: white;
 }
 .main-title{
-    color:brown;
+    color: purple;
     margin: 0 0 65px 0;
     font-size: 40px;
     text-align: justify;

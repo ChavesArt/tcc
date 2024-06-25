@@ -72,10 +72,7 @@
                   </div>
                   <div class="col-md-6">
                     <h3 class="about-title">IEQ flores</h3>
-                    <p id="p-sobre">Os povos indígenas são os primeiros habitantes do território brasileiro, 
-                        possuindo uma história ancestral rica e diversa. Antes da chegada dos europeus, o Brasil era habitado por diferentes etnias indígenas, com suas próprias línguas, costumes e formas de organização social. Esses povos ocupavam diferentes regiões do país, 
-                        adaptando-se aos variados ecossistemas e desenvolvendo técnicas de sobrevivência adequadas às necessidades locais. Alguns exemplos de povos indígenas no Brasil são os Tupi-Guarani, os Tapajó, os Kaingang, os Xavante, os Yanomami, 
-                        entre muitos outros, cada um com sua história particular e contribuições para a cultura brasileira.</p>
+                    <p id="p-sobre">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic praesentium corrupti eum voluptatem. Qui delectus inventore error magni mollitia voluptas, est, adipisci nam, molestias necessitatibus atque iure dolor natus quo.</p>
                   </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
    <!-- Meu css-->
-   <link rel="stylesheet" type="text/css" href="css/style.css"/>
+   <link rel="stylesheet" type="text/css" href="css/estilo.css"/>
     <!--fonte-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,3 +16,8 @@
     <script src="js/progressbar.min.js"></script>
     <!-- parallax-->
     <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+
+
+
+
+    
