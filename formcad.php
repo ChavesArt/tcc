@@ -19,14 +19,17 @@
     <div class= "direita-form">
         <div class="card-form">
             <h1>Cadastre-se</h1>
+            <form action="crud/cadastrar.php" method="post">
             <div class = "campo-texto">
                         <label for="usuario">Usuário</label>
                         <input type="text" name="usuario" id="usuario" placeholder = "Usuário">
+            </div>
                     <div class = "campo-texto">
                         <label for="senha">Senha</label>
                         <input type="password" name="senha" id="senha" placeholder ="Senha">
                     </div>
                         <button class="btn-form">Cadastrar-se</button>
+                        </form>
             </div>
         </div>
     </div>
