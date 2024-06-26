@@ -14,7 +14,7 @@
 
 <div class  = "main-form">
     <div class= "esquerda-form">
-        <h1>Cadastre-se aqui:</h1>
+        <h1>Cadastre-se já:</h1>
     </div>
     <div class= "direita-form">
         <div class="card-form">

@@ -1,12 +1,4 @@
-/*formlulário*/
-.area-formulario{
-    margin-top: 10%;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
 /*gerais*/
-
 body {
     font-family: 'roboto',sans-serif;
     width: 100%;
@@ -102,20 +94,78 @@ header,.navbar{
     text-align: justify;
 }
 
-/* tela de login */
+/*formlulário*/
 
-#main-form{
-   background-color: darkcyan;
-    overflow: hidden;
-}
-
-.area-login{
-    display: flex;
+.main-form{
+    width: 100vw;
     height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-.login{
-    background-color: darkblue;
+
+.esquerda-form{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
+.esquerda-form > h1{
+    color: white;
+}
+
+.direita-form{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.card-form{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: black;
+    border-radius: 20px;
+}
+.card-form > h1{
+    color:white;
+    font-weight: 800;
+    margin: 0;
+}
+.campo-texto{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.campo-texto > input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: whitesmoke;
+    color: white;
+    font-size: 12pt;
+    outline: none;
+    box-sizing: border-box;
+}
+.campo-texto > label{
+    color: white;
+    margin-bottom: 10px;
+}
+
+.btn-form{
+    width: 100%;
+    padding: 16px 0;
+}
