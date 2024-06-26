@@ -10,43 +10,26 @@
 
 </head>
 <body>
+<?php //include_once('menu.php'); ?>
 
-<?php include_once('menu.php'); ?>
-
-<div class="area-formulario">
-    <form action="crud/cadastrar.php" method="post">
-
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" name="nome" placeholder="Digite seu nome">
-        <label for="floatingInput">Nome</label>
+<div class  = "main-form">
+    <div class= "esquerda-form">
+        <h1>Cadastre-se aqui:</h1>
     </div>
-
-    <div class="form-floating mb-3">
-        <input type="number" class="form-control" id="floatingInput" name="telefone" placeholder="Digite seu nome">
-        <label for="floatingInput">telefone</label>
+    <div class= "direita-form">
+        <div class="card-form">
+            <h1>Cadastre-se</h1>
+            <div class = "campo-texto">
+                        <label for="usuario">Usuário</label>
+                        <input type="text" name="usuario" id="usuario" placeholder = "Usuário">
+                    <div class = "campo-texto">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" id="senha" placeholder ="Senha">
+                    </div>
+                        <button class="btn-form">Cadastrar-se</button>
+            </div>
+        </div>
     </div>
-
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" name="endereco"  placeholder="Rua presidente Getulio Vargas 3344">
-        <label for="floatingInput">endereço</label>
-    </div>
-
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Nome@exemplo.com">
-        <label for="floatingInput">email</label>
-    </div>
-
-    <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingInput" placeholder="" name="senha">
-        <label for="floatingInput">senha</label>
-    </div>
-
-    <input type="hidden" name="tipo_cliente" value="1">
-
-        <input type="submit" value="enviar"><br>
-        
-        
-    </form>
 </div>
 </body>
 </html>
