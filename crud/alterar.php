@@ -1,6 +1,6 @@
 <?php
 //conectando com o banco
-include "conecta.php";
+include ("../conecta.php");
 $conexao = conectar();
 
 //recebendo as variáveis
@@ -17,7 +17,7 @@ $result = mysqli_query($conexao, $sql);
 
 //redirecionando para o index.php
 if ($result) {
-    header("Location: pagina_admin.php");
+    header("Location: ../admin.php");
 } else {
     echo mysqli_errno($conexao) . ": " . mysqli_error($conexao);
 }

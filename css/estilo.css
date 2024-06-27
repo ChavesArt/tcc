@@ -77,9 +77,10 @@ header,.navbar{
     background-color: white;
 }
 .main-title{
-    color: purple;
+    color: black;
     margin: 0 0 65px 0;
     font-size: 40px;
+    text-align: center;
 }
 #p-sobre{
     text-align: justify;
@@ -182,4 +183,17 @@ header,.navbar{
     letter-spacing: 2px;
     background:  lightpink;
     cursor: pointer;
+}
+
+/*doação e recepção index*/
+.img-index{
+    width: 30vw;
+}
+.main-form{
+    .main-form{
+        width: 20vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
