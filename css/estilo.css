@@ -114,7 +114,11 @@ header,.navbar{
 }
 
 .esquerda-form > h1{
-    color: white;
+    color: black;
+}
+
+.esquerda-img{
+    width: 35vw;
 }
 
 .direita-form{
@@ -133,7 +137,7 @@ header,.navbar{
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    background: black;
+    background: purple;
     border-radius: 20px;
 }
 .card-form > h1{
@@ -150,8 +154,8 @@ header,.navbar{
     margin: 10px 0px;
 }
 
-.campo-texto > input{
-    width: 100%;
+.campo-texto input{
+    width: 110%;
     border: none;
     border-radius: 10px;
     padding: 15px;
@@ -166,16 +170,16 @@ header,.navbar{
     margin-bottom: 10px;
 }
 
-.btn-form{
-    width: 100%;
-    padding: 16px 0;
-    margin: 25px;
+.campo-texto input[type="submit"]{
+    width: 110%;
+    padding: 16px;
+    margin: 25px 0;
     border: none;
     outline: none;
     border-radius: 8px;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 2px;
-    background:  blue;
+    background:  lightpink;
     cursor: pointer;
 }

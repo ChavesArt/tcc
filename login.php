@@ -1,85 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+    <title>Formulário de Cadastro</title>
 
-    <?php include('links.php');?>
+    <?php include('links.php'); ?>
+
 
 </head>
+
 <body>
+    <?php include_once('menu.php'); ?>
 
-<?php include('menu.php');?>
-
-<main id="main-form">
-    <div>
-<section class="area-login">
-    <div calss="login">
-        <div >
-        <img src="furia_logo.png">
+    <div class="main-form">
+        <div class="esquerda-form">
+            <h1>logue-se para melhor aproveitamento do site:</h1>
+            <img src="img/login-animate.svg" class="esquerda-img" alt="Um homem dando alimento para outro">
         </div>
+        <div class="direita-form">
+            <div class="card-form">
+                <h1>Login</h1>
+                <form action="crud/cadastrar.php" method="post">
+                    <div class="campo-texto">
+                        <label for="usuario">Usuário</label>
+                        <input type="text" name="usuario" id="usuario" placeholder="Usuário">
 
-        <form action="" method="post">
-           <label for="nome">Nome</label> 
-           <input type="text" name="nome" id="nome" placeholder="nome de usuário">
-           <label for="senha">Senha</label> 
-           <input type="password" name="senha" id="senha" placeholder="senha">
-            <input type="submit" value="Entrar">
-        </form>
-        <p>Ainda não tem uma conta?<a href="formcad.php">Criar uma conta</a></p>
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" id="senha" placeholder="Senha">
+
+                        <input type ="submit" value="Login">
+                </form>
+            </div>
+        </div>
     </div>
-</section>
-</div>
-</main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<main id="#tela_login">
-    <form>  
-     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="login" placeholder="Digite seu nome">
-        <label for="floatingInput">Nome</label>
     </div>
-
-    <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="senha" placeholder="Digite seu nome">
-        <label for="floatingInput">senha</label>
-    </div>
-
-        <button type="submit" class="btn btn-primary mb-3"  onclick ="logar()">Enviar </button>
-
-    </form>
-
-</div>
-<script>
-    function logar(){
-        var login = document.getElementById("login").value;
-        var senha = document.getElementById("senha").value;
-
-        if(login == "admin" && senha == "admin"){
-            alert('Você foi direcionado para tela do administrador');
-        }
-        else{
-            alert('Você foi direcionado para tela do usuário');
-        }
-
-    }
-</script>
-</main>-->
 </body>
+
 </html>
