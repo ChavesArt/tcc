@@ -25,12 +25,21 @@
                 <form action="crud/cadastrar.php" method="post">
                     <div class="campo-texto">
                         <label for="usuario">Usuário</label>
-                        <input type="text" name="usuario" id="usuario" placeholder="Usuário">
+                        <input type="text" name="nome" id="usuario" placeholder="Usuário" required>
 
                         <label for="senha">Senha</label>
-                        <input type="password" name="senha" id="senha" placeholder="Senha">
+                        <input type="password" name="senha" id="senha" placeholder="Senha" required>
+                        
+                        <label for="email">email</label>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
 
-                        <input type ="submit" value="Cadastrar-se">
+                        <label for="senha">endereço</label>
+                        <input type="text" name="endereco" id="endereco" placeholder="Endereço" required>
+
+                        <label for="telefone">telefone</label>
+                        <input type="text" name="telefone" id="telefone" placeholder="telefone" required>
+ 
+                        <input type ="submit" value="Cadastrar">
                 </form>
             </div>
         </div>

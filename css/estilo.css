@@ -185,15 +185,12 @@ header,.navbar{
     cursor: pointer;
 }
 
-/*doação e recepção index*/
-.img-index{
-    width: 30vw;
+.campo-texto input[type="text"],input[type="password"],input[type="email"]{
+    color: black;
 }
-.main-form{
-    .main-form{
-        width: 20vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+
+.caixa-procura{
+    display: flex;
+    justify-content: center;
+
 }
