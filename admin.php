@@ -1,6 +1,7 @@
 <?php
 include  "conecta.php";
 $conexao = conectar();
+
 $sql = "SELECT * FROM usuario";
 $result = mysqli_query($conexao, $sql);
 if ($result) {
@@ -8,7 +9,16 @@ if ($result) {
 } else {
     echo mysqli_errno($conexao) . ": " . mysqli_error($conexao);
 }
-
+if(!empty($_GET['procura']))
+{
+    $data = $_GET['procura'];
+    $sql = "SELECT * FROM usuario where nome LIKE '%$data%' or email LIKE '%$data%' or endereco LIKE '%$data%' or LIKE telefone '%$data%' order by id DESC";
+}
+else
+{
+    $sql = "SELECT * FROM usuario order by id DESC";
+}
+$result = mysqli_query($conexao,$sql);
 ?>
 
 
@@ -25,14 +35,16 @@ if ($result) {
 
 <body>
     <br><br>
-    <div class ="caixa-procura">
-        <input type="search" class= "form-control w-25" placeholder ="Pesquisar" id="pesquisar">
-        <button class ="btn btn-primary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-        </svg>
+
+    <div class="caixa-procura">
+        <input type="search" class="form-control w-25" placeholder="Pesquisar" id="pesquisar">
+        <button  onclick="procuraInfo()" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+            </svg>
         </button>
     </div>
+
     <div class="m-5">
         <table class="table">
             <thead>
@@ -46,7 +58,9 @@ if ($result) {
             </thead>
             <tbody>
                 <?php
-                foreach ($usuarios as $usuario) {
+                
+                foreach ($usuarios as $usuario)
+            {
 
                     echo '<tr>';
 
@@ -77,7 +91,20 @@ if ($result) {
             </tbody>
         </table>
     </div>
-
 </body>
+
+<script>
+    var procura = document.getElementById('pesquisar');
+
+    procura.addEventListener("keydown", function(event){
+        if(event.key === "Enter"){
+            procuraInfo();
+        }
+    });
+
+    function procuraInfo() {
+        window.location = 'admin.php?procura='+procura.value;
+    }
+</script>
 
 </html>

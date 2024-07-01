@@ -189,6 +189,7 @@ header,.navbar{
     color: black;
 }
 
+/*Barra de pesquisa*/
 .caixa-procura{
     display: flex;
     justify-content: center;
