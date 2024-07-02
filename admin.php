@@ -1,5 +1,6 @@
 <?php
 include  "conecta.php";
+
 $conexao = conectar();
 
 $sql = "SELECT * FROM usuario";
@@ -12,11 +13,11 @@ if ($result) {
 if(!empty($_GET['procura']))
 {
     $data = $_GET['procura'];
-    $sql = "SELECT * FROM usuario where nome LIKE '%$data%' or email LIKE '%$data%' or endereco LIKE '%$data%' or LIKE telefone '%$data%' order by id DESC";
+    $sql = "SELECT * FROM usuario where nome LIKE '%$data%' or email LIKE '%$data%' or endereco LIKE '%$data%' or LIKE telefone '%$data%' order by nome DESC";
 }
 else
 {
-    $sql = "SELECT * FROM usuario order by id DESC";
+    $sql = "SELECT * FROM usuario order by nome DESC";
 }
 $result = mysqli_query($conexao,$sql);
 ?>

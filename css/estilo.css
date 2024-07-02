@@ -12,13 +12,16 @@ body {
 }
 p,li{
     font-size: 14px;
-    color: white;
+    color: black;
 }
 
 /*Barra de navegação*/
 
 header,.navbar{
-    background-color: purple;
+    background-color: #7e22ce;
+}
+.navbar-nav{
+    color: #fff;
 }
 #nav-container{
     padding-top: 0;
@@ -138,7 +141,7 @@ header,.navbar{
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    background: purple;
+    background: #581c87;
     border-radius: 20px;
 }
 .card-form > h1{
@@ -181,7 +184,7 @@ header,.navbar{
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 2px;
-    background:  lightpink;
+    background:  rgb(59, 2, 247);
     cursor: pointer;
 }
 
@@ -194,4 +197,27 @@ header,.navbar{
     display: flex;
     justify-content: center;
 
+}
+/*botões do index*/
+.envia-form{
+    padding: 50px;
+    display: flex;
+    align-items: end;
+}
+.envia-form img{
+    width: 100%;
+    height: 250px;
+}
+.btn-index{
+    outline: none;
+    background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+    
 }

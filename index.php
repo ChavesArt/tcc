@@ -26,6 +26,8 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
+
+
                         <!--banner1-->
                         <img src="img/banner1.jpeg" class="d-block w-100" alt="fotos da igreja">
                         <div class="carousel-caption d-none d-md-block">
@@ -34,6 +36,8 @@
                             <a href="#" class="main-btn">Ver mais</a>
                         </div>
                     </div>
+
+
                     <!--banner2-->
                     <div class="carousel-item  ">
                         <img src="img/banner2.jpg" class="d-block w-100" alt="fotos da igreja">
@@ -43,6 +47,8 @@
                             <a href="#" class="main-btn">ver mais</a>
                         </div>
                     </div>
+
+
                     <!--banner3-->
                     <div class="carousel-item  ">
                         <img src="img/banner3.jpg" class="d-block w-100" alt="Manutenção de Software">
@@ -53,6 +59,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <a href="#mainSlider" class="carousel-control-prev" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
@@ -62,15 +70,35 @@
                     <span class="sr-only">Previous</span>
                 </a>
             </div>
-          <!--  <div class="main-index"></div>
-            <div class="esq-index">
-                <div class="img-index">
-                    <img src="img/doar.svg" alt="doação">
+
+                <!--DOAR-->
+            <div class="envia-form">
+                <div class="esq-form-envia">
+                    <h1>Doe alimento</h1>
+                    <div class="img-index">
+                      <img src="img/doar.svg" alt="pessoa doando um alimento">
+                      <p>Sua doação pode ajudar muitas pessoas</p>
+                    </div>
+                </div>
+                <div class="dir-form-envia">
+                    <a class = "btn-index" href="formcad.php">Doar</a>
                 </div>
             </div>
-            <div class="dir-index">
-                <a href=""></a>
-            </div> -->
+                <!--RECEBER-->
+            <div class="envia-form">
+                <div class="esq-form-envia">
+                    <h1>Quer receber doações?</h1>
+                    <div class="img-index">
+                      <img src="img/receber.svg" alt="recepção alimento">
+                      <p>Clique no botão se quiser receber alimentos</p>
+                    </div>
+                </div>
+                <div class="dir-form-envia">
+                    <a class = "btn-index" href="formcad.php">Doar</a>
+                </div>
+            </div>
+
+
             <!--Sobre área-->
             <div id="sobre-area">
                 <div class="container">
