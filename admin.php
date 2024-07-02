@@ -30,6 +30,7 @@ if($res < 1){
 <body>
     <br><br>
 
+    <!--Barra de pesquisa-->
     <div class="caixa-procura">
         <form action="" method="get" class="form-control w-25">
         <input type="search" class="form-control w-25" placeholder="Pesquisar" name="pesquisar" id="pesquisar">
