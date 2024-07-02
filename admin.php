@@ -93,7 +93,7 @@ if($res < 1){
 
 
     <script>
-        document.querySelectorAll('[id^="deleteButton"]').forEach(button => {
+        var usuario = document.querySelectorAll('[id^="deleteButton"]').forEach(button => {
             button.addEventListener('click', function() {
                 const idUsuario = this.getAttribute('id_usuario');
                 Swal.fire({
@@ -105,7 +105,7 @@ if($res < 1){
                     confirmButtonText: "Sim"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href = "crud/excluir.php?id_usuario=<?= $usuario['id_usuario'] ?>"
+                        location.href = "crud/excluir.php?id_usuario="+usuario['id_usuario'].value;
                     }
                 });
             });
