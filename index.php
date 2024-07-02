@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div class="dir-form-envia">
-                    <a class = "btn-index" href="formcad.php">Doar</a>
+                    <a class = "btn-index" href="#">Receber</a>
                 </div>
             </div>
 
@@ -123,5 +123,15 @@
 
 
 </body>
+<script>
+
+Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Você foi cadastrado com sucesso",
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
 
 </html>

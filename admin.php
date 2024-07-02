@@ -3,23 +3,14 @@ include  "conecta.php";
 
 $conexao = conectar();
 
-$sql = "SELECT * FROM usuario";
-$result = mysqli_query($conexao, $sql);
-if ($result) {
-    $usuarios = mysqli_fetch_all($result, MYSQLI_ASSOC);
-} else {
-    echo mysqli_errno($conexao) . ": " . mysqli_error($conexao);
-}
-if(!empty($_GET['procura']))
-{
+print_r($_GET);
+if (!empty($_GET['procura'])) {
     $data = $_GET['procura'];
     $sql = "SELECT * FROM usuario where nome LIKE '%$data%' or email LIKE '%$data%' or endereco LIKE '%$data%' or LIKE telefone '%$data%' order by nome DESC";
-}
-else
-{
+} else {
     $sql = "SELECT * FROM usuario order by nome DESC";
 }
-$result = mysqli_query($conexao,$sql);
+$result = mysqli_query($conexao, $sql);
 ?>
 
 
@@ -39,7 +30,7 @@ $result = mysqli_query($conexao,$sql);
 
     <div class="caixa-procura">
         <input type="search" class="form-control w-25" placeholder="Pesquisar" id="pesquisar">
-        <button  onclick="procuraInfo()" class="btn btn-primary">
+        <button onclick="procuraInfo()" class="btn btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
             </svg>
@@ -59,9 +50,8 @@ $result = mysqli_query($conexao,$sql);
             </thead>
             <tbody>
                 <?php
-                
-                foreach ($usuarios as $usuario)
-            {
+
+                while($usuario = mysqli_fetch_assoc($result)) {
 
                     echo '<tr>';
 
@@ -78,7 +68,7 @@ $result = mysqli_query($conexao,$sql);
             </svg>
         </a>
 
-        <a class = "btn btn-sm btn-danger" href="crud/excluir.php?id_usuario=' . $usuario['id_usuario'] . '">
+        <a id="deleteButton"  class = "btn btn-sm btn-danger">
 
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
@@ -97,15 +87,43 @@ $result = mysqli_query($conexao,$sql);
 <script>
     var procura = document.getElementById('pesquisar');
 
-    procura.addEventListener("keydown", function(event){
-        if(event.key === "Enter"){
+    procura.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
             procuraInfo();
         }
     });
 
     function procuraInfo() {
-        window.location = 'admin.php?procura='+procura.value;
+        window.location = 'tcc/admin.php?search=' + procura.value;
     }
-</script>
 
+
+
+
+
+
+
+
+
+
+    
+     document.querySelectorAll('[id^="deleteButton"]').forEach(button => {
+            button.addEventListener('click', function() {
+                const idmineral = this.getAttribute('id_usuario');
+                Swal.fire({
+                    title: "Tem certeza que deseja excluir?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sim"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href ="crud/excluir.php?id_usuario=<?= $usuario['id_usuario'] ?>"
+                    }
+                });
+            });
+        });
+
+</script>
 </html>
