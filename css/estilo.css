@@ -195,10 +195,14 @@ header,.navbar{
 /*Barra de pesquisa*/
 .caixa-procura{
     display: flex;
+    gap:0.1%;
+    padding: 20px;
     justify-content: center;
-
 }
-
+.caixa-procura input{
+    width: 500px;
+    
+}
 
 
 /*botões do index*/

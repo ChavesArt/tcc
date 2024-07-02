@@ -32,14 +32,15 @@ if($res < 1){
 
     <!--Barra de pesquisa-->
     <div class="caixa-procura">
-        <form action="" method="get" class="form-control w-25">
-        <input type="search" class="form-control w-25" placeholder="Pesquisar" name="pesquisar" id="pesquisar">
-        <button class="btn btn-primary">
+        <form action="" method="get" >
+        <input type="search" class="form-control" placeholder="Pesquisar" name="pesquisar" id="pesquisar">
+        </form>
+        <button class="btn btn-primary btn-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
             </svg>
         </button>
-        </form>
+      
     </div>
 
     <div class="m-5">
@@ -92,31 +93,9 @@ if($res < 1){
 
 
     <script>
-        var procura = document.getElementById('pesquisar');
-
-        procura.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                procuraInfo();
-            }
-        });
-
-        function procuraInfo() {
-            window.location = 'admin.php?pesquisar=' + procura.value;
-        }
-
-
-
-
-
-
-
-
-
-
-
         document.querySelectorAll('[id^="deleteButton"]').forEach(button => {
             button.addEventListener('click', function() {
-                const idmineral = this.getAttribute('id_usuario');
+                const idUsuario = this.getAttribute('id_usuario');
                 Swal.fire({
                     title: "Tem certeza que deseja excluir?",
                     icon: "warning",
@@ -126,7 +105,7 @@ if($res < 1){
                     confirmButtonText: "Sim"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "crud/excluir.php?id_usuario=<?= $usuario['id_usuario'] ?>"
+                        location.href = "crud/excluir.php?id_usuario=<?= $usuario['id_usuario'] ?>"
                     }
                 });
             });
