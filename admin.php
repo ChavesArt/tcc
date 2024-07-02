@@ -3,17 +3,19 @@ include  "conecta.php";
 
 $conexao = conectar();
 
-print_r($_GET);
-if (!empty($_GET['procura'])) {
-    $data = $_GET['procura'];
-    $sql = "SELECT * FROM usuario where nome LIKE '%$data%' or email LIKE '%$data%' or endereco LIKE '%$data%' or LIKE telefone '%$data%' order by nome DESC";
+
+if (!empty($_GET['pesquisar'])) {
+    $data = $_GET['pesquisar'];
+    $sql = "SELECT * FROM usuario where nome LIKE '%$data%' or email LIKE '%$data%' or endereco LIKE '%$data%' or  telefone LIKE '%$data%' order by nome DESC";
 } else {
     $sql = "SELECT * FROM usuario order by nome DESC";
 }
-$result = mysqli_query($conexao, $sql);
+$resultado = mysqli_query($conexao, $sql);
+$res = mysqli_affected_rows($conexao);
+if($res < 1){
+    echo "Não retornou nenhum resultado.";
+}
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,12 +31,14 @@ $result = mysqli_query($conexao, $sql);
     <br><br>
 
     <div class="caixa-procura">
-        <input type="search" class="form-control w-25" placeholder="Pesquisar" id="pesquisar">
-        <button onclick="procuraInfo()" class="btn btn-primary">
+        <form action="" method="get" class="form-control w-25">
+        <input type="search" class="form-control w-25" placeholder="Pesquisar" name="pesquisar" id="pesquisar">
+        <button class="btn btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
             </svg>
         </button>
+        </form>
     </div>
 
     <div class="m-5">
@@ -51,7 +55,7 @@ $result = mysqli_query($conexao, $sql);
             <tbody>
                 <?php
 
-                while($usuario = mysqli_fetch_assoc($result)) {
+                while ($usuario = mysqli_fetch_assoc($resultado)) {
 
                     echo '<tr>';
 
@@ -73,29 +77,31 @@ $result = mysqli_query($conexao, $sql);
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
         </svg>
+        </a>
         </td>';
-                }
-                echo '</tr>';
 
+                    echo '</tr>';
+                }
                 ?>
 
             </tbody>
         </table>
     </div>
-</body>
 
-<script>
-    var procura = document.getElementById('pesquisar');
 
-    procura.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            procuraInfo();
+
+    <script>
+        var procura = document.getElementById('pesquisar');
+
+        procura.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                procuraInfo();
+            }
+        });
+
+        function procuraInfo() {
+            window.location = 'admin.php?pesquisar=' + procura.value;
         }
-    });
-
-    function procuraInfo() {
-        window.location = 'tcc/admin.php?search=' + procura.value;
-    }
 
 
 
@@ -106,8 +112,8 @@ $result = mysqli_query($conexao, $sql);
 
 
 
-    
-     document.querySelectorAll('[id^="deleteButton"]').forEach(button => {
+
+        document.querySelectorAll('[id^="deleteButton"]').forEach(button => {
             button.addEventListener('click', function() {
                 const idmineral = this.getAttribute('id_usuario');
                 Swal.fire({
@@ -119,11 +125,12 @@ $result = mysqli_query($conexao, $sql);
                     confirmButtonText: "Sim"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href ="crud/excluir.php?id_usuario=<?= $usuario['id_usuario'] ?>"
+                        window.location.href = "crud/excluir.php?id_usuario=<?= $usuario['id_usuario'] ?>"
                     }
                 });
             });
         });
+    </script>
+</body>
 
-</script>
 </html>
