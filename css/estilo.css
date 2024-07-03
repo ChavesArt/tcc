@@ -12,7 +12,6 @@ body {
 }
 p,li{
     font-size: 14px;
-    color: black;
 }
 
 /*Barra de navegação*/
@@ -29,8 +28,8 @@ header,.navbar{
 }
 #logo{
     width: 75px;
-
 }
+
 
 /*Slider*/
 
@@ -98,7 +97,7 @@ header,.navbar{
     text-align: justify;
 }
 
-/*formlulário*/
+/*formlulários*/
 
 .main-form{
     width: 100vw;
@@ -144,7 +143,7 @@ header,.navbar{
     background: #581c87;
     border-radius: 20px;
 }
-.card-form > h1{
+.card-form h1{
     color:white;
     font-weight: 800;
     margin: 0;
@@ -190,6 +189,11 @@ header,.navbar{
 
 .campo-texto input[type="text"],input[type="password"],input[type="email"]{
     color: black;
+}
+
+#link-formcad{
+    color: white;
+    outline: none;
 }
 
 /*Barra de pesquisa*/

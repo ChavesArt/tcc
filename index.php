@@ -72,6 +72,7 @@
             </div>
 
                 <!--DOAR-->
+                <div class="doar-receber">
             <div class="envia-form">
                 <div class="esq-form-envia">
                     <h1>Doe alimento</h1>
@@ -97,7 +98,7 @@
                     <a class = "btn-index" href="#">Receber</a>
                 </div>
             </div>
-
+            </div>
 
             <!--Sobre área-->
             <div id="sobre-area">
