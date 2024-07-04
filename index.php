@@ -71,35 +71,48 @@
                 </a>
             </div>
 
-                <!--DOAR-->
-                <div class="doar-receber">
-            <div class="envia-form">
-                <div class="esq-form-envia">
-                    <h1>Doe alimento</h1>
+            <div id="#">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="main-title">Ações</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <!--DOAR-->
+                    <h1>Quer doar alugma coisa?</h1>
                     <div class="img-index">
-                      <img src="img/doar.svg" alt="pessoa doando um alimento">
-                      <p>Sua doação pode ajudar muitas pessoas</p>
-                    </div>
-                </div>
-                <div class="dir-form-envia">
-                    <a class = "btn-index" href="formcad.php">Doar</a>
-                </div>
+                    <img src="img/doar.svg" alt="pessoa doando um alimento">
+                      <p>Clique no botão se quiser receber alimentos</p>
+                        </div>
+                  
+                        <div class="dir-form-envia">
+                        <a class = "btn-index" href="#">Receber</a>
+                
+             </div>
             </div>
-                <!--RECEBER-->
-            <div class="envia-form">
-                <div class="esq-form-envia">
+                            
+                        </div>
+                        <div class="col-md-6">
+                        <!--RECEBER-->
                     <h1>Quer receber doações?</h1>
                     <div class="img-index">
                       <img src="img/receber.svg" alt="recepção alimento">
                       <p>Clique no botão se quiser receber alimentos</p>
+                        </div>
+                  
+                        <div class="dir-form-envia">
+                        <a class = "btn-index" href="#">Receber</a>
+                
+             </div>
+            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="dir-form-envia">
-                    <a class = "btn-index" href="#">Receber</a>
-                </div>
-            </div>
-            </div>
 
+            </div>
+                
+ 
+          
             <!--Sobre área-->
             <div id="sobre-area">
                 <div class="container">
