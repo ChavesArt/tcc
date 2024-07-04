@@ -26,7 +26,7 @@ if ($result) {
 </head>
 
 <body>
-    <form action="crud/alterar.php" method="post">
+    <form action="alterar.php" method="post">
         <label for="nome">Nome:</label>
         <input type="text" name="nome" id="nome" value="<?php echo  $usuario['nome']; ?>" ><br>
         <label for="endereco">endereço</label>

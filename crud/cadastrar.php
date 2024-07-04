@@ -8,15 +8,14 @@ $endereco = $_POST['endereco'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 $telefone = $_POST['telefone'];
-//$tipo_usuario = $_POST["tipo_cliente"];
-//, tipo_cliente , $tipo_usuario
+$tipo_usuario = 1;
 //inserindo no banco
 $sql = "INSERT INTO usuario (nome, endereco, email, senha, telefone) VALUES ('$nome', '$endereco','$email', '$senha', '$telefone')";
 $result = mysqli_query($conexao, $sql);
 
 //redirecionando para o index.php
 if ($result) {
-    header("Location: ../formcad.php");
+    header("Location: ../index.php");
 } else {
     echo mysqli_errno($conexao) . ": " . mysqli_error($conexao);
 }

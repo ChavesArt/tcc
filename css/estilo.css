@@ -195,6 +195,9 @@ header,.navbar{
     color: white;
     outline: none;
 }
+.card-form p{
+    color: white;
+}
 
 /*Barra de pesquisa*/
 .caixa-procura{
@@ -240,6 +243,8 @@ header,.navbar{
     text-align: center;
 }
 
-#acoes-area{
-    max-width: 20vh;
+#doar-receber{
+
+    justify-content: center;
+    align-items: center;
 }
