@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
 
-    <?php include('../links.php'); ?>
+    <?php include('links.php'); ?>
 
 </head>
 
 <body>
 
-    <?php include('../menu.php'); ?>
+    <?php include('menu.php'); ?>
 
     <main>
         <div class="container-fluid">
@@ -29,7 +29,7 @@
 
 
                         <!--banner1-->
-                        <img src="../img/banner1.jpeg" class="d-block w-100" alt="fotos da igreja">
+                        <img src="img/banner1.jpeg" class="d-block w-100" alt="fotos da igreja">
                         <div class="carousel-caption d-none d-md-block">
                             <h2>Conheça-nos:Benjamin Constant 1991</h2>
                             <p></p>
@@ -40,7 +40,7 @@
 
                     <!--banner2-->
                     <div class="carousel-item  ">
-                        <img src="../img/banner2.jpg" class="d-block w-100" alt="fotos da igreja">
+                        <img src="img/banner2.jpg" class="d-block w-100" alt="fotos da igreja">
                         <div class="carousel-caption d-none d-md-block">
                             <h2>conheça-nos</h2>
                             <p></p>
@@ -51,7 +51,7 @@
 
                     <!--banner3-->
                     <div class="carousel-item  ">
-                        <img src="../img/banner3.jpg" class="d-block w-100" alt="Manutenção de Software">
+                        <img src="img/banner3.jpg" class="d-block w-100" alt="Manutenção de Software">
                         <div class="carousel-caption d-none d-md-block">
                             <h2>conheça-nos</h2>
                             <p></p>
@@ -77,12 +77,12 @@
                     <div class="esq-form-envia">
                         <h1>Quer doar alguma coisa?</h1>
                         <div class="img-index">
-                            <img src="../img/doar.svg" alt="pessoa doando um alimento">
+                            <img src="img/doar.svg" alt="pessoa doando um alimento">
                             <p>Sua doação pode ajudar muitas pessoas</p>
                         </div>
                     </div>
                     <div class="dir-form-envia">
-                        <a class="btn-index" href="..crud/formcad.php">Doar</a>
+                        <a class="btn-index" href="crud/formcad.php">Doar</a>
                     </div>
                 </div>
                 <!--RECEBER-->
@@ -90,7 +90,7 @@
                     <div class="esq-form-envia">
                         <h1>Quer receber doações?</h1>
                         <div class="img-index">
-                            <img src="../img/receber.svg" alt="recepção alimento">
+                            <img src="img/receber.svg" alt="recepção alimento">
                             <p>Clique no botão se quiser receber alimentos</p>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                         <h3 class="main-title">Sobre a igreja</h3>
                     </div>
                     <div class="col-md-6">
-                        <img class="img-fluid" src="../img/fachada_igreja.jpg" alt="Igreja ieq flores">
+                        <img class="img-fluid" src="img/fachada_igreja.jpg" alt="Igreja ieq flores">
                     </div>
                     <div class="col-md-6">
                         <h3 class="about-title">IEQ flores</h3>

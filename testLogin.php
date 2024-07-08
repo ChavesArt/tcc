@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!empty($_POST['email']) and !empty($_POST['senha'])) {
-    include('../conecta.php');
+    include('conecta.php');
     $conecta = conectar();
     $email = $_POST['email'];
     $senha = $_POST['senha'];
@@ -22,7 +22,7 @@ if (!empty($_POST['email']) and !empty($_POST['senha'])) {
         $_SESSION['email'] = $email;
         $_SESSION['senha'] = $senha;
         $_SESSION['nome'] = $nome;
-        header('Location:../index.php');
+        header('Location:index.php');
     }
 } else {
     header('location:login.php');
