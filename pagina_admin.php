@@ -43,7 +43,6 @@ if ($result) {
             echo "<td>" . $usuario['endereco'] . "</td>";
             echo '<td>' . $usuario['email'] . '</td>';
             echo "<td>" . $usuario['senha'] . "</td>";
-            echo "<td>" . $usuario['tipo_cliente'] . "</td>";
             echo '<td>' . $usuario['telefone'] . '</td>';
             echo '<td><a href="form-alterar.php?id_usuario=' .
                 $usuario['id_usuario'] . '">Alterar</td>'; 

@@ -14,6 +14,7 @@
             <a href="index.php#sobre-area"class="nav-item nav-link" id="about-menu">Sobre nos</a>
             <a href="formcad.php" class="nav-item nav-link" id="cad-menu">Cadastrar</a>
             <a href="login.php"class="nav-item nav-link" id="login-menu">Entrar</a>
+            <a href="logout.php"class="nav-item nav-link" id="login-menu">Sair</a>
         </div>
     </div>
         </nav>
