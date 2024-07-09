@@ -16,9 +16,9 @@ $conexao = conectar();
 /*barra de pesquisa*/
 if (!empty($_GET['pesquisar'])) {
     $data = $_GET['pesquisar'];
-    $sql = "SELECT * FROM usuario where nome LIKE '%$data%' or email LIKE '%$data%' or endereco LIKE '%$data%' or  telefone LIKE '%$data%' order by nome DESC";
+    $sql = "SELECT * FROM alimento where nome LIKE '%$data%' or email LIKE '%$data%'  order by nome DESC";
 } else {
-    $sql = "SELECT * FROM usuario order by nome DESC";
+    $sql = "SELECT * FROM alimento order by nome DESC";
 }
 $resultado = mysqli_query($conexao, $sql);
 $res = mysqli_affected_rows($conexao);
@@ -43,6 +43,7 @@ if ($res < 1) {
     <br><br>
     <br><br>
     <br><br>
+    <a href="formcad_alimento.php">Cadastrar alimento</a>
     <br><br>
     <center>
         <h1>Olá, <?php echo $logado; ?></h1>
@@ -52,7 +53,7 @@ if ($res < 1) {
     <!--Barra de pesquisa-->
     <div class="caixa-procura">
         <form action="" method="get">
-            <input type="search" class="form-control" placeholder="(nome, telefone, email, endereço)" name="pesquisar" id="pesquisar">
+            <input type="search" class="form-control" placeholder="nome" name="pesquisar" id="pesquisar">
         </form>
         <button class="btn btn-primary btn-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -66,39 +67,35 @@ if ($res < 1) {
         <table class="table border border-dark">
             <thead>
                 <div class="row">
-                    <div class="col-1 border border-dark btn-admin"><a href="admin_alimento.php">Alimentos</a></div>
+                    <div class="col-1 border border-dark btn-admin"><a href="admin.php">Usuários</a></div>
                     <div class="col-1 border border-dark btn-admin"><a href="#">Roupas</a></div>
                     <div class="col-1 border border-dark btn-admin"><a href="#">Outros</a></div>
                 </div>
                 <tr>
                     <th scope="col">Nome</th>
-                    <th scope="col">Endereço</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">telefone</th>
+                    <th scope="col">quantidade</th>
                     <th scope="col">Opções</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
 
-                while ($usuario = mysqli_fetch_assoc($resultado)) {
+                while ($alimento = mysqli_fetch_assoc($resultado)) {
 
                     echo '<tr>';
 
-                    echo '<td>' . $usuario['nome'] . '</td>';
-                    echo "<td>" . $usuario['endereco'] . "</td>";
-                    echo '<td>' . $usuario['email'] . '</td>';
-                    echo "<td>" . $usuario['telefone'] . "</td>";
+                    echo '<td>' . $alimento['nome'] . '</td>';
+                    echo "<td>" . $alimento['quantidade'] . "</td>";
                     echo '<td>
 
-        <a class = "btn btn-sm btn-primary" href="crud/form-alterar.php?id_usuario=' . $usuario['id_usuario'] . '">
+        <a class = "btn btn-sm btn-primary" href="crud/form-alterar.php?id_alimento=' . $alimento['id_alimento'] . '">
             
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
             </svg>
         </a>
 
-        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_usuario=' . $usuario['id_usuario'] . '>
+        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_usuario=' . $alimento['id_alimento'] . '>
 
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
