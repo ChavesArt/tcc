@@ -62,10 +62,10 @@ if ($res < 1) {
 
     </div> 
 
-    <div class=" container m-5 p-5 ">
-        <table class="table border border-dark">
+    <div class=" container p-5 ">
+        <table class="table table-striped table-hover border border-dark  ">
             <thead>
-                <div class="row">
+                <div class="row mx-auto select_table">
                     <div class="col-1 border border-dark btn-admin"><a href="admin_alimento.php">Alimentos</a></div>
                     <div class="col-1 border border-dark btn-admin"><a href="#">Roupas</a></div>
                     <div class="col-1 border border-dark btn-admin"><a href="#">Outros</a></div>
