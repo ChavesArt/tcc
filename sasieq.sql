@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 04-Jul-2024 às 16:47
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1
+-- Tempo de geração: 09-Jul-2024 às 03:11
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,25 +27,43 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usuario` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) DEFAULT NULL,
-  `senha` varchar(255) DEFAULT NULL,
-  `telefone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `endereco` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `telefone` varchar(20) NOT NULL,
+  `endereco` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `tipo_cliente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `telefone`, `email`, `endereco`) VALUES
-(1, 'arthur', '123', '55-55 923857666', 'art@gmail', 'rua tal'),
-(2, 'argus', '133333', '55-55 923857666', 'art@gmail', 'sitio tal'),
-(3, 'rogerio', 'aaa', '55-55 934783947', 'roger@gmail', 'beco tal');
+INSERT INTO `usuario` (`id_usuario`, `nome`, `telefone`, `endereco`, `email`, `senha`, `tipo_cliente`) VALUES
+(1, 'João', '55 9 1122 3343', 'Rua General Salgado Filho 4444', 'joao@gmail.com', '321', 1),
+(4, 'adminstrador', '', '', 'admin@gmail.com', 'senhaAdmin', 0);
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
