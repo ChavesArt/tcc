@@ -26,7 +26,8 @@ if (!empty($_POST['email']) and !empty($_POST['senha'])) {
             header("location:admin.php");
             die();
         }
-        header('Location:index.php');
+        header('location:index.php');
+        die();
     }
 } else {
     header('location:login.php');

@@ -12,3 +12,9 @@ function conectar()
 
     return $conexao;
 }
+function logar()
+{
+    if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true)) {
+        header('location:logout.php');
+    } 
+}

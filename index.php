@@ -1,3 +1,9 @@
+<?php
+session_start();
+include "conecta.php";
+logar();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 

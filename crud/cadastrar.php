@@ -1,7 +1,7 @@
 <?php
 include "../conecta.php";
 $conexao = conectar();
-
+logar();
 //recebendo as variáveis do formulário
 $nome = $_POST['nome'];
 $endereco = $_POST['endereco'];

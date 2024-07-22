@@ -3,15 +3,10 @@
 /*fazendo a sessão*/
 session_start();
 include  "conecta.php";
-if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true)) {
-    header('logout.php');
-} else {
-    $logado = $_SESSION['nome'];
-}
-
-
 
 $conexao = conectar();
+logar();
+$logado = $_SESSION['nome'];
 
 /*barra de pesquisa*/
 if (!empty($_GET['pesquisar'])) {
