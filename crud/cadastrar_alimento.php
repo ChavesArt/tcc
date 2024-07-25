@@ -12,3 +12,7 @@ $result = mysqli_query($conexao, $sql);
 //redirecionando para o index.php
 if ($result) {
     header("Location: ../admin_alimento.php");
+} else {
+    echo mysqli_errno($conexao) . ": " . mysqli_error($conexao);
+}
+?>  
