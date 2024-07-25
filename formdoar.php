@@ -1,31 +1,47 @@
+<?php
+session_start();
+include "conecta.php";
+logar();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de doação</title>
-    <?php include('links.php');?>
+    <title>Formulário de Cadastro</title>
+
+    <?php include('links.php'); ?>
+
+
 </head>
+
 <body>
-    <div class="container">
-    <form action="" method="post">
+    <?php include_once('menu.php'); ?>
 
-    <label class="form-label" for="doacao">Doação</label>
-    <input class="form-control" type="text" name="doacao" id="doacao">
-    <label class="form-label" for="quant">quantidade</label>
-    <input class="form-control" type="text" name="quant" id="quant">
-    <label class="form-label"for="doacao">Doação</label>
-    <input class="form-control" type="text" name="doacao" id="doacao">
+    <div class="main-form">
+        <div class="esquerda-form">
+            <h1>Sua doação pode ajuda um pessoa</h1>
+            <img src="img/login-animate.svg" class="esquerda-img" alt="Um homem dando alimento para outro">
+        </div>
+        <div class="direita-form">
+            <div class="card-form">
+                <h1>Login</h1>
+                <form action="" method="post">
+                    <div class="campo-texto">
+                        <label for="alimento">alimento</label>
+                        <input type="text" name="alimento" id="alimento" placeholder="alimento">
 
-    <input class= "btn btn-primary" type="submit" value="Enviar">
+                        <label for="senha">quantidade</label>
+                        <input type="number" name="senha" id="senha" placeholder="Senha">
 
-
-
-
-
-
-
-    </form>
+                        <input type ="submit" value="Login">
+                </form>
+                <p>Ainda não é cadastrado?<a href="crud/formcad.php">Cadastre-se</a></p>
+            </div>
+        </div>
+    </div>
     </div>
 </body>
+
 </html>
