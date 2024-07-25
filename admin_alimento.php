@@ -72,9 +72,9 @@ if ($res < 1) {
                     <div class="col-1 border border-dark btn-admin"><a href="#">Outros</a></div>
                 </div>
                 <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">quantidade</th>
-                    <th scope="col">Opções</th>
+                    <th class="col-5">Nome</th>
+                    <th class="col-5">quantidade</th>
+                    <th class="col-2">Opções</th>
                 </tr>
             </thead>
             <tbody>

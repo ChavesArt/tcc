@@ -23,10 +23,11 @@ if (!empty($_POST['email']) and !empty($_POST['senha'])) {
         $_SESSION['senha'] = $senha;
         $_SESSION['nome'] = $nome;
         if($tipo == 0){
-            header("admin.php");
+            header("location:admin.php");
             die();
         }
-        header('Location:index.php');
+        header('location:index.php');
+        die();
     }
 } else {
     header('location:login.php');

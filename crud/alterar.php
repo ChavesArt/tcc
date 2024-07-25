@@ -2,7 +2,7 @@
 //conectando com o banco
 include ("../conecta.php");
 $conexao = conectar();
-
+logar();
 //recebendo as variáveis
 $id = $_POST['id_usuario'];
 $nome = $_POST['nome'];

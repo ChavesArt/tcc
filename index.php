@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "conecta.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -82,7 +87,7 @@
                         </div>
                     </div>
                     <div class="dir-form-envia">
-                        <a class="btn-index" href="crud/formcad.php">Doar</a>
+                        <a class="btn-index" href="formdoar.php">Doar</a>
                     </div>
                 </div>
                 <!--RECEBER-->

@@ -12,3 +12,9 @@ function conectar()
 
     return $conexao;
 }
+function logar()
+{
+    if ((!isset($_SESSION['email']))) {
+        header('location:login.php');
+    } 
+}

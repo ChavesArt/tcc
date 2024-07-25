@@ -12,6 +12,7 @@ body {
 }
 p,li{
     font-size: 14px;
+    color: #ffff;
 }
 
 /*Barra de navegação*/
@@ -20,7 +21,7 @@ header,.navbar{
     background-color: #7e22ce;
 }
 .navbar-nav{
-    color: #fff;
+    color: #ffff;
 }
 #nav-container{
     padding-top: 0;
@@ -210,6 +211,7 @@ header,.navbar{
     width: 500px;
     
 }
+
 
 
 /*button do index*/

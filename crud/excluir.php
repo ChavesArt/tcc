@@ -1,9 +1,8 @@
 <?php
 require_once "../conecta.php";
 $conexao = conectar();
-
+logar();
 $id = $_GET['id_usuario'];
-
 
 
 $sql = "DELETE *  FROM usuario WHERE id_usuario=$id";
