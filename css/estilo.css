@@ -12,7 +12,6 @@ body {
 }
 p,li{
     font-size: 14px;
-    color: #ffff;
 }
 
 /*Barra de navegação*/
@@ -21,7 +20,7 @@ header,.navbar{
     background-color: #7e22ce;
 }
 .navbar-nav{
-    color: #ffff;
+    color: white;
 }
 #nav-container{
     padding-top: 0;
@@ -95,7 +94,46 @@ header,.navbar{
     font-size: 17px;
     color: black;
     font-weight: bold;
-    text-align: justify;
+    text-align: center;
+    
+}
+
+/* footer */
+#contact-area{
+    text-align: center;
+}
+.contact-box{
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid purple;
+}
+.contact-box i{
+  color: #444;
+  border: solid 1px #444;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.contact-box p{
+    font-size: 16px;
+}
+.contact-title{
+    font-weight: bold;
+}
+
+/* copyright */
+#copy-area{
+    background-color: #f1f1f1;
+}
+#copy-area.container{
+    padding: 10px 0px;
+    text-align: center;
+}
+#copy-area.container p {
+    margin-bottom: 0;
 }
 
 /*formlulários*/
@@ -157,14 +195,19 @@ header,.navbar{
     justify-content: center;
     margin: 10px 0px;
 }
+.campo-texto input [type="placeholder"]{
+    color: black;
+}
+.campo-texto input [type="date"]{
+    color: black;
+}
 
 .campo-texto input{
-    width: 110%;
+    width: 90%;
     border: none;
     border-radius: 10px;
     padding: 15px;
     background: whitesmoke;
-    color: white;
     font-size: 12pt;
     outline: none;
     box-sizing: border-box;
@@ -173,9 +216,12 @@ header,.navbar{
     color: white;
     margin-bottom: 10px;
 }
-
+.campo-texto textarea{
+    width: 90%;
+    margin: 25px 0;
+}
 .campo-texto input[type="submit"]{
-    width: 110%;
+    width: 90%;
     padding: 16px;
     margin: 25px 0;
     border: none;
@@ -186,6 +232,7 @@ header,.navbar{
     letter-spacing: 2px;
     background:  rgb(59, 2, 247);
     cursor: pointer;
+    color: white;
 }
 
 .campo-texto input[type="text"],input[type="password"],input[type="email"]{

@@ -32,7 +32,7 @@
 
                         <input type ="submit" value="Login">
                 </form>
-                <p>Ainda não é cadastrado?<a href="crud/formcad.php">Cadastre-se</a></p>
+                <p>Ainda não é cadastrado?<a href="formcad.php">Cadastre-se</a></p>
             </div>
         </div>
     </div>

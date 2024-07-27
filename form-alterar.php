@@ -5,7 +5,6 @@ $id = $_GET['id_usuario'];
 //conectando com o banco
 require_once "conecta.php";
 $conexao = conectar();
-logar();
 $sql = "SELECT * FROM usuario WHERE id_usuario = $id";
 $result = mysqli_query($conexao, $sql);
 

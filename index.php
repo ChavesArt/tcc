@@ -1,8 +1,3 @@
-<?php
-session_start();
-include "conecta.php";
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -76,6 +71,12 @@ include "conecta.php";
                 </a>
             </div>
 
+                <div class="col-md-12">
+                    <div class="main-title">
+
+                        <h3>Área de doações</h3>
+                    </div>
+                    </div>
             <!--DOAR-->
             <div class="doar-receber">
                 <div class="envia-form">
@@ -100,7 +101,7 @@ include "conecta.php";
                         </div>
                     </div>
                     <div class="dir-form-envia">
-                        <a class="btn-index" href="#">Receber</a>
+                        <a class="btn-index" href="receber.php">Receber</a>
                     </div>
                 </div>
             </div>
@@ -131,8 +132,9 @@ include "conecta.php";
 
         </div>
     </main>
-
-
+    <footer>
+        <?php include "footer.php"; ?>
+    </footer>
 </body>
 <script>
 
