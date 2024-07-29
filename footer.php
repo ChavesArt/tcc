@@ -2,21 +2,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="main-title">
-
-                        <h3>Entre em contato conosco</h3>
-                    </div>
+                        <h3  class = "main-title">Entre em contato conosco</h3>
                     </div>
 
                     <div class="col-md-4 contact-box">
                         <i class="fas fa-phone" alt="Telefone"></i>
-                        <p><span class="contact-title">Ligue para:</span>(55) 99999-9999</p>
-                        <p><span class="contact-tile">horários:</span>8:00 - 19:00</p>
+                        <p><span class="contact-title"> Ligue para:</span> (55) 99999-9999</p>
+                        <p><span class="contact-title"> Horários:</span> 8:00 - 19:00</p>
                     </div>
 
                     <div class="col-md-4 contact-box">
                         <i class="fas fa-envelope" alt="Envelope"></i>
-                        <p><span class="contact-title">Email:</span>lorem@gmail.com</p>
+                        <p><span class="contact-title">Email:</span> Lorem@gmail.com</p>
                     </div>
 
                     <div class="col-md-4 contact-box">

@@ -70,45 +70,10 @@
                     <span class="sr-only">Previous</span>
                 </a>
             </div>
-
-                <div class="col-md-12">
-                    <div class="main-title">
-
-                        <h3>Área de doações</h3>
-                    </div>
-                    </div>
-            <!--DOAR-->
-            <div class="doar-receber">
-                <div class="envia-form">
-                    <div class="esq-form-envia">
-                        <h1>Quer doar alguma coisa?</h1>
-                        <div class="img-index">
-                            <img src="img/doar.svg" alt="pessoa doando um alimento">
-                            <p>Sua doação pode ajudar muitas pessoas</p>
-                        </div>
-                    </div>
-                    <div class="dir-form-envia">
-                        <a class="btn-index" href="formdoar.php">Doar</a>
-                    </div>
-                </div>
-                <!--RECEBER-->
-                <div class="envia-form">
-                    <div class="esq-form-envia">
-                        <h1>Quer receber doações?</h1>
-                        <div class="img-index">
-                            <img src="img/receber.svg" alt="recepção alimento">
-                            <p>Clique no botão se quiser receber alimentos</p>
-                        </div>
-                    </div>
-                    <div class="dir-form-envia">
-                        <a class="btn-index" href="receber.php">Receber</a>
-                    </div>
-                </div>
             </div>
-        </div>
 
-        </div>
-
+                      <!-- AÇÕES  -->
+                <?php include "doacoes.php"; ?>
 
 
         <!--Sobre área-->

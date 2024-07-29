@@ -29,9 +29,10 @@
 
                         <label for="senha">Senha</label>
                         <input type="password" name="senha" id="senha" placeholder="Senha">
-
+                        <a href="#">Esqueceu a senha?</a>
+                        
                         <input type ="submit" value="Login">
-                </form>
+                    </form>
                 <p>Ainda não é cadastrado?<a href="formcad.php">Cadastre-se</a></p>
             </div>
         </div>

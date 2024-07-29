@@ -90,7 +90,7 @@ header,.navbar{
     
 }
 
-#about title{
+#about title {
     font-size: 17px;
     color: black;
     font-weight: bold;
@@ -129,10 +129,10 @@ header,.navbar{
     background-color: #f1f1f1;
 }
 #copy-area.container{
-    padding: 10px 0px;
-    text-align: center;
+    margin: auto;
 }
-#copy-area.container p {
+#copy-area .container p {
+    text-align: center;
     margin-bottom: 0;
 }
 
