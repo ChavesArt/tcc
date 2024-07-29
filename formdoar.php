@@ -22,7 +22,7 @@ logar();
     <div class="main-form">
         <div class="esquerda-form">
             <h1>Sua doação pode ajuda uma pessoa</h1>
-            <img src="" class="esquerda-img" alt="Um homem dando alimento para outro">
+            <img src="img/doacao.svg" class="esquerda-img" alt="Um homem dando alimento para outro">
         </div>
         <div class="direita-form mx-auto">
             <div class="card-form">
