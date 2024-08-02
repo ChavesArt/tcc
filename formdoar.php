@@ -36,8 +36,7 @@ logar();
                         <input type="number" name="quantidade" id="quant" placeholder="Quantidade">
 
                         <label for="descri">Descrição</label>
-                        <textarea cols="50" class="mx-auto" rows="10" id = "descri"placeholder="Descrição" maxlength="200">
-                        </textarea>
+                        <textarea cols="55"  rows="5" id = "descri" placeholder="Descrição" maxlength="200"></textarea>
 
                         <label for="data">Data de validade</label>
                         <input type="date" name="data_validade" id="data" placeholder="data de validade">

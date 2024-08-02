@@ -202,7 +202,7 @@ header,.navbar{
     color: black;
 }
 
-.campo-texto input{
+.campo-texto input, textarea{
     width: 90%;
     border: none;
     border-radius: 10px;
@@ -212,6 +212,7 @@ header,.navbar{
     outline: none;
     box-sizing: border-box;
 }
+
 .campo-texto > label{
     color: white;
     margin-bottom: 10px;
