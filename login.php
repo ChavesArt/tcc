@@ -29,7 +29,7 @@
 
                         <label for="senha">Senha</label>
                         <input type="password" name="senha" id="senha" placeholder="Senha">
-                        <a href="#">Esqueceu a senha?</a>
+                        <a href="form_recuperar_senha.php">Esqueceu a senha?</a>
                         
                         <input type ="submit" value="Login">
                     </form>
