@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 05-Ago-2024 às 14:31
+-- Tempo de geração: 05-Ago-2024 às 20:09
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -33,18 +33,20 @@ CREATE TABLE IF NOT EXISTS `doacoes` (
   `nome` varchar(255) NOT NULL,
   `quantidade` int NOT NULL,
   `descricao` varchar(255) NOT NULL,
-  `data_validade` datetime DEFAULT NULL,
-  `tamanho` char(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `data_validade` date DEFAULT NULL,
+  `tamanho` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `tipo_doacao` varchar(255) NOT NULL,
   PRIMARY KEY (`id_doacoes`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `doacoes`
 --
 
 INSERT INTO `doacoes` (`id_doacoes`, `nome`, `quantidade`, `descricao`, `data_validade`, `tamanho`, `tipo_doacao`) VALUES
-(1, 'arroz', 3, 'Requinte', NULL, NULL, 'alimento');
+(1, 'arroz', 3, 'Requinte', '2025-10-23', NULL, 'alimento'),
+(2, 'Camiseta', 7, 'Camiseta de manga longa com uma stampa do Nirvana', NULL, 'G', 'roupa'),
+(3, 'TV', 2, 'LG', NULL, '70 polegadas', 'outro');
 
 -- --------------------------------------------------------
 
