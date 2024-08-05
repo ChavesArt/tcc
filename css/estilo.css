@@ -249,7 +249,7 @@ header,.navbar{
 }
 
 /*Barra de pesquisa*/
-.caixa-procura{
+.caixa-procura form{
     display: flex;
     gap:0.1%;
     padding: 20px;

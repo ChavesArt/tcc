@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 02-Ago-2024 às 18:09
+-- Tempo de geração: 05-Ago-2024 às 14:31
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `sasieq`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `doacoes`
+--
+
+DROP TABLE IF EXISTS `doacoes`;
+CREATE TABLE IF NOT EXISTS `doacoes` (
+  `id_doacoes` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `quantidade` int NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `data_validade` datetime DEFAULT NULL,
+  `tamanho` char(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `tipo_doacao` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_doacoes`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `doacoes`
+--
+
+INSERT INTO `doacoes` (`id_doacoes`, `nome`, `quantidade`, `descricao`, `data_validade`, `tamanho`, `tipo_doacao`) VALUES
+(1, 'arroz', 3, 'Requinte', NULL, NULL, 'alimento');
 
 -- --------------------------------------------------------
 
@@ -57,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `tipo_cliente` int NOT NULL,
+  `voluntario` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -65,10 +91,10 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nome`, `telefone`, `endereco`, `email`, `senha`, `tipo_cliente`) VALUES
-(1, 'João', '55 9 1122 3343', 'Rua General Salgado Filho 4444', 'joao@gmail.com', '321', 1),
-(4, 'adminstrador', '', '', 'admin@gmail.com', 'senhaAdmin', 0),
-(6, 'teste', 'telefone teste', 'rua teste testando', 'teste02082024@gmail.com', '12', 1);
+INSERT INTO `usuario` (`id_usuario`, `nome`, `telefone`, `endereco`, `email`, `senha`, `tipo_cliente`, `voluntario`) VALUES
+(1, 'João', '55 9 1122 3343', 'Rua General Salgado Filho 4444', 'joao@gmail.com', '321', 1, NULL),
+(4, 'adminstrador', '', '', 'admin@gmail.com', 'senhaAdmin', 0, NULL),
+(6, 'teste', 'telefone teste', 'rua teste testando', 'teste02082024@gmail.com', '12', 1, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
