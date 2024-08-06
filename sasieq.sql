@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 05-Ago-2024 às 20:09
+-- Tempo de geração: 06-Ago-2024 às 16:29
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `doacoes`;
 CREATE TABLE IF NOT EXISTS `doacoes` (
   `id_doacoes` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
-  `quantidade` int NOT NULL,
+  `quantidade` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `descricao` varchar(255) NOT NULL,
   `data_validade` date DEFAULT NULL,
   `tamanho` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `doacoes` (
 --
 
 INSERT INTO `doacoes` (`id_doacoes`, `nome`, `quantidade`, `descricao`, `data_validade`, `tamanho`, `tipo_doacao`) VALUES
-(1, 'arroz', 3, 'Requinte', '2025-10-23', NULL, 'alimento'),
-(2, 'Camiseta', 7, 'Camiseta de manga longa com uma stampa do Nirvana', NULL, 'G', 'roupa'),
-(3, 'TV', 2, 'LG', NULL, '70 polegadas', 'outro');
+(1, 'arroz', '3 Kg', 'Requinte', '2025-10-23', NULL, 'alimento'),
+(2, 'Camiseta', '7 unidade(s)', 'Camiseta de manga longa com uma stampa do Nirvana', NULL, 'G', 'roupa'),
+(3, 'TV', '2 unidade(s)', 'LG', NULL, '70 polegadas', 'outro');
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `telefone`, `endereco`, `email`, `senha`, `tipo_cliente`, `voluntario`) VALUES
-(1, 'João', '55 9 1122 3343', 'Rua General Salgado Filho 4444', 'joao@gmail.com', '321', 1, NULL),
+(1, 'João', '55 9 1122 3343', 'Rua General Salgado Filho 4444', 'joao@gmail.com', '321', 1, 1),
 (4, 'adminstrador', '', '', 'admin@gmail.com', 'senhaAdmin', 0, NULL),
 (6, 'teste', 'telefone teste', 'rua teste testando', 'teste02082024@gmail.com', '12', 1, NULL);
 COMMIT;

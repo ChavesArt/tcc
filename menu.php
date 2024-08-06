@@ -2,7 +2,7 @@
     <div class="container" id="nav-container">
         <nav class="navbar navbar-expand-lg fixed-top">
             <a href="index.php" class="navbar-brand">
-                <img id="logo" src="img/sasieq1.jpg" alt="logo SASIEQ">
+                <img id="logo" src="img/sasieq.png" alt="logo SASIEQ">
             </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-links" 
     aria-controls="navbar-links" aria-expanded="false" aria-label="toggle-navigation">

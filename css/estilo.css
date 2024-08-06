@@ -19,7 +19,7 @@ p,li{
 header,.navbar{
     background-color: #7e22ce;
 }
-.navbar-nav{
+.navbar-nav a{
     color: white;
 }
 #nav-container{
