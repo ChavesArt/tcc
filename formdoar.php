@@ -33,16 +33,15 @@ logar();
                         <input type="text" name="alimento" id="alimento" placeholder="alimento">
 
                         <label for="quantidade">quantidade</label>
-                        <input type="number" name="quantidade" id="quant" placeholder="Quantidade">
-
+                        <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade">
                         <label for="descri">Descrição</label>
-                        <textarea cols="55"  rows="5" id = "descri" placeholder="Descrição" maxlength="200"></textarea>
+                        <textarea cols="55" rows="5" id="descri" placeholder="Escreva aqui" maxlength="200"></textarea>
 
                         <label for="data">Data de validade</label>
                         <input type="date" name="data_validade" id="data" placeholder="data de validade">
 
 
-                        <input type ="submit" value="Enviar">
+                        <input type="submit" value="Enviar">
                 </form>
             </div>
         </div>

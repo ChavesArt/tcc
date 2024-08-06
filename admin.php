@@ -10,15 +10,15 @@ $logado = $_SESSION['nome'];
 
 /*barra de pesquisa*/
 if ($_GET) {
-        // EM PROGRESSO
+    // EM PROGRESSO
     if (!empty($_GET['pesquisar'])) {
 
         $data = $_GET['pesquisar'];
 
-        if(empty($_GET['tabela'])){
+        if (empty($_GET['tabela'])) {
 
             $sql_pesquisar = "SELECT * FROM doacoes where nome LIKE '%$data%' or quantidade LIKE '%$data%' or descricao LIKE '%$data%' or  data_validade LIKE '%$data%' or tamanho  LIKE '%$data%'order by nome DESC";
-            $resultado_doacao_alimento = mysqli_query($conexao,$sql_pesquisar);
+            $resultado_doacao_alimento = mysqli_query($conexao, $sql_pesquisar);
         }
     }
     if (empty($_GET['pesquisar'])) {
@@ -26,32 +26,32 @@ if ($_GET) {
         $resultado_usuario = mysqli_query($conexao, $sql_usuario);
     }
     $res = mysqli_affected_rows($conexao);
-        // SELECIONA OS USUARIOS
-    if($_GET['tabela'] == 'usuário'){
+    // SELECIONA OS USUARIOS
+    if ($_GET['tabela'] == 'usuário') {
         $sql_usuario = "SELECT * FROM usuario ORDER BY nome DESC";
         $resultado_tabela_usuario =  mysqli_query($conexao, $sql_usuario);
     }
-    if($_GET['tabela'] == 'voluntário'){
+    if ($_GET['tabela'] == 'voluntário') {
         $sql_usuario_voluntario = "SELECT * FROM usuario WHERE voluntario = 1";
         $resultado_tabela_voluntario =  mysqli_query($conexao, $sql_usuario_voluntario);
     }
-        // SELECIONA TODAS AS ROUPAS
+    // SELECIONA TODAS AS ROUPAS
     if ($_GET['tabela'] == 'roupa') {
         $tipo_doacao = $_GET['tabela'];
         $sql_doacao_roupa = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
         $resultado_doacao_roupa = mysqli_query($conexao, $sql_doacao_roupa);
     }
     // SELECIONA TODOS OS OUTROS CADASTROS
-    if($_GET['tabela'] == 'outro'){
+    if ($_GET['tabela'] == 'outro') {
         $tipo_doacao = $_GET['tabela'];
         $sql_doacao_outro = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
-        $resultado_doacao_outro = mysqli_query($conexao,$sql_doacao_outro);
+        $resultado_doacao_outro = mysqli_query($conexao, $sql_doacao_outro);
     }
     // SELECIONA TODOS OS ALIMENTOS
-    if($_GET['tabela'] == 'alimento'){
+    if ($_GET['tabela'] == 'alimento') {
         $tipo_doacao = $_GET['tabela'];
         $sql_doacao_alimento = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
-        $resultado_doacao_alimento = mysqli_query($conexao,$sql_doacao_alimento);
+        $resultado_doacao_alimento = mysqli_query($conexao, $sql_doacao_alimento);
     }
 }
 
@@ -106,10 +106,10 @@ if (empty($_GET)) {
             <thead>
 
                 <div class="head-table">
-                <div>
-                        <a href="cadastrar_doacao.php">Cadastrar Alimento</a> <br>
+                    <div>
+                        <a href="formdoar.php">Cadastrar Alimento</a> <br>
                         <a href="formcad.php">Cadastrar Usuário</a>
-                </div>
+                    </div>
 
                     <div class="btn-group">
                         <form action="" method="get">
@@ -185,8 +185,8 @@ if (empty($_GET)) {
                         echo "</tr>";
                     }
 
-                    if($_GET['tabela'] == 'outro'){
-                        
+                    if ($_GET['tabela'] == 'outro') {
+
                         echo "<tr>";
                         echo "<th scope='col'>Nome</th>";
                         echo "<th scope='col'>Quantidade</th>";
@@ -195,11 +195,10 @@ if (empty($_GET)) {
                         echo "<th scope='col'>Tamanho</th>";
                         echo "<th scope='col'>Opções</th>";
                         echo "</tr>";
-
                     }
 
-                    if($_GET['tabela'] == 'alimento'){
-                        
+                    if ($_GET['tabela'] == 'alimento') {
+
                         echo "<tr>";
                         echo "<th scope='col'>Nome</th>";
                         echo "<th scope='col'>Quantidade</th>";
@@ -207,7 +206,6 @@ if (empty($_GET)) {
                         echo "<th scope='col'>Data de validade</th>";
                         echo "<th scope='col'>Opções</th>";
                         echo "</tr>";
-
                     }
                 }
                 ?>
@@ -247,7 +245,7 @@ if (empty($_GET)) {
                 }
                 if ($_GET) {
 
-                    
+
 
                     if ($_GET['tabela'] == 'roupa') {
 
@@ -317,7 +315,7 @@ if (empty($_GET)) {
                         // tabela com as informaçoes do banco sobre o alimento
                         while ($info = mysqli_fetch_assoc($resultado_doacao_alimento)) {
                             $date = date_create($info['data_validade']);
-                            
+
                             echo '<tr>';
                             echo '<td>' . $info['nome'] . '</td>';
                             echo '<td>' . $info['quantidade'] . '</td>';
@@ -347,7 +345,7 @@ if (empty($_GET)) {
 
                         // tabela com as informaçoes do banco sobre os usuários
                         while ($info = mysqli_fetch_assoc($resultado_tabela_usuario)) {
-                            
+
                             echo '<tr>';
                             echo '<td>' . $info['nome'] . '</td>';
                             echo '<td>' . $info['endereco'] . '</td>';
@@ -378,7 +376,7 @@ if (empty($_GET)) {
 
                         // tabela com as informaçoes do banco sobre os usuários
                         while ($info = mysqli_fetch_assoc($resultado_tabela_voluntario)) {
-                            
+
                             echo '<tr>';
                             echo '<td>' . $info['nome'] . '</td>';
                             echo '<td>' . $info['endereco'] . '</td>';

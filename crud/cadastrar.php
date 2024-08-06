@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../conecta.php";
 $conexao = conectar();
 //recebendo as variáveis do formulário
