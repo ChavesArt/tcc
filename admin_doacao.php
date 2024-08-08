@@ -8,52 +8,62 @@ $conexao = conectar();
 logar();
 $logado = $_SESSION['nome'];
 
-/*barra de pesquisa*/
+if (empty($_GET['tabela'])) {
+        // SELECIONA TODOS OS ALIMENTOS
+        $sql_doacao_alimento = "SELECT * FROM doacoes WHERE tipo_doacao = 'alimento'";
+        $resultado_doacao = mysqli_query($conexao, $sql_doacao_alimento);
+        
+    }
+
 if ($_GET) {
+   /*barra de pesquisa*/
+
     // EM PROGRESSO
     if (!empty($_GET['pesquisar'])) {
 
         $data = $_GET['pesquisar'];
+        
+
 
         if (empty($_GET['tabela'])) {
 
-            $sql_pesquisar = "SELECT * FROM doacoes where nome LIKE '%$data%' or quantidade LIKE '%$data%' or descricao LIKE '%$data%' or  data_validade LIKE '%$data%' or tamanho  LIKE '%$data%'order by nome DESC";
-            $resultado_doacao_alimento = mysqli_query($conexao, $sql_pesquisar);
+            $sql_pesquisar = "SELECT * FROM doacoes where nome LIKE '%$data%' or quantidade LIKE '%$data%' or descricao LIKE '%$data%' or  data_validade LIKE '%$data%' or tamanho LIKE '%$data%' or tipo_doacao LIKE '%$data%' order by nome DESC";
+
+         
+            $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
         }
     }
+
     if (empty($_GET['pesquisar'])) {
-        $sql_usuario = "SELECT * FROM usuario order by nome DESC";
-        $resultado_usuario = mysqli_query($conexao, $sql_usuario);
+        $sql_doacao = "SELECT * FROM doacoes order by nome DESC";
+        $resultado_doacao = mysqli_query($conexao, $sql_doacao);
     }
+
     $res = mysqli_affected_rows($conexao);
-    // SELECIONA OS USUARIOS
-    if ($_GET['tabela'] == 'usuário') {
-        $sql_usuario = "SELECT * FROM usuario ORDER BY nome DESC";
-        $resultado_tabela_usuario =  mysqli_query($conexao, $sql_usuario);
+
+    if (!empty($_GET['tabela'])) {
+        // SELECIONA TODAS AS ROUPAS
+        if ($_GET['tabela'] == 'roupa') {
+            $tipo_doacao = $_GET['tabela'];
+            $sql_doacao_roupa = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
+            $resultado_doacao = mysqli_query($conexao, $sql_doacao_roupa);
+        }
+        // SELECIONA TODOS OS OUTROS CADASTROS
+        if ($_GET['tabela'] == 'outro') {
+            $tipo_doacao = $_GET['tabela'];
+            $sql_doacao_outro = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
+            $resultado_doacao = mysqli_query($conexao, $sql_doacao_outro);
+        }
+        // SELECIONA TODOS OS ALIMENTOS
+        if ($_GET['tabela'] == 'alimento') {
+            $tipo_doacao = $_GET['tabela'];
+            $sql_doacao_alimento = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
+            $resultado_doacao = mysqli_query($conexao, $sql_doacao_alimento);
+        }
     }
-    if ($_GET['tabela'] == 'voluntário') {
-        $sql_usuario_voluntario = "SELECT * FROM usuario WHERE voluntario = 1";
-        $resultado_tabela_voluntario =  mysqli_query($conexao, $sql_usuario_voluntario);
     }
-    // SELECIONA TODAS AS ROUPAS
-    if ($_GET['tabela'] == 'roupa') {
-        $tipo_doacao = $_GET['tabela'];
-        $sql_doacao_roupa = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
-        $resultado_doacao_roupa = mysqli_query($conexao, $sql_doacao_roupa);
-    }
-    // SELECIONA TODOS OS OUTROS CADASTROS
-    if ($_GET['tabela'] == 'outro') {
-        $tipo_doacao = $_GET['tabela'];
-        $sql_doacao_outro = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
-        $resultado_doacao_outro = mysqli_query($conexao, $sql_doacao_outro);
-    }
-    // SELECIONA TODOS OS ALIMENTOS
-    if ($_GET['tabela'] == 'alimento') {
-        $tipo_doacao = $_GET['tabela'];
-        $sql_doacao_alimento = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
-        $resultado_doacao_alimento = mysqli_query($conexao, $sql_doacao_alimento);
-    }
-}
+ 
+
 
 // head-table
 if (empty($_GET)) {
@@ -83,7 +93,9 @@ if (empty($_GET)) {
     <br><br>
     <br><br>
     <center>
-        <h1>Olá, <?php echo $logado; ?></h1>
+        <h4>Olá, <?php echo $logado; ?></h4>
+        <h1>Doações</h1>
+        
     </center>
 
 
@@ -91,7 +103,7 @@ if (empty($_GET)) {
     <div class="caixa-procura">
 
         <form action="" method="get">
-            <input type="search" class="form-control" placeholder="(nome, telefone, email, endereço)" name="pesquisar" id="pesquisar">
+            <input type="search" class="form-control" placeholder="(nome, quantidade, descrição, data de validade, tamanho)" name="pesquisar" id="pesquisar">
             <button class="btn btn-primary btn-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -112,7 +124,7 @@ if (empty($_GET)) {
                     </div>
 
                     <div class="btn-group">
-                        <form action="" method="get">
+                        <form action="admin_usuario.php" method="get">
                             <div class="btn btn-primary dropdown-toggle ">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">Usuários </button>
                                 <div class="dropdown-menu">
@@ -145,34 +157,15 @@ if (empty($_GET)) {
                     echo "<th scope='col'>Quantidade</th>";
                     echo "<th scope='col'>Descrição</th>";
                     echo "<th scope='col'>Data de validade</th>";
+                    echo "<th scope='col'>Tamanho</th>";
                     echo "<th scope='col'>Opções</th>";
                     echo "</tr>";
                 }
 
 
-                if ($_GET) {
+                if (!empty($_GET['tabela'])) {
 
-                    if ($_GET['tabela'] == "usuário") {
-
-                        echo "<tr>";
-                        echo "<th scope='col'>Nome</th>";
-                        echo "<th scope='col'>Endereço</th>";
-                        echo "<th scope='col'>Email</th>";
-                        echo "<th scope='col'>telefone</th>";
-                        echo "<th scope='col'>Opções</th>";
-                        echo "</tr>";
-                    }
-
-                    if ($_GET['tabela'] == "voluntário") {
-
-                        echo "<tr>";
-                        echo "<th scope='col'>Nome</th>";
-                        echo "<th scope='col'>Endereço</th>";
-                        echo "<th scope='col'>Email</th>";
-                        echo "<th scope='col'>telefone</th>";
-                        echo "<th scope='col'>Opções</th>";
-                        echo "</tr>";
-                    }
+ 
 
                     if ($_GET['tabela'] == 'roupa') {
 
@@ -212,10 +205,11 @@ if (empty($_GET)) {
             </thead>
             <tbody>
                 <?php
+
                 if (empty($_GET)) {
 
                     // tabela com as informaçoes do banco sobre o alimento
-                    while ($info = mysqli_fetch_assoc($resultado_doacao_alimento)) {
+                    while ($info = mysqli_fetch_assoc($resultado_doacao)) {
                         $date = date_create($info['data_validade']);
                         echo '<tr>';
                         echo '<td>' . $info['nome'] . '</td>';
@@ -243,14 +237,12 @@ if (empty($_GET)) {
                         echo '</tr>';
                     }
                 }
-                if ($_GET) {
-
-
+                if (!empty($_GET) and !isset($_GET['pesquisar'])) {
 
                     if ($_GET['tabela'] == 'roupa') {
 
                         // tabela com as informaçoes do banco sobre a roupas
-                        while ($info = mysqli_fetch_assoc($resultado_doacao_roupa)) {
+                        while ($info = mysqli_fetch_assoc($resultado_doacao)) {
                             echo '<tr>';
                             echo '<td>' . $info['nome'] . '</td>';
                             echo '<td>' . $info['quantidade'] . '</td>';
@@ -277,12 +269,11 @@ if (empty($_GET)) {
                             echo '</tr>';
                         }
                     }
-
-
+                    
                     if ($_GET['tabela'] == 'outro') {
 
                         // tabela com as informaçoes do banco sobre outro
-                        while ($info = mysqli_fetch_assoc($resultado_doacao_outro)) {
+                        while ($info = mysqli_fetch_assoc($resultado_doacao)) {
                             echo '<tr>';
                             echo '<td>' . $info['nome'] . '</td>';
                             echo '<td>' . $info['quantidade'] . '</td>';
@@ -290,119 +281,94 @@ if (empty($_GET)) {
                             echo '<td>' . $info['data_validade'] . '</td>';
                             echo "<td>" . $info['tamanho'] . "</td>";
                             echo '<td>
-                        
-                        <a class = "btn btn-sm btn-primary" href="crud/form-alterar.php?id_usuario=' . $info['id_doacoes'] . '">
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                        </svg>
-                        </a>
-                        
-                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_usuario=' . $info['id_doacoes'] . '>
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                        </svg>
-                        </a>
-                        </td>';
+                            
+                            <a class = "btn btn-sm btn-primary" href="crud/form-alterar.php?id_usuario=' . $info['id_doacoes'] . '">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                            </svg>
+                            </a>
+                            
+                            <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_usuario=' . $info['id_doacoes'] . '>
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                            </svg>
+                            </a>
+                            </td>';
 
                             echo '</tr>';
                         }
                     }
-
+                    
                     if ($_GET['tabela'] == 'alimento') {
 
                         // tabela com as informaçoes do banco sobre o alimento
-                        while ($info = mysqli_fetch_assoc($resultado_doacao_alimento)) {
+                        while ($info = mysqli_fetch_assoc($resultado_doacao)) {
                             $date = date_create($info['data_validade']);
-
+                            
                             echo '<tr>';
                             echo '<td>' . $info['nome'] . '</td>';
                             echo '<td>' . $info['quantidade'] . '</td>';
                             echo '<td>' . $info['descricao'] . '</td>';
                             echo "<td>" . date_format($date, "d/m/Y");
                             echo '<td>
-                        
-                        <a class = "btn btn-sm btn-primary" href="crud/form-alterar.php?id_usuario=' . $info['id_doacoes'] . '">
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                        </svg>
-                        </a>
-                        
-                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_usuario=' . $info['id_doacoes'] . '>
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                        </svg>
-                        </a>
-                        </td>';
-
-                            echo '</tr>';
-                        }
-                    }
-                    if ($_GET['tabela'] == 'usuário') {
-
-                        // tabela com as informaçoes do banco sobre os usuários
-                        while ($info = mysqli_fetch_assoc($resultado_tabela_usuario)) {
-
-                            echo '<tr>';
-                            echo '<td>' . $info['nome'] . '</td>';
-                            echo '<td>' . $info['endereco'] . '</td>';
-                            echo '<td>' . $info['email'] . '</td>';
-                            echo '<td>' . $info['telefone'] . '</td>';
-                            echo '<td>
-                        
-                        <a class = "btn btn-sm btn-primary" href="crud/form-alterar.php?id_usuario=' . $info['id_usuario'] . '">
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                        </svg>
-                        </a>
-                        
-                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_usuario=' . $info['id_usuario'] . '>
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                        </svg>
-                        </a>
-                        </td>';
-
-                            echo '</tr>';
-                        }
-                    }
-
-                    if ($_GET['tabela'] == 'voluntário') {
-
-                        // tabela com as informaçoes do banco sobre os usuários
-                        while ($info = mysqli_fetch_assoc($resultado_tabela_voluntario)) {
-
-                            echo '<tr>';
-                            echo '<td>' . $info['nome'] . '</td>';
-                            echo '<td>' . $info['endereco'] . '</td>';
-                            echo '<td>' . $info['email'] . '</td>';
-                            echo '<td>' . $info['telefone'] . '</td>';
-                            echo '<td>
-                        
-                        <a class = "btn btn-sm btn-primary" href="crud/form-alterar.php?id_usuario=' . $info['id_usuario'] . '">
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                        </svg>
-                        </a>
-                        
-                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_usuario=' . $info['id_usuario'] . '>
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                        </svg>
-                        </a>
-                        </td>';
+                            
+                            <a class = "btn btn-sm btn-primary" href="crud/form-alterar.php?id_usuario=' . $info['id_doacoes'] . '">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                            </svg>
+                            </a>
+                            
+                            <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_usuario=' . $info['id_doacoes'] . '>
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                            </svg>
+                            </a>
+                            </td>';
 
                             echo '</tr>';
                         }
                     }
                 }
+
+                if(isset($_GET['pesquisar'])){
+
+                    // tabela com as informaçoes do banco sobre os usuários
+                    while ($info = mysqli_fetch_assoc($resultado_pesquisar)) {
+                        $date = date_create($info['data_validade']);
+                        
+                    echo '<tr>';
+                    echo '<td>' . $info['nome'] . '</td>';
+                    echo '<td>' . $info['quantidade'] . '</td>';
+                    echo '<td>' . $info['descricao'] . '</td>';
+                    echo "<td>" . date_format($date, "d/m/Y");
+                    echo '<td>' . $info['tamanho'] . '</td>';
+                    echo '<td>
+                    
+                    <a class = "btn btn-sm btn-primary" href="crud/form-alterar.php?id_usuario=' . $info['id_doacoes'] . '">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                    </svg>
+                    </a>
+                    
+                    <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_usuario=' . $info['id_doacoes'] . '>
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                    </svg>
+                    </a>
+                    </td>';
+
+                    echo '</tr>';
+                }
+                
+               
+            }
+                    
                 ?>
 
             </tbody>
