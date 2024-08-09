@@ -105,6 +105,14 @@ if (empty($_GET['tabela'])) {
 
         </form>
     </div>
+    <center>
+
+        <!-- RADIO -->
+        <input type="radio" id="todos" name="filtro" value="todos">
+        <label for="todos">Todos</label>
+        <input type="radio" id="voluntario" name="filtro" value="voluntarios">
+        <label for="voluntario">Voluntário</label><br>  
+    </center>
 
     <div class=" container p-5 ">
         <table class="table table-striped table-hover border border-dark  ">
@@ -142,9 +150,8 @@ if (empty($_GET['tabela'])) {
                 </div>
 
                 <?php
-                // HEAD do Usuário
-                if (empty($_GET['tabela'])) {
-
+                // HEAD do Usuário e Voluntário
+ 
                     echo "<tr>";
                     echo "<th scope='col'>Nome</th>";
                     echo "<th scope='col'>Endereço</th>";
@@ -152,22 +159,6 @@ if (empty($_GET['tabela'])) {
                     echo "<th scope='col'>telefone</th>";
                     echo "<th scope='col'>Opções</th>";
                     echo "</tr>";
-                }
-
-
-                if (!empty($_GET['tabela'])) {
-
-                    if ($_GET['tabela'] == "usuário" or $_GET['tabela'] == 'voluntário') {
-
-                        echo "<tr>";
-                        echo "<th scope='col'>Nome</th>";
-                        echo "<th scope='col'>Endereço</th>";
-                        echo "<th scope='col'>Email</th>";
-                        echo "<th scope='col'>telefone</th>";
-                        echo "<th scope='col'>Opções</th>";
-                        echo "</tr>";
-                    }
-                }
                 ?>
             </thead>
             <tbody>

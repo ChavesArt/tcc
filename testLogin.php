@@ -31,7 +31,7 @@ if (!empty($_POST['email']) and !empty($_POST['senha'])) {
         $_SESSION['tipo_cliente'] = $tipo;
         if($tipo == 0){
             // se for o admin
-            header("location:admin.php");
+            header("location:admin_usuario.php");
             die();
         }
         // se for usuário
