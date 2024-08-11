@@ -8,15 +8,14 @@ $conexao = conectar();
 logar();
 $logado = $_SESSION['nome'];
 
+   $sql_pesquisar = "SELECT * FROM usuario";
 /*barra de pesquisa*/
-
-    $sql_pesquisar = "SELECT * FROM usuario ORDER BY nome DESC";
-
 if (!empty($_GET['pesquisar'])) {
 
     $data = $_GET['pesquisar'];
 
-    $sql_pesquisar = $sql_pesquisar . " order by nome DESC";
+    $sql_pesquisar = "SELECT * FROM usuario where nome LIKE '%$data%' or endereco LIKE '%$data%' or email LIKE '%$data%' or  telefone LIKE '%$data%' order by nome DESC";
+
 }
 
 if (isset($_GET['filtro'])) {
@@ -43,7 +42,7 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 </head>
 
 <body>
-    <?php //include('menu.php'); 
+    <?php include('menu.php'); 
     ?>
     <br><br>
     <br><br>
@@ -95,22 +94,20 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 
                     <div class="btn-group">
                         <form action="#" method="get">
-                            <div class="btn btn-primary">
-                                <button type="button" class="btn btn-primary">Usuários</button>
-                            </div>
+                            <button type="button" class="btn btn-primary">Usuários</button>
                         </form>
-                        <div class="btn-group">
-                            <form action="admin_doacao.php" method="get">
+                        <form action="admin_doacao.php" method="GET">
+                            <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
                                 <div class="dropdown-menu">
+                                    
                                     <input type="submit" class="dropdown-item" name="tabela" value="alimento">
                                     <input type="submit" class="dropdown-item" name="tabela" value="roupa">
                                     <input type="submit" class="dropdown-item" name="tabela" value="outro">
+                                    
                                 </div>
-                            </form>
-                            <!-- div abaixo do btn-group dropdown -->
-                        </div>
-                        <!-- div abaixo do btn-group geral -->
+                            </div>
+                        </form>
                     </div>
                 </div>
 

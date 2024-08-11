@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `doacoes` (
   `tamanho` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `tipo_doacao` varchar(255) NOT NULL,
   PRIMARY KEY (`id_doacoes`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `doacoes`
