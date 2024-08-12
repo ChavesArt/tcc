@@ -30,7 +30,7 @@
 
 
                         <!--banner1-->
-                        <img src="img/banner1.jpeg" class="d-block w-100" alt="fotos da igreja">
+                        <img src="img/fazenda.jpg" class="d-block w-100" alt="fotos da igreja">
                         <div class="carousel-caption d-md-block">
                             <h2>Conheça-nos: Benjamin Constant 1991</h2>
                             <p></p>
