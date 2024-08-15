@@ -1,5 +1,5 @@
    <!-- Meu css-->
-   <link rel="stylesheet" type="text/css" href="css/estilo.css"/>
+   <link rel="stylesheet" type="text/css" href="css/estilo.css?nocache=<?=rand(0,9999999) ?>"/>
     <!--fonte-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

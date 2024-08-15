@@ -23,22 +23,50 @@ if ($result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Alteração</title>
+    <?php include "links.php"; ?>
 </head>
 
-<body>
+<body  class="body-alterar">
     <form action="crud/alterar.php" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" value="<?php echo  $usuario['nome']; ?>" ><br>
-        <label for="endereco">endereço</label>
-        <input type="text" name="endereco" id ="endereco" value="<?php echo  $usuario['endereco']; ?>"><br>
-       <label for="email">Email</label>
-       <input type="email" name="email" id="email" value="<?php echo  $usuario['email']; ?>"><br>
-       <label for="senha">senha</label> 
-       <input type="password" name="senha" id="senha" value="<?php echo  $usuario['senha']; ?>" ><br>
-       <label for="telefone">Telefone</label>
-       <input type="text" name="telefone" id = "telefone" value="<?php echo  $usuario['telefone']; ?>"><br>
- <!-- id enviado escondido--><input type="hidden" name="id_usuario" value="<?php echo  $usuario['id_usuario']; ?>" >
-        <input type="submit" value="Salvar"><br>
+
+        <div class="form-geral">
+
+        <div class="form-image-form-alterar">
+            <img src="img/form-alterar.gif" alt="Uma pessoa mexendo em um quadro">
+        </div>
+
+                <div class="input-group-form-alterar">
+                    <div class="input-box">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome" value="<?php echo  $usuario['nome']; ?>"><br>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="endereco">Endereço:</label>
+                        <input type="text" name="endereco" id="endereco" value="<?php echo  $usuario['endereco']; ?>"><br>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" value="<?php echo  $usuario['email']; ?>"><br>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" id="senha" value="<?php echo  $usuario['senha']; ?>"><br>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="telefone">Telefone:</label>
+                        <input type="text" name="telefone" id="telefone" value="<?php echo  $usuario['telefone']; ?>"><br>
+                    </div>
+
+                    <!-- id enviado escondido--><input type="hidden" name="id_usuario" value="<?php echo  $usuario['id_usuario']; ?>">
+                    <div class="input-box">
+                        <input type="submit" value="Salvar"><br>
+                    </div>
+                </div>
+        </div>
     </form>
 </body>
 
