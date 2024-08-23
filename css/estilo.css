@@ -35,7 +35,7 @@ header,.navbar{
     padding: 0;
 }
 #mainSlider .carousel-inner,#mainSlider .carousel-item{
-    height: 90vh; 
+    height: 70vh; 
 }
 #mainSlider .carousel-caption{
     top: 20%;
