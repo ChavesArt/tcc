@@ -13,7 +13,7 @@ if (!empty($_GET['pesquisar'])) {
     $data = $_GET['pesquisar'];
     $sql = "SELECT * FROM usuario where nome LIKE '%$data%' or email LIKE '%$data%' or endereco LIKE '%$data%' or  telefone LIKE '%$data%' order by nome DESC";
 } else {
-    $sql = "SELECT * FROM usuario order by nome DESC";
+    ;$sql = "SELECT * FROM usuario order by nome DESC"
 }
 $resultado = mysqli_query($conexao, $sql);
 $res = mysqli_affected_rows($conexao);
