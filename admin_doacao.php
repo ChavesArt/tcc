@@ -70,18 +70,14 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
 </head>
 
 <body>
-    <?php include('menu.php'); 
+    <?php include('menu.php');
     ?>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <center>
+    <br>
+    <div style="margin-top: 10%;" class="text-center">
         <h4>Olá, <?php echo $logado; ?></h4>
         <h1>Doações</h1>
 
-    </center>
+    </div>
 
 
     <!--Barra de pesquisa-->
@@ -103,7 +99,35 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
             <thead>
 
                 <div class="head-table">
-                    <div>
+
+                    <!-- grupo de botões -->
+
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <a href="formdoar.php" class="btn btn-outline-primary">Cadastrar alimento</a>
+                        <a href="formcad.php" class="btn btn-outline-primary">Cadastrar usuário</a>
+
+                        <form action="#" method="get">
+                            <button type="button" class="btn btn-outline-primary">Usuários</button>
+                        </form>
+
+                        <form action="admin_doacao.php" method="GET">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
+                                <div class="dropdown-menu">
+
+                                    <input type="submit" class="dropdown-item" name="tabela" value="alimento">
+                                    <input type="submit" class="dropdown-item" name="tabela" value="roupa">
+                                    <input type="submit" class="dropdown-item" name="tabela" value="outro">
+
+                                </div>
+                            </div>
+                        </form>
+
+                        <button type="button" class="btn btn-outline-primary">Right</button>
+                    </div>
+
+
+                    <!-- <div>
                         <a href="formdoar.php">Cadastrar Alimento</a> <br>
                         <a href="formcad.php">Cadastrar Usuário</a>
                     </div>
@@ -123,13 +147,13 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
 
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                     <?php
                     // HEAD do Alimento
                     if (empty($_GET['tabela']) or $_GET['tabela'] == 'alimento' or $_GET['tabela'] == 'outro') {
 
-                        if(isset($_GET['pesquisar'])){
+                        if (isset($_GET['pesquisar'])) {
 
                             echo "<tr>";
                             echo "<th scope='col'>Nome</th>";
@@ -139,19 +163,20 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                             echo "<th scope='col'>Tamanho</th>";
                             echo "<th scope='col'>Opções</th>";
                             echo "</tr>";
-
-                        }
-                        else
-                        {
-                        echo "<tr>";
-                        echo "<th scope='col'>Nome</th>";
-                        echo "<th scope='col'>Quantidade</th>";
-                        echo "<th scope='col'>Descrição</th>";
-                        echo "<th scope='col'>Data de validade</th>";
-                        // verificando se é a tabela outro e diferenete de pesquisar para poder aparecer o tamanho na tabela 'outro'
-                        if(!empty($_GET) and !isset($_GET['pesquisar'])){if($_GET['tabela'] == 'outro'){echo "<th scope='col'>Tamanho</th>";}}
-                        echo "<th scope='col'>Opções</th>";
-                        echo "</tr>";
+                        } else {
+                            echo "<tr>";
+                            echo "<th scope='col'>Nome</th>";
+                            echo "<th scope='col'>Quantidade</th>";
+                            echo "<th scope='col'>Descrição</th>";
+                            echo "<th scope='col'>Data de validade</th>";
+                            // verificando se é a tabela outro e diferenete de pesquisar para poder aparecer o tamanho na tabela 'outro'
+                            if (!empty($_GET) and !isset($_GET['pesquisar'])) {
+                                if ($_GET['tabela'] == 'outro') {
+                                    echo "<th scope='col'>Tamanho</th>";
+                                }
+                            }
+                            echo "<th scope='col'>Opções</th>";
+                            echo "</tr>";
                         }
                     }
 

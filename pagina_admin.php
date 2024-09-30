@@ -34,14 +34,9 @@ if ($res < 1) {
 
 <body>
     <?php include('menu.php'); ?>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <center>
+    <div class="mt-5 text-center">
         <h1>Olá, <?php echo $logado; ?></h1>
-    </center>
+    </div>
 
 
     <!--Barra de pesquisa-->

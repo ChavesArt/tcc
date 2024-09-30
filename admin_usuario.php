@@ -8,14 +8,13 @@ $conexao = conectar();
 logar();
 $logado = $_SESSION['nome'];
 
-   $sql_pesquisar = "SELECT * FROM usuario";
+$sql_pesquisar = "SELECT * FROM usuario";
 /*barra de pesquisa*/
 if (!empty($_GET['pesquisar'])) {
 
     $data = $_GET['pesquisar'];
 
     $sql_pesquisar = "SELECT * FROM usuario where nome LIKE '%$data%' or endereco LIKE '%$data%' or email LIKE '%$data%' or  telefone LIKE '%$data%' order by nome DESC";
-
 }
 
 if (isset($_GET['filtro'])) {
@@ -42,17 +41,13 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 </head>
 
 <body>
-    <?php include('menu.php'); 
+    <?php include('menu.php');
     ?>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <br><br>
-    <center>
+
+    <div style="margin-top: 10%;" class="text-center">
         <h4>Olá, <?php echo $logado; ?></h4>
         <h1>Usuários</h1>
-    </center>
+    </div>
 
 
     <!--Barra de pesquisa-->
@@ -68,7 +63,7 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 
         </form>
     </div>
-    <center>
+    <div class="text-center">
 
         <!-- RADIO -->
         <form action="" method="GET">
@@ -80,14 +75,46 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 
             <button>Enviar</button>
         </form>
-    </center>
+    </div>
+
+
 
     <div class=" container p-5 ">
         <table class="table table-striped table-hover border border-dark  ">
             <thead>
 
                 <div class="head-table">
-                    <div>
+
+                    <!-- grupo de botões -->
+
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <a href="formdoar.php" class="btn btn-outline-primary">Cadastrar alimento</a>
+                        <a href="formcad.php" class="btn btn-outline-primary">Cadastrar usuário</a>
+
+                        <form action="#" method="get">
+                            <button type="button" class="btn btn-outline-primary">Usuários</button>
+                        </form>
+
+                        <form action="admin_doacao.php" method="GET">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
+                                <div class="dropdown-menu">
+
+                                    <input type="submit" class="dropdown-item" name="tabela" value="alimento">
+                                    <input type="submit" class="dropdown-item" name="tabela" value="roupa">
+                                    <input type="submit" class="dropdown-item" name="tabela" value="outro">
+
+                                </div>
+                            </div>
+                        </form>
+
+                        <button type="button" class="btn btn-outline-primary">Right</button>
+                    </div>
+
+
+
+
+                    <!-- <div>
                         <a href="formdoar.php">Cadastrar Alimento</a> <br>
                         <a href="formcad.php">Cadastrar Usuário</a>
                     </div>
@@ -108,7 +135,7 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
 
                 <?php

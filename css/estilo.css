@@ -315,13 +315,7 @@ header,.navbar{
 #donation-area p{
     margin-top: 55%;
 }
-/* responsive */
-@media(max-width:768px){
-    
-    /* geral */
-.container{
-    padding: 20px 0;
-}
+
 
 /* slider */
 
