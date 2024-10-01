@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8"/>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js">
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$("#tipo").on("click", function(){
+	hideShow();
+  });
+	hideShow();
+});
+
+function hideShow() 
+{
+  if ($('#fisica').is(':checked')) 
+  {
+    $('#inv').show();
+	$('#inv2').hide();
+  } 
+  else 
+  {
+    $('#inv').hide();
+	$('#inv2').show();
+  }
+}
+</script>
+</head>
+<body>   
+        
+
+<form method="get" action="campo_variavel.php">		
+<fieldset>
+<legend> Tipo de conta</legend>
+<div id="tipo">
+<p>Tipo de conta:  
+    <input name="tipoPessoa" type="radio" value="fis" id="fisica" checked> Pessoa física
+    <input name="tipoPessoa" type="radio" value="jur" id="juridica"> Pessoa jurídica
+</p>
+</div>
+
+<div id="inv">
+  <label class="form-label" for="alimento">alimento:</label>
+  <input class="form-control" type="text" name="alimento" id="alimento" placeholder="alimento"><br>
+
+  <label class="form-label" for="quantidade">quantidade:</label>
+  <input class="form-control" type="number" name="quantidade" id="quantidade" placeholder="Quantidade"><br>
+  <label class="form-label"  for="descri">Descrição:</label>
+  <textarea class="form-control" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea><br>
+
+  <label class="form-label" for="data">Data de validade:</label>
+  <input class="form-control" type="date" name="data_validade" id="data" placeholder="data de validade"><br>
+</div>
+
+<div id="inv2">
+  <label class="form-label" for="nome">Nome:</label>
+  <input class="form-control" type="text" name="nome" id="nome">
+
+  <label class="form-label" for="quantidade">Quantidade:</label>
+  <input class="form-control" type="number" name="quantidade" id="quantidade">
+
+  <label class="form-label" for="nome">Tamanho:</label>
+  <input class="form-control" type="text" name="tamanho" id="tamanho">
+
+  <label class="form-label"  for="descri">Descrição:</label>
+   <textarea class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
+</div>
+</fieldset>
+ 
+<input type="submit" value="Calcular orçamento">    
+</form>
+<!-- <div style="overflow:hidden;width: 700px;position: relative;"><iframe width="700" height="440" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Lissabon%2C%20Portugal+(T%C3%ADtulo)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><div style="position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;"><small style="line-height: 1.8;font-size: 2px;background: #fff;">Powered by <a href="embedgooglemaps.com/pt/">embedgooglemaps PT</a> & <a href="http://www.stedentrippers.nl/berlijn.html">Stedentrippers Nl (tip)</a></small></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><br /> -->
+</body>
+</html> 
