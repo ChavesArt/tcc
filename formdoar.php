@@ -30,7 +30,7 @@ function hideShow()
 	$('#inv2').hide();
 	$('#inv3').hide();
   } 
-  if($('#roupa').is(':ckecked')){
+  if($('#roupa').is(':checked')){
 
     $('#inv3').show();
 	$('#inv2').hide();

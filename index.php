@@ -16,7 +16,7 @@
     <?php include('menu.php'); ?>
 
     <main>
-        <div style="margin-top: 5%;" class="container">
+        <div style="margin-top: 6.5%;" class="container ">
             <div id="mainSlider" class="carousel slide" data-bs-ride="carousel">
 
                 <ol class="carousel-indicators">
