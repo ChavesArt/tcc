@@ -106,8 +106,8 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                         <a href="formdoar.php" class="btn btn-outline-primary">Cadastrar alimento</a>
                         <a href="formcad.php" class="btn btn-outline-primary">Cadastrar usuário</a>
 
-                        <form action="#" method="get">
-                            <button type="button" class="btn btn-outline-primary">Usuários</button>
+                        <form action="admin_usuario.php" method="get">
+                            <input type="submit" class="btn btn-outline-primary" value="Usuários">
                         </form>
 
                         <form action="admin_doacao.php" method="GET">
