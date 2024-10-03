@@ -21,8 +21,12 @@
 function logar()
 {
     if ((!isset($_SESSION['email']))) {
-        header('location:login.php');
-    } 
+        header("location:index.php");
+    } else {
+        if($_SESSION['email'] != 'admin@gmail.com'){
+            header('location:index.php');
+        }
+    }
 }
 
 function executarSQL($conexao, $sql)
