@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 06-Ago-2024 às 16:29
+-- Tempo de geração: 03-Out-2024 às 20:25
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `doacoes` (
   `tamanho` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `tipo_doacao` varchar(255) NOT NULL,
   PRIMARY KEY (`id_doacoes`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `doacoes`
@@ -46,7 +46,10 @@ CREATE TABLE IF NOT EXISTS `doacoes` (
 INSERT INTO `doacoes` (`id_doacoes`, `nome`, `quantidade`, `descricao`, `data_validade`, `tamanho`, `tipo_doacao`) VALUES
 (1, 'arroz', '3 Kg', 'Requinte', '2025-10-23', NULL, 'alimento'),
 (2, 'Camiseta', '7 unidade(s)', 'Camiseta de manga longa com uma stampa do Nirvana', NULL, 'G', 'roupa'),
-(3, 'TV', '2 unidade(s)', 'LG', NULL, '70 polegadas', 'outro');
+(3, 'TV', '2 unidade(s)', 'LG', NULL, '70 polegadas', 'outro'),
+(5, 'feijão', '3', '', '2025-11-12', NULL, 'alimento'),
+(6, 'camisola', '1', 'de seda', NULL, 'GG', 'roupa'),
+(7, 'caminhão', '1', 'SCANIA', '0000-00-00', '', 'outro');
 
 -- --------------------------------------------------------
 
@@ -87,16 +90,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `voluntario` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `telefone`, `endereco`, `email`, `senha`, `tipo_cliente`, `voluntario`) VALUES
-(1, 'João', '55 9 1122 3343', 'Rua General Salgado Filho 4444', 'joao@gmail.com', '321', 1, 1),
-(4, 'adminstrador', '', '', 'admin@gmail.com', 'senhaAdmin', 0, NULL),
-(6, 'teste', 'telefone teste', 'rua teste testando', 'teste02082024@gmail.com', '12', 1, NULL);
+(1, 'João ', '55 9 1122 3343', 'Rua General Salgado Filho 4444', 'joao@gmail.com', '123', 1, 1),
+(4, 'adminstrador', '', '', 'admin@gmail.com', 'senhaAdmin', 0, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
