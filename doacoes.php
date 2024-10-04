@@ -7,11 +7,11 @@
                 <h1 class=" main-title">Seja um doador</h1>
             </div>
 
-            <div class="col-6 ">
-                <img class="img-fluid" src="img/doacao.svg" alt="doação de  alimento">
+            <div   class="col-12 text-center ">
+                <img style="height: 60%;" class="img-fluid" src="img/doacao.svg" alt="doação de  alimento">
             </div>
 
-            <div class="col-6 justify-content text-center">
+            <div style="border: 2px solid purple; margin-top:20%; padding:10px" class="col-8 offset-4 justify-content text-center">
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum consequuntur tenetur suscipit quo cumque maxime provident amet totam! Maxime nobis provident similique neque at facere incidunt odit doloribus blanditiis assumenda!</p>
                 <a class="btn-index" href="formdoar.php">Doar</a>
             </div>

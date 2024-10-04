@@ -13,37 +13,34 @@ logar();
 
     <?php include('links.php'); ?>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-    
+
     <script type="text/javascript">
-$(document).ready(function(){
-$("#tipo").on("click", function(){
-	hideShow();
-  });
-	hideShow();
-});
+        $(document).ready(function() {
+            $("#tipo").on("click", function() {
+                hideShow();
+            });
+            hideShow();
+        });
 
-function hideShow() 
-{
-  if ($('#alimento').is(':checked')) 
-  {
-    $('#inv').show();
-	$('#inv2').hide();
-	$('#inv3').hide();
-  } 
-  if($('#roupa').is(':checked')){
+        function hideShow() {
+            if ($('#alimento').is(':checked')) {
+                $('#inv').show();
+                $('#inv2').hide();
+                $('#inv3').hide();
+            }
+            if ($('#roupa').is(':checked')) {
 
-    $('#inv3').show();
-	$('#inv2').hide();
-	$('#inv').hide();
-  } 
-  if($('#outro').is(':checked'))
-  {
-    $('#inv2').show();
-	$('#inv').hide();
-	$('#inv3').hide();
-  }
-}
-</script>
+                $('#inv3').show();
+                $('#inv2').hide();
+                $('#inv').hide();
+            }
+            if ($('#outro').is(':checked')) {
+                $('#inv2').show();
+                $('#inv').hide();
+                $('#inv3').hide();
+            }
+        }
+    </script>
 
 </head>
 
@@ -67,72 +64,86 @@ function hideShow()
 
                     <h1 class="text-center">Formulário de doação</h1>
 
-               
 
-                        <div id="tipo">
-                            <p>Tipo de doação:
-                                <input name="tipoDoacao" type="radio" value="alimento" id="alimento" checked> alimento
-                                <input name="tipoDoacao" type="radio" value="roupa" id="roupa"> Roupa
-                                <input name="tipoDoacao" type="radio" value="outro" id="outro"> Outro
-                            </p> 
+
+                    <div id="tipo">
+                        <p>Tipo de doação:
+                            <input name="tipoDoacao" type="radio" value="alimento" id="alimento" checked> alimento
+                            <input name="tipoDoacao" type="radio" value="roupa" id="roupa"> Roupa
+                            <input name="tipoDoacao" type="radio" value="outro" id="outro"> Outro
+                        </p>
+                    </div>
+
+                    <form id="inv2" action="crud/doar.php?tipo_doacao=outro" method="post" class="m-4">
+
+                        <!-- OUTRO -->
+
+                        <label class="form-label" for="nome">Nome:</label>
+                        <input class="form-control" type="text" name="nome" id="nome">
+
+                        <label class="form-label" for="quantidade">Quantidade:</label>
+                        <input class="form-control" type="number" name="quantidade" id="quantidade">
+
+                        <label class="form-label" for="descri">Descrição:</label>
+                        <textarea name="descricao" class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
+
+                        <label class="form-label" for="data">Data de validade:</label>
+                        <input class="form-control" type="date" name="data_validade" id="data" placeholder="data de validade">
+
+                        <label class="form-label" for="nome">Tamanho:</label>
+                        <input class="form-control" type="text" name="tamanho" id="tamanho">
+                    
+                        <div class="col-12">
+                            <div class="row">
+                                <input class="btn btn-primary my-2" type="submit" value="Enviar">
+                            </div>
                         </div>
 
-                        <form id="inv2" action="crud/doar.php?tipo_doacao=outro" method="post" class="m-4">
-
-                            <!-- OUTRO -->
-                            
-                            <label class="form-label" for="nome">Nome:</label>
-                            <input class="form-control" type="text" name="nome" id="nome">
-
-                            <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade">
-
-                            <label class="form-label"  for="descri">Descrição:</label>
-                            <textarea name="descricao" class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
-                            
-                            <label class="form-label" for="data">Data de validade:</label>
-                            <input class="form-control" type="date" name="data_validade" id="data" placeholder="data de validade">
-                            
-                            <label class="form-label" for="nome">Tamanho:</label>
-                            <input class="form-control" type="text" name="tamanho" id="tamanho">
-                            <input class="btn btn-primary my-2" type="submit" value="Enviar">
-                                             
-                        </form>
-
-                        <!-- ROUPA -->
-                        <form id="inv3" action="crud/doar.php?tipo_doacao=roupa" method="post" class="m-4">
-                            <label class="form-label" for="nome">Nome:</label>
-                            <input class="form-control" type="text" name="nome" id="nome">
-
-                            <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade">
-
-                            <label class="form-label" for="nome">Tamanho:</label>
-                            <input class="form-control" type="text" name="tamanho" id="tamanho">
-                            
-                            <label class="form-label" for="descri">Descrição:</label>
-                            <textarea  name="descricao"  class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea> 
-                            <input class="btn btn-primary my-2" type="submit" value="Enviar">
                     </form>
 
-                        <!-- ALIMENTO -->
-                        <form id="inv" action="crud/doar.php?tipo_doacao=alimento" method="post" class="m-4">
-                            <label class="form-label" for="alimento">Alimento:</label>
-                            <input class="form-control" type="text" name="nome_alimento" id="alimento" >
+                    <!-- ROUPA -->
+                    <form id="inv3" action="crud/doar.php?tipo_doacao=roupa" method="post" class="m-4">
+                        <label class="form-label" for="nome">Nome:</label>
+                        <input class="form-control" type="text" name="nome" id="nome">
 
-                            <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade" >
-                            <label class="form-label"  for="descri">Descrição:</label>
-                            <textarea class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
+                        <label class="form-label" for="quantidade">Quantidade:</label>
+                        <input class="form-control" type="number" name="quantidade" id="quantidade">
 
-                            <label class="form-label" for="data">Data de validade:</label>
-                            <input class="form-control" type="date" name="data_validade" id="data" >
+                        <label class="form-label" for="nome">Tamanho:</label>
+                        <input class="form-control" type="text" name="tamanho" id="tamanho">
 
-                            <input class="btn btn-primary my-2" type="submit" value="Enviar">
-                        </form>
+                        <label class="form-label" for="descri">Descrição:</label>
+                        <textarea name="descricao" class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
+                       
+                        <div class="col-12">
+                            <div class="row">
+                                <input class="btn btn-primary my-2" type="submit" value="Enviar">
+                            </div>
+                        </div>
+                    </form>
 
-                    
-                  
+                    <!-- ALIMENTO -->
+                    <form id="inv" action="crud/doar.php?tipo_doacao=alimento" method="post" class="m-4">
+                        <label class="form-label" for="alimento">Alimento:</label>
+                        <input class="form-control" type="text" name="nome_alimento" id="alimento">
+
+                        <label class="form-label" for="quantidade">Quantidade:</label>
+                        <input class="form-control" type="number" name="quantidade" id="quantidade">
+                        <label class="form-label" for="descri">Descrição:</label>
+                        <textarea class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
+
+                        <label class="form-label" for="data">Data de validade:</label>
+                        <input class="form-control" type="date" name="data_validade" id="data">
+
+                        <div class="col-12">
+                            <div class="row">
+                                <input class="btn btn-primary my-2" type="submit" value="Enviar">
+                            </div>
+                        </div>
+                    </form>
+
+
+
 
                 </div>
             </div>
