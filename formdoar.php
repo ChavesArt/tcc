@@ -125,7 +125,7 @@ logar();
                     <!-- ALIMENTO -->
                     <form id="inv" action="crud/doar.php?tipo_doacao=alimento" method="post" class="m-4">
                         <label class="form-label" for="alimento">Alimento:</label>
-                        <input class="form-control" type="text" name="nome_alimento" id="alimento">
+                        <input class="form-control" type="text" name="nome" id="alimento">
 
                         <label class="form-label" for="quantidade">Quantidade:</label>
                         <input class="form-control" type="number" name="quantidade" id="quantidade">
