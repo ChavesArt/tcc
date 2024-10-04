@@ -49,17 +49,54 @@ if ($recuperar == null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova Senha</title>
+    <?php include_once("links.php"); ?>
 </head>
 
 <body>
-    <form action="salvar_nova_senha.php" method="post">
+    <!-- <form action="salvar_nova_senha.php" method="post">
         <input type="hidden" name="email" value="<?= $email ?>">
         <input type="hidden" name="token" value="<?= $token ?>">
         Email: <?= $email ?><br>
         <label>Senha: <input type="password" name="senha"></label><br>
         <label>Repita a senha: <input type="password" name="repetirSenha"></label><br>
         <input type="submit" value="Salvar nova senha">
-    </form>
+    </form> -->
+
+    <div style="margin-top:30%; padding: 90px;" class="container border my-5 border-dark rounded d-center m-auto">
+        <div class="row">
+            <div class="col-12 text-center my-1">
+                <h1>Formulário para nova senha</h1>
+                <p>Digite seu email e nova senha.<br></p>
+            </div>
+
+            <div class="col-12">
+
+                <div>
+                    <div class="mb-3">
+                        <form action="recuperar.php" method="post">
+
+                            <input type="hidden" name="email" value="<?= $email ?>">
+                            <input type="hidden" name="token" value="<?= $token ?>">
+
+                            Email: <?= $email ?><br>
+                            <label for="senha">Senha:</label> 
+                            <input type="password" id="senha" name="senha"><br>
+
+                            <label for="repete">Repita a senha:</label> 
+                            <input id="repete" type="password"  name="repetirSenha"><br>
+
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <input class="btn btn-primary" type="submit" value="Salvar nova senha"><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+
+        </div>
+    </div>
 </body>
 
 </html>

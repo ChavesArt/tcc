@@ -40,7 +40,7 @@ if ($result) {
 
         <div class="col-6">
 
-        <form action="crud/alterar.php" method="post">
+
 
 <div >
     <div class="mb-3">
@@ -71,7 +71,7 @@ if ($result) {
 
         </div>
     </div>
-</div>
+
  
 </body>
 

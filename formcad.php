@@ -34,10 +34,10 @@
                         <input type="email" name="email" id="email" placeholder="Email" required>
 
                         <label for="senha">endereço</label>
-                        <input type="text" name="endereco" id="endereco" placeholder="Endereço" required>
+                        <input type="text" name="endereco" id="endereco" placeholder="Digite no formato " required>
 
                         <label for="telefone">telefone</label>
-                        <input type="text" name="telefone" id="telefone" placeholder="telefone" required>
+                        <input type="text" name="telefone" id="telefone" placeholder="Digite no seguinte formato XXX.XXX.XXX-XX" required>
  
                         <input type ="submit" value="Cadastrar">
                 </form>
