@@ -219,7 +219,7 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                         </svg>
                         </a>
                         
-                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_doacoes=' . $info['id_doacoes'] . '>
+                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-tipo-doacoes="' . $_GET['tabela']. '" data-id_doacoes=' . $info['id_doacoes'] . '>
                         
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
@@ -254,7 +254,7 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                         </svg>
                         </a>
                         
-                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_doacoes =' . $info['id_doacoes'] . '>
+                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-tipo-doacoes="' . $_GET['tabela']. '" data-id_doacoes =' . $info['id_doacoes'] . '>
                         
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
@@ -288,7 +288,7 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                     </svg>
                     </a>
                     
-                    <a id="deleteButton"  class = "btn btn-sm btn-danger" data-id_doacoes=' . $info['id_doacoes'] . '>
+                    <a id="deleteButton"  class = "btn btn-sm btn-danger" data-tipo-doacoes="' . $_GET['tabela']. '" data-id_doacoes=' . $info['id_doacoes'] . '>
                     
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
@@ -310,16 +310,17 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
         var id = document.querySelectorAll('[id^="deleteButton"]').forEach(button => {
             button.addEventListener('click', function() {
                 const id_doacoes = this.getAttribute('data-id_doacoes');
+                const tipo_doacao = this.getAttribute('data-tipo-doacoes');
                 Swal.fire({
                     title: "Tem certeza que deseja excluir?",
                     icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
+                    showCancelButton: "Cancelar",
+                    confirmButtonColor: "#006400",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Sim"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "crud/excluir_doacao.php?id_doacoes=" + id_doacoes;
+                        window.location.href = "crud/excluir_doacao.php?id_doacoes=" + id_doacoes + "&tabela=" + tipo_doacao;
                     }
                 });
             });
