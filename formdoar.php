@@ -1,7 +1,9 @@
 <?php
 session_start();
 include "conecta.php";
-logar();
+if(!$_SESSION['email']){
+    header("location:login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

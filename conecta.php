@@ -21,11 +21,7 @@
 function logar()
 {
     if ((!isset($_SESSION['email']))) {
-        header("location:index.php");
-    } else {
-        if($_SESSION['email'] != 'admin@gmail.com'){
-            header('location:index.php');
-        }
+        header("location:login.php");
     }
 }
 

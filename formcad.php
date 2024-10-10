@@ -14,7 +14,55 @@
 <body>
     <?php include_once('menu.php'); ?>
 
-    <div class="main-form">
+    
+   <div style="margin-top:9%;padding-right:50px;" class="container border border-dark rounded">
+    <div class="row">
+
+        <div class="col-12 text-center">
+        <h1>Formulário de cadastro</h1>
+        </div>
+
+        <div class="col-6">
+            <img class="img-fluid" src="img/formcad.png" alt="Homem de rua recebendo alimento">
+        </div>
+
+        <div class="col-6 pl-1">
+
+        <div class="mb-3">
+                        <form action="crud/cadastar.php" method="post">
+
+                            <label class="form-label" for="nome">Nome:</label>
+                            <input class="form-control" type="text" name="nome" id="nome" required><br>
+
+                            <label class="form-label" for="endereco">Endereço:</label>
+                            <input class="form-control" type="text" name="endereco" id="endereco" required><br>
+
+                            <label class="form-label" for="email">Email:</label>
+                            <input class="form-control" type="email" name="email" id="email" required><br>
+
+                            <label class="form-label" for="senha">Senha:</label>
+                            <input class="form-control" placeholder="Deve conter: 1 número maiúscula, 1 minúscula, 1 caracter especial" type="password" name="senha" id="senha" required><br>
+
+                            <label class="form-label" for="senha">Confirmar senha:</label>
+                            <input class="form-control" type="password" name="senha" id="senha" required><br>
+
+                            <label class="form-label" for="telefone">Telefone:</label>
+                            <input class="form-control" type="text" name="telefone" id="telefone" placeholder="Formato: XX-X XXXX-XXXX" required><br>
+
+                            <div class="col-12">
+                                <div class="row">
+                                    <input class="btn btn-primary my-2" type="submit" value="Salvar">
+                                </div>
+                            </div>
+                    </div>
+
+        </div>
+    </div>
+   </div>
+   
+   
+   
+    <!-- <div class="main-form">
         <div class="esquerda-form">
             <h1>Cadastre-se já:</h1>
             <img src="img/formcad.png" class="esquerda-img" alt="Um homem dando alimento para outro">
@@ -43,8 +91,8 @@
                 </form>
             </div>
         </div>
-    </div>
-    </div>
+    </div> 
+    </div> -->
 </body>
 
 </html>

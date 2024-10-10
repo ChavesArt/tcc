@@ -14,7 +14,45 @@
 <body>
     <?php include_once('menu.php'); ?>
 
-    <div class="main-form">
+    <div style="margin-top: 9%;" class="container border border-dark rounded">
+        <div class="row">
+            <div class="col-12 text-center pt-2">
+                <h1>Login</h1>
+            </div>
+
+            <div class="col-6">
+                <img src="img/login-animate.svg" alt="Uma mulher colocando seu login">
+            </div>
+
+            <div class="col-6">
+            <div  class="mb-3 bg-light">
+                        <form style="margin-top: 20%;" action="testLogin.php" method="post">
+
+                            <label class="form-label" for="email">Email:</label>
+                            <input class="form-control" type="email" name="email" id="email" ><br>
+
+                            <label class="form-label" for="senha">Senha:</label>
+                            <input class="form-control" type="password" name="senha" id="senha" ><br>
+
+                            <a href="form_recuperar_senha.php">Esqueceu a senha?</a>
+
+                            <div style="padding-right: 15px; padding-left:15px;" class="col-12 ">
+                                <div class="row">
+                                    <input  class="btn btn-primary my-2" type="submit" value="Salvar">
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-center">
+                            <p>Ainda não é cadastrado?<a href="formcad.php">Cadastre-se</a></p>
+                            </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="main-form">
         <div class="esquerda-form">
             <h1>logue-se para melhor aproveitamento do site:</h1>
             <img src="img/login-animate.svg" class="esquerda-img" alt="Um homem dando alimento para outro">
@@ -36,8 +74,7 @@
                 <p>Ainda não é cadastrado?<a href="formcad.php">Cadastre-se</a></p>
             </div>
         </div>
-    </div>
-    </div>
+    </div> -->
 </body>
 
 </html>

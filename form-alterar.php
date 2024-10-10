@@ -38,9 +38,7 @@ if ($result) {
                 <img class="img-fluid" src="img/form-alterar.gif" alt="Uma pessoa mexendo em um quadro">
             </div>
 
-            <div class="col-6">
-
-
+            <div class="col-6 ">
 
                 <div>
                     <div class="mb-3">
@@ -68,6 +66,7 @@ if ($result) {
                                     <input class="btn btn-primary my-2" type="submit" value="Salvar">
                                 </div>
                             </div>
+                            
                     </div>
                 </div>
             </div>
