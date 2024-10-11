@@ -1,9 +1,12 @@
 <?php
 session_start();
 include "conecta.php";
-if(!$_SESSION['email']){
+$conexao = conectar();
+if (!$_SESSION['email']) {
     header("location:login.php");
 }
+$sql = "SELECT * FROM tipo_alimento ORDER BY nome ASC";
+$resultado = mysqli_query($conexao, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -94,7 +97,7 @@ if(!$_SESSION['email']){
 
                         <label class="form-label" for="nome">Tamanho:</label>
                         <input class="form-control" type="text" name="tamanho" id="tamanho">
-                    
+
                         <div class="col-12">
                             <div class="row">
                                 <input class="btn btn-primary my-2" type="submit" value="Enviar">
@@ -116,7 +119,7 @@ if(!$_SESSION['email']){
 
                         <label class="form-label" for="descri">Descrição:</label>
                         <textarea name="descricao" class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
-                       
+
                         <div class="col-12">
                             <div class="row">
                                 <input class="btn btn-primary my-2" type="submit" value="Enviar">
@@ -126,13 +129,22 @@ if(!$_SESSION['email']){
 
                     <!-- ALIMENTO -->
                     <form id="inv" action="crud/doar.php?tipo_doacao=alimento" method="post" class="m-4">
-                        <label class="form-label" for="alimento">Alimento:</label>
-                        <input class="form-control" type="text" name="nome" id="alimento">
+
+                        
+                    <label class="form-label" for="alimentos">Escolha o alimento:</label>
+                    <select name="alimentos" id="alimentos" class="form-select" required>
+                    
+                            <?php
+                            while ($info = mysqli_fetch_assoc($resultado)) {
+                                echo "<option value=" . $info['nome'] . ">" . $info['nome'] . "</option>";
+                            }
+                            ?>
+                        </select>
 
                         <label class="form-label" for="quantidade">Quantidade:</label>
                         <input class="form-control" type="number" name="quantidade" id="quantidade">
                         <label class="form-label" for="descri">Descrição:</label>
-                        <textarea class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
+                        <textarea class="form-control" id="descri" name="descricao" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
 
                         <label class="form-label" for="data">Data de validade:</label>
                         <input class="form-control" type="date" name="data_validade" id="data">
