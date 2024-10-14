@@ -14,10 +14,9 @@ if (!empty($_POST['email']) and !empty($_POST['senha'])) {
     // Pega o usuário do banco
     $dado = mysqli_fetch_assoc($result);
     //pega o nome
-    $dado['nome'];
+    $nome = $dado['nome'];
     // o tipo 
     $tipo = $dado['tipo_cliente'];
-    $nome = $dado['nome'];
 // se não existe alguém já cadastrado no banco 
     if (mysqli_num_rows($result) < 1) {
         unset($_SESSION['email']);
