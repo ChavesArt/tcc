@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br"> 
 
 <head>
 
@@ -15,8 +15,9 @@
 
     <?php include('menu.php'); ?>
 
-    <main>
-        <div style="margin-top: 6.5%;" class="container ">
+    <main style="margin-top: 6.5%;" class="container "> 
+    
+    
             <div id="mainSlider" class="carousel slide" data-bs-ride="carousel">
 
                 <ol class="carousel-indicators">
@@ -25,12 +26,11 @@
                     <button type="button" data-bs-target="#mainSlider" data-bs-slide-to="2"></button>
                 </ol>
                 
-                <div class="carousel-inner">
+                <div class="carousel-inner  center-block">
                     <div class="carousel-item active">
 
-
                         <!--banner1-->
-                        <img src="img/fazenda.jpg" class="d-block w-100" alt="fotos da igreja">
+                        <img src="img/fazenda.jpg" class=" w-100" alt="fotos da igreja">
                         <div class="carousel-caption d-md-block">
                             <h2>Conheça-nos: Benjamin Constant 1991</h2>
                             <p></p>
@@ -41,7 +41,7 @@
 
                     <!--banner2-->
                     <div class="carousel-item  ">
-                        <img src="img/cidade.png" class="d-block w-100" alt="fotos da igreja">
+                        <img src="img/cidade.png" class="w-100" alt="fotos da igreja">
                         <div class="carousel-caption  d-md-block">
                             <h2>conheça-nos</h2>
                             <p></p>
@@ -52,7 +52,7 @@
 
                     <!--banner3-->
                     <div class="carousel-item  ">
-                        <img src="img/mapa_noite.png" class="d-block w-100" alt="Manutenção de Software">
+                        <img src="img/mapa_noite.png" class=" w-100" alt="Manutenção de Software">
                         <div class="carousel-caption  d-md-block">
                             <h2>conheça-nos</h2>
                             <p></p>
@@ -71,10 +71,10 @@
                     <span class="sr-only">Previous</span>
                 </a>
             </div>
-            </div>
+        
 
                       <!-- AÇÕES  -->
-                <?php include "doacoes.php"; ?>
+          <?php include "doacoes.php"; ?>
 
 
             <!--Sobre área-->

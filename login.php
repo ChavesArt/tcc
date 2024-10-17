@@ -14,17 +14,18 @@
 <body>
     <?php include_once('menu.php'); ?>
 
+  <main>
     <div style="margin-top: 9%;" class="container border border-dark rounded">
         <div class="row">
-            <div class="col-12 text-center pt-2">
+            <div class="col-md-12 text-center pt-2">
                 <h1>Login</h1>
             </div>
 
-            <div class="col-6">
+            <div class="col-xs-6 col-lg-6">
                 <img src="img/login-animate.svg" alt="Uma mulher colocando seu login">
             </div>
 
-            <div class="col-6">
+            <div class="col-xs-6 col-lg-6">
             <div  class="mb-3 bg-light">
                         <form style="margin-top: 20%;" action="testLogin.php" method="post">
 
@@ -51,7 +52,7 @@
         </div>
     </div>
 
-
+    </main>
     <!-- <div class="main-form">
         <div class="esquerda-form">
             <h1>logue-se para melhor aproveitamento do site:</h1>

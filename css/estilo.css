@@ -31,19 +31,29 @@ header,.navbar{
 
 /*Slider*/
 
-.container-fluid{
-    padding: 0;
+.carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajuste a altura conforme necessário */
 }
-#mainSlider .carousel-inner,#mainSlider .carousel-item{
-    height: 90vh;   
+
+.carousel-item img {
+    max-height: 100%; /* Garante que a imagem não exceda a altura do item do slider */
+    max-width: 100%; /* Mantém a imagem dentro do contêiner */
+    object-fit: cover; /* Corta a imagem para preencher o contêiner, mantendo a proporção */
 }
+
 #mainSlider .carousel-caption{
     top: 20%;
 }
+
 #mainSlider .carousel-caption h2{
      font-size: 50px;
      margin-bottom: 30px;
 }
+
+
 #mainSlider .carousel-caption p{
     font-size: 22px;
    font-weight: 300;
@@ -70,6 +80,9 @@ header,.navbar{
 .carousel-indicators .active{
     background-color: darkblue;
 }
+
+
+
 
 /*Sobre*/
 
@@ -342,37 +355,44 @@ header,.navbar{
 #sobre-area img{
     margin-top: 100px;
 }
-}
+
 
 @media(max-width:425px){
 
-    #mainSlider{
-        margin-top: 10px;
-    }
-
-    .main-title{
-        font-size: 30px;
-    }
-
-    #sobre-area img{
-        margin-top: 0;
-        margin-bottom: 30px;
+    #mainSlider
+    {
+     
+        & img
+        {
+            height: 400px;
+        }
     }
     
+    main{
+        margin-top: 25%; 
+    }
+
+    #donation-area{
+        & img{
+            
+            height: 1000px;
+            width: 1000px;
+        }
+    }
 }
 
 @media only screen and (max-width: 950px){
     .card-form{
-        width: 85%;
+        /* width: 85%; */
     }
 }
 
 @media only screen and (max-width: 600px){
     .main-form{
-    flex-direction: column;
+    /* flex-direction: column; */
     }
     .esquerda-form h1 img{
-        display: none;
+        /* display: none; */
     }
 
     .direita-form{
@@ -380,6 +400,6 @@ header,.navbar{
         height: auto;
     }
     .card-form{
-        width: 90%;
+        /* width: 90%; */
     }
 }
