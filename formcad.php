@@ -14,19 +14,19 @@
 <body>
     <?php include_once('menu.php'); ?>
 
-    
+    <main >
    <div style="margin-top:9%;padding-right:50px;" class="container border border-dark rounded">
     <div class="row">
 
-        <div class="col-12 text-center">
+        <div class="col-md-12 text-center">
         <h1>Formulário de cadastro</h1>
         </div>
 
-        <div class="col-6">
+        <div class="col-md-6 col-lg-6">
             <img class="img-fluid" src="img/formcad.png" alt="Homem de rua recebendo alimento">
         </div>
 
-        <div class="col-6 pl-1">
+        <div class="col-md-6 col-xs-12 pl-1">
 
         <div class="mb-3">
                         <form action="crud/cadastar.php" method="post">
@@ -60,7 +60,7 @@
     </div>
    </div>
    
-   
+   </main>
    
     <!-- <div class="main-form">
         <div class="esquerda-form">
