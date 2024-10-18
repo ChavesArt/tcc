@@ -28,18 +28,20 @@ header,.navbar{
     width: 75px;
 }
 
-
+main{
+    margin-top: 5%;
+}
 /*Slider*/
 
 .carousel-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ajuste a altura conforme necessário */
+    height: 90vh; /* Ajuste a altura conforme necessário */
 }
 
 .carousel-item img {
-    max-height: 100%; /* Garante que a imagem não exceda a altura do item do slider */
+    max-height: 40%; /* Garante que a imagem não exceda a altura do item do slider */
     max-width: 100%; /* Mantém a imagem dentro do contêiner */
     object-fit: cover; /* Corta a imagem para preencher o contêiner, mantendo a proporção */
 }
