@@ -2,7 +2,7 @@
     <div class="container-fluid" id="nav-container">
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
             <a href="index.php" class="navbar-brand">
-                <img id="logo" src="img/sasieq.png" alt="logo SASIEQ">
+                <!-- <img id="logo" src="img/sasieq.png" alt="logo SASIEQ"> -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links"
                 aria-controls="navbar-links" aria-expanded="false" aria-label="Toggle navigation">
