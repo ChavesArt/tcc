@@ -32,7 +32,7 @@
                         <form action="crud/cadastar.php" method="post">
 
                             <label class="form-label" for="nome">Nome:</label>
-                            <input class="form-control" type="text" name="nome" id="nome" required><br>
+                            <input class="form-control" type="text" name="nome" id="nome" pattern="^[A-Za-zÀ-ÿ]+$" required><br>
 
                             <label class="form-label" for="endereco">Endereço:</label>
                             <input class="form-control" type="text" name="endereco" id="endereco" required><br>
