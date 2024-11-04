@@ -5,8 +5,7 @@ $conexao = conectar();
 if (!$_SESSION['email']) {
     header("location:login.php");
 }
-$sql = "SELECT * FROM tipo_alimento ORDER BY nome ASC";
-$resultado = mysqli_query($conexao, $sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -108,8 +107,23 @@ $resultado = mysqli_query($conexao, $sql);
 
                         <!-- ROUPA -->
                         <form id="inv3" action="crud/doar.php?tipo_doacao=roupa" method="post" class="m-4">
-                            <label class="form-label" for="nome">Nome:</label>
-                            <input class="form-control" type="text" name="nome" id="nome">
+                            
+                        
+                        <?php 
+                        $sql = "SELECT * FROM produto WHERE tipo_produto ='roupa' ORDER BY subtipo_produto ASC";
+                        $resultado = mysqli_query($conexao, $sql);
+                        ?>
+                        
+                        <label class="form-label" for="tipo">qual o tipo de roupa:</label>
+                            <select name="alimentos" id="tipo" class="form-select" required>
+
+                                <?php
+                                while ($info = mysqli_fetch_assoc($resultado)) {
+                                    echo "<option value=" . $info['subtipo_produto'] . ">" . $info['subtipo_produto'] . "</option>";
+                                }
+                                ?>
+                            </select>                        
+                        
 
                             <label class="form-label" for="quantidade">Quantidade:</label>
                             <input class="form-control" type="number" name="quantidade" id="quantidade">
@@ -128,15 +142,20 @@ $resultado = mysqli_query($conexao, $sql);
                         </form>
 
                         <!-- ALIMENTO -->
-                        <form id="inv" action="crud/doar.php?tipo_doacao=alimento" method="post" class="m-4">
+                        <form id="inv" action="solicitacao.php?tipo_doacao=alimento" method="post" class="m-4">
 
+                        <?php 
+                        $sql = "SELECT * FROM produto WHERE tipo_produto ='alimento' ORDER BY subtipo_produto ASC";
+                        $resultado = mysqli_query($conexao, $sql);
+                        
+                        ?>
 
                             <label class="form-label" for="alimentos">Escolha o alimento:</label>
                             <select name="alimentos" id="alimentos" class="form-select" required>
 
                                 <?php
                                 while ($info = mysqli_fetch_assoc($resultado)) {
-                                    echo "<option value=" . $info['nome'] . ">" . $info['nome'] . "</option>";
+                                    echo "<option value=" . $info['subtipo_produto'] . ">" . $info['subtipo_produto'] . "</option>";
                                 }
                                 ?>
                             </select>
