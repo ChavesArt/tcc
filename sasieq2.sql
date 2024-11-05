@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 31-Out-2024 às 20:33
+-- Tempo de geração: 05-Nov-2024 às 19:51
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -36,6 +36,13 @@ CREATE TABLE IF NOT EXISTS `entrada` (
   KEY `id_usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Extraindo dados da tabela `entrada`
+--
+
+INSERT INTO `entrada` (`id_entrada`, `id_usuario`, `data_entrada`) VALUES
+(0, 0, '2024-12-10');
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +59,13 @@ CREATE TABLE IF NOT EXISTS `estoque` (
   PRIMARY KEY (`id_estoque`),
   KEY `id_produto` (`id_produto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `estoque`
+--
+
+INSERT INTO `estoque` (`id_estoque`, `id_produto`, `descricao`, `tamanho`, `data_validade`) VALUES
+(0, 1, 'requisição de 1Kg de arroz', NULL, '2025-10-10');
 
 -- --------------------------------------------------------
 
@@ -114,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `tipo_produto` varchar(255) DEFAULT NULL,
   `subtipo_produto` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `produto`
@@ -123,7 +137,13 @@ CREATE TABLE IF NOT EXISTS `produto` (
 INSERT INTO `produto` (`id_produto`, `tipo_produto`, `subtipo_produto`) VALUES
 (1, 'alimento', 'arroz'),
 (2, 'roupa', 'camiseta de manga longa'),
-(3, 'alimento', 'maionese');
+(3, 'alimento', 'maionese'),
+(4, 'roupa', 'camiseta de manga curta'),
+(5, 'roupa', 'calça'),
+(6, 'alimento', 'leite'),
+(7, 'alimento', 'azeite'),
+(10, 'alimento', 'molho de tomate'),
+(11, 'roupa', 'casaco');
 
 -- --------------------------------------------------------
 
@@ -163,6 +183,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `tipo_cliente` int DEFAULT NULL,
   PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `endereco`, `telefone`, `tipo_cliente`) VALUES
+(0, 'João', '111', 'joao@gmail.com', 'teste', '1111111111111', 1),
+(1, 'administrador', '111', 'admin@gmail.com', 'vazio', ' ', 0);
 
 --
 -- Restrições para despejos de tabelas

@@ -8,6 +8,10 @@ $conexao = conectar();
 logar();
 $logado = $_SESSION['nome'];
 
+if ($_SESSION['tipo_cliente'] != 0) {
+    header('location:login.php');
+}
+
 $sql_pesquisar = "SELECT * FROM usuario";
 /*barra de pesquisa*/
 if (!empty($_GET['pesquisar'])) {
@@ -88,27 +92,31 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
                     <!-- grupo de botões -->
 
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <a href="formdoar.php" class="btn btn-outline-primary">Cadastrar alimento</a>
-                        <a href="formcad.php" class="btn btn-outline-primary">Cadastrar usuário</a>
+
+                        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Cadastrar</button>
+                        <div class="dropdown-menu">
+
+                            <a href="formdoar.php" class="dropdown-item">alimento</a>
+                            <a href="formcad.php" class="dropdown-item">usuário</a>
+                            <a href="formtipo.php" class="dropdown-item">tipo de doação</a>
+
+                        </div>
+
+                        <form action="admin_doacao.php" method="GET">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
+                            <div class="dropdown-menu">
+
+                                <input type="submit" class="dropdown-item" name="tabela" value="alimento">
+                                <input type="submit" class="dropdown-item" name="tabela" value="roupa">
+                                <input type="submit" class="dropdown-item" name="tabela" value="outro">
+
+                            </div>
+                        </form>
 
                         <form action="#" method="get">
                             <button type="button" class="btn btn-outline-primary">Usuários</button>
                         </form>
-
-                        <form action="admin_doacao.php" method="GET">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
-                                <div class="dropdown-menu">
-
-                                    <input type="submit" class="dropdown-item" name="tabela" value="alimento">
-                                    <input type="submit" class="dropdown-item" name="tabela" value="roupa">
-                                    <input type="submit" class="dropdown-item" name="tabela" value="outro">
-
-                                </div>
-                            </div>
-                        </form>
-
-                        <button type="button" class="btn btn-outline-primary">Right</button>
+                        <a href="solicitacoes.php" class="btn btn-outline-primary">Solicitações</a>
                     </div>
 
 

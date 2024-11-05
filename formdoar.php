@@ -106,7 +106,7 @@ if (!$_SESSION['email']) {
                         </form>
 
                         <!-- ROUPA -->
-                        <form id="inv3" action="crud/doar.php?tipo_doacao=roupa" method="post" class="m-4">
+                        <form id="inv3" action="solicitacao.php?tipo_doacao=roupa" method="post" class="m-4">
                             
                         
                         <?php 

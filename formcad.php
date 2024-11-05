@@ -29,7 +29,7 @@
         <div class="col-md-6 col-xs-12 pl-1">
 
         <div class="mb-3">
-                        <form action="crud/cadastar.php" method="post">
+                        <form action="crud/cadastrar.php" method="post">
 
                             <label class="form-label" for="nome">Nome:</label>
                             <input class="form-control" type="text" name="nome" id="nome" pattern="^[A-Za-zÀ-ÿ]+$" required><br>

@@ -24,6 +24,7 @@ if (!empty($_POST['email']) and !empty($_POST['senha'])) {
         unset($_SESSION['nome']);
         header('Location:login.php');
     } else {
+        $_SESSION['id_usuario'] = $email;
         $_SESSION['email'] = $email;
         $_SESSION['senha'] = $senha;
         $_SESSION['nome'] = $nome;
