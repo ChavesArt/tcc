@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 07-Nov-2024 às 16:33
+-- Tempo de geração: 07-Nov-2024 às 20:03
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -51,21 +51,27 @@ INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`) VALUES
 
 DROP TABLE IF EXISTS `estoque`;
 CREATE TABLE IF NOT EXISTS `estoque` (
-  `id_estoque` int NOT NULL,
+  `id_estoque` int NOT NULL AUTO_INCREMENT,
   `id_produto` int DEFAULT NULL,
   `descricao` varchar(255) DEFAULT NULL,
   `tamanho` varchar(4) DEFAULT NULL,
   `data_validade` date DEFAULT NULL,
   PRIMARY KEY (`id_estoque`),
   KEY `id_produto` (`id_produto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `estoque`
 --
 
 INSERT INTO `estoque` (`id_estoque`, `id_produto`, `descricao`, `tamanho`, `data_validade`) VALUES
-(0, 1, 'requisição de 1Kg de arroz', NULL, '2025-10-10');
+(1, 13, 'Camili', NULL, '2025-12-09'),
+(2, 6, 'Integral', NULL, '2026-09-02'),
+(3, 7, 'girassol', NULL, '2026-10-03'),
+(4, 14, 'Spagheti', NULL, '2026-11-04'),
+(5, 15, 'oliva', NULL, '2026-12-05'),
+(6, 16, 'cristal', NULL, '2027-01-06'),
+(7, 17, 'grosso', NULL, '2027-02-07');
 
 -- --------------------------------------------------------
 
@@ -75,13 +81,13 @@ INSERT INTO `estoque` (`id_estoque`, `id_produto`, `descricao`, `tamanho`, `data
 
 DROP TABLE IF EXISTS `itens_entrada`;
 CREATE TABLE IF NOT EXISTS `itens_entrada` (
-  `id_item_entrada` int NOT NULL,
+  `id_item_entrada` int NOT NULL AUTO_INCREMENT,
   `quantidade` int DEFAULT NULL,
   `id_estoque` int DEFAULT NULL,
   `id_entrada` int DEFAULT NULL,
   PRIMARY KEY (`id_item_entrada`),
-  KEY `id_estoque` (`id_estoque`),
-  KEY `id_entrada` (`id_entrada`)
+  KEY `id_entrada` (`id_entrada`),
+  KEY `fk_id_estoque` (`id_estoque`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -92,11 +98,13 @@ CREATE TABLE IF NOT EXISTS `itens_entrada` (
 
 DROP TABLE IF EXISTS `itens_saida`;
 CREATE TABLE IF NOT EXISTS `itens_saida` (
-  `id_item_pedido` int NOT NULL,
+  `id_item_pedido` int NOT NULL AUTO_INCREMENT,
   `quantidade` int DEFAULT NULL,
   `id_pedido` int DEFAULT NULL,
+  `id_estoque` int NOT NULL,
   PRIMARY KEY (`id_item_pedido`),
-  KEY `fk_pedido_item` (`id_pedido`)
+  KEY `fk_pedido_item` (`id_pedido`),
+  KEY `id_estoque` (`id_estoque`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -109,19 +117,20 @@ DROP TABLE IF EXISTS `pedido`;
 CREATE TABLE IF NOT EXISTS `pedido` (
   `id_pedido` int NOT NULL AUTO_INCREMENT,
   `data_pedido` date DEFAULT NULL,
-  `analisado` tinyint(1) NOT NULL,
-  `deferido` tinyint(1) NOT NULL,
+  `deferido` tinyint(1) DEFAULT NULL,
   `id_usuario` int DEFAULT NULL,
+  `detalhamento` text NOT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `fk_usuario_pedido` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `pedido`
 --
 
-INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `analisado`, `deferido`, `id_usuario`) VALUES
-(1, '2024-11-07', 1, 1, 1);
+INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `deferido`, `id_usuario`, `detalhamento`) VALUES
+(1, '2024-11-07', 1, 1, ''),
+(2, '2024-11-07', NULL, 2, 'Alimento: carne bouvinaQuantidade: 4Descrição: xxxxxxxxxxxxxxxxx');
 
 -- --------------------------------------------------------
 
@@ -247,14 +256,15 @@ ALTER TABLE `estoque`
 -- Limitadores para a tabela `itens_entrada`
 --
 ALTER TABLE `itens_entrada`
-  ADD CONSTRAINT `itens_entrada_ibfk_1` FOREIGN KEY (`id_estoque`) REFERENCES `estoque` (`id_estoque`),
+  ADD CONSTRAINT `fk_id_estoque` FOREIGN KEY (`id_estoque`) REFERENCES `estoque` (`id_estoque`),
   ADD CONSTRAINT `itens_entrada_ibfk_2` FOREIGN KEY (`id_entrada`) REFERENCES `entrada` (`id_entrada`);
 
 --
 -- Limitadores para a tabela `itens_saida`
 --
 ALTER TABLE `itens_saida`
-  ADD CONSTRAINT `fk_pedido_item` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_pedido_item` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE CASCADE,
+  ADD CONSTRAINT `id_estoque` FOREIGN KEY (`id_estoque`) REFERENCES `estoque` (`id_estoque`);
 
 --
 -- Limitadores para a tabela `pedido`
