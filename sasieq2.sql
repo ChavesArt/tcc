@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 07-Nov-2024 às 20:03
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1
+-- Tempo de geração: 08-Nov-2024 às 01:37
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,21 +27,24 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `entrada`
 --
 
-DROP TABLE IF EXISTS `entrada`;
-CREATE TABLE IF NOT EXISTS `entrada` (
-  `id_entrada` int NOT NULL,
-  `data_entrada` date DEFAULT NULL,
-  `id_usuario` int DEFAULT NULL,
-  PRIMARY KEY (`id_entrada`),
-  KEY `fk_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `entrada` (
+  `id_entrada` int(11) NOT NULL,
+  `data_entrada` datetime DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `detalhamento` text NOT NULL,
+  `deferido` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `entrada`
 --
 
-INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`) VALUES
-(0, '2024-12-10', NULL);
+INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`, `detalhamento`, `deferido`) VALUES
+(1, '2024-11-07 00:00:00', 4, 'Isso é um teste', NULL),
+(2, '2024-11-07 20:03:00', 4, 'Alimento: alface;\r\nQuantidade: 7;\r\nData de validade:2024-11-13\r\nDescrição: teste teste teeste', NULL),
+(3, '2024-11-07 20:07:00', 4, 'Alimento: arroz; <br> Quantidade: 9; <br> Data de validade:2024-12-07 <br> Descrição: Arroz Requinte fresquinha', NULL),
+(4, '2024-11-07 20:08:00', 4, 'Roupa: ; <br> Quantidade: 2; <br> Tamanho: GG <br> Descrição: Casaco preto', NULL),
+(6, '2024-11-07 20:13:00', 4, 'Doação: ; <br> Quantidade: 32; <br> Data de validade: <br> Tamanho:  <br> Data de validade:  <br> Descrição: copo 20cm', NULL);
 
 -- --------------------------------------------------------
 
@@ -49,16 +52,13 @@ INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`) VALUES
 -- Estrutura da tabela `estoque`
 --
 
-DROP TABLE IF EXISTS `estoque`;
-CREATE TABLE IF NOT EXISTS `estoque` (
-  `id_estoque` int NOT NULL AUTO_INCREMENT,
-  `id_produto` int DEFAULT NULL,
+CREATE TABLE `estoque` (
+  `id_estoque` int(11) NOT NULL,
+  `id_produto` int(11) DEFAULT NULL,
   `descricao` varchar(255) DEFAULT NULL,
   `tamanho` varchar(4) DEFAULT NULL,
-  `data_validade` date DEFAULT NULL,
-  PRIMARY KEY (`id_estoque`),
-  KEY `id_produto` (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `data_validade` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `estoque`
@@ -79,16 +79,12 @@ INSERT INTO `estoque` (`id_estoque`, `id_produto`, `descricao`, `tamanho`, `data
 -- Estrutura da tabela `itens_entrada`
 --
 
-DROP TABLE IF EXISTS `itens_entrada`;
-CREATE TABLE IF NOT EXISTS `itens_entrada` (
-  `id_item_entrada` int NOT NULL AUTO_INCREMENT,
-  `quantidade` int DEFAULT NULL,
-  `id_estoque` int DEFAULT NULL,
-  `id_entrada` int DEFAULT NULL,
-  PRIMARY KEY (`id_item_entrada`),
-  KEY `id_entrada` (`id_entrada`),
-  KEY `fk_id_estoque` (`id_estoque`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `itens_entrada` (
+  `id_item_entrada` int(11) NOT NULL,
+  `quantidade` int(11) DEFAULT NULL,
+  `id_estoque` int(11) DEFAULT NULL,
+  `id_entrada` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -96,16 +92,12 @@ CREATE TABLE IF NOT EXISTS `itens_entrada` (
 -- Estrutura da tabela `itens_saida`
 --
 
-DROP TABLE IF EXISTS `itens_saida`;
-CREATE TABLE IF NOT EXISTS `itens_saida` (
-  `id_item_pedido` int NOT NULL AUTO_INCREMENT,
-  `quantidade` int DEFAULT NULL,
-  `id_pedido` int DEFAULT NULL,
-  `id_estoque` int NOT NULL,
-  PRIMARY KEY (`id_item_pedido`),
-  KEY `fk_pedido_item` (`id_pedido`),
-  KEY `id_estoque` (`id_estoque`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `itens_saida` (
+  `id_item_pedido` int(11) NOT NULL,
+  `quantidade` int(11) DEFAULT NULL,
+  `id_pedido` int(11) DEFAULT NULL,
+  `id_estoque` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -113,24 +105,30 @@ CREATE TABLE IF NOT EXISTS `itens_saida` (
 -- Estrutura da tabela `pedido`
 --
 
-DROP TABLE IF EXISTS `pedido`;
-CREATE TABLE IF NOT EXISTS `pedido` (
-  `id_pedido` int NOT NULL AUTO_INCREMENT,
-  `data_pedido` date DEFAULT NULL,
+CREATE TABLE `pedido` (
+  `id_pedido` int(11) NOT NULL,
+  `data_pedido` datetime DEFAULT NULL,
   `deferido` tinyint(1) DEFAULT NULL,
-  `id_usuario` int DEFAULT NULL,
-  `detalhamento` text NOT NULL,
-  PRIMARY KEY (`id_pedido`),
-  KEY `fk_usuario_pedido` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_usuario` int(11) DEFAULT NULL,
+  `detalhamento` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `pedido`
 --
 
 INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `deferido`, `id_usuario`, `detalhamento`) VALUES
-(1, '2024-11-07', 1, 1, ''),
-(2, '2024-11-07', NULL, 2, 'Alimento: carne bouvinaQuantidade: 4Descrição: xxxxxxxxxxxxxxxxx');
+(1, '2024-11-07 00:00:00', 1, 1, ''),
+(2, '2024-11-07 00:00:00', NULL, 2, 'Alimento: carne bouvina\\Quantidade: 4\\Descrição: xxxxxxxxxxxxxxxxx'),
+(3, '2024-11-07 00:00:00', NULL, 4, 'Alimento: peixe;\r\nQuantidade: 5;\r\nDescrição: teste teste teste teste teste'),
+(4, '2024-11-07 00:00:00', NULL, 4, 'Doação: lençol;\r\nQuantidade: 1;\r\nTamanho:\r\nDescrição: 1 metro'),
+(5, '2024-11-07 00:00:00', NULL, 4, 'Roupa: ; <br> Quantidade: 2; <br> Tamanho: 40 <br> Descrição: asdfsfas'),
+(6, '2024-11-07 00:00:00', NULL, 4, 'Doação: copo;\r\nQuantidade: 2;\r\nTamanho:\r\nDescrição: mdf'),
+(7, '2024-11-07 00:00:00', NULL, 4, 'Roupa: ; <br> Quantidade: 2; <br> Tamanho: 32 <br> Descrição: asdasdfasdfasdf'),
+(8, '2024-11-07 00:00:00', NULL, 4, 'Alimento: abóbora; <br> Quantidade: 2; <br> Descrição: asdfasdf'),
+(9, '2024-11-07 21:33:00', NULL, 4, 'Alimento: maionese; <br> Quantidade: 8; <br> Descrição: call'),
+(10, '2024-11-07 21:34:00', NULL, 4, 'Roupa: ; <br> Quantidade: 1; <br> Tamanho: M <br> Descrição: sdfjk'),
+(11, '2024-11-07 21:34:00', NULL, 4, 'Doação: travesseiro; <br> Quantidade: 2; <br> Tamanho:  <br> Descrição: Algodão');
 
 -- --------------------------------------------------------
 
@@ -138,13 +136,11 @@ INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `deferido`, `id_usuario`, `det
 -- Estrutura da tabela `produto`
 --
 
-DROP TABLE IF EXISTS `produto`;
-CREATE TABLE IF NOT EXISTS `produto` (
-  `id_produto` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `produto` (
+  `id_produto` int(11) NOT NULL,
   `tipo_produto` varchar(255) DEFAULT NULL,
-  `subtipo_produto` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `subtipo_produto` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `produto`
@@ -186,13 +182,12 @@ INSERT INTO `produto` (`id_produto`, `tipo_produto`, `subtipo_produto`) VALUES
 -- Estrutura da tabela `recuperar_senha`
 --
 
-DROP TABLE IF EXISTS `recuperar_senha`;
-CREATE TABLE IF NOT EXISTS `recuperar_senha` (
+CREATE TABLE `recuperar_senha` (
   `email` varchar(255) NOT NULL,
   `token` char(100) NOT NULL,
   `data_criacao` datetime NOT NULL,
   `usado` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `recuperar_senha`
@@ -207,17 +202,15 @@ INSERT INTO `recuperar_senha` (`email`, `token`, `data_criacao`, `usado`) VALUES
 -- Estrutura da tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usuario` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
   `nome` varchar(255) DEFAULT NULL,
   `senha` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `endereco` varchar(255) DEFAULT NULL,
   `telefone` varchar(255) DEFAULT NULL,
-  `tipo_cliente` int DEFAULT NULL,
-  PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `tipo_cliente` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -237,6 +230,105 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `endereco`, `tele
 (11, 'Administrador', '111', 'admin@gmail.com', '', '', 0);
 
 --
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `entrada`
+--
+ALTER TABLE `entrada`
+  ADD PRIMARY KEY (`id_entrada`),
+  ADD KEY `fk_usuario` (`id_usuario`);
+
+--
+-- Índices para tabela `estoque`
+--
+ALTER TABLE `estoque`
+  ADD PRIMARY KEY (`id_estoque`),
+  ADD KEY `id_produto` (`id_produto`);
+
+--
+-- Índices para tabela `itens_entrada`
+--
+ALTER TABLE `itens_entrada`
+  ADD PRIMARY KEY (`id_item_entrada`),
+  ADD KEY `id_entrada` (`id_entrada`),
+  ADD KEY `fk_id_estoque` (`id_estoque`);
+
+--
+-- Índices para tabela `itens_saida`
+--
+ALTER TABLE `itens_saida`
+  ADD PRIMARY KEY (`id_item_pedido`),
+  ADD KEY `fk_pedido_item` (`id_pedido`),
+  ADD KEY `id_estoque` (`id_estoque`);
+
+--
+-- Índices para tabela `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`id_pedido`),
+  ADD KEY `fk_usuario_pedido` (`id_usuario`);
+
+--
+-- Índices para tabela `produto`
+--
+ALTER TABLE `produto`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Índices para tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `entrada`
+--
+ALTER TABLE `entrada`
+  MODIFY `id_entrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `estoque`
+--
+ALTER TABLE `estoque`
+  MODIFY `id_estoque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `itens_entrada`
+--
+ALTER TABLE `itens_entrada`
+  MODIFY `id_item_entrada` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `itens_saida`
+--
+ALTER TABLE `itens_saida`
+  MODIFY `id_item_pedido` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de tabela `produto`
+--
+ALTER TABLE `produto`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- Restrições para despejos de tabelas
 --
 
@@ -244,7 +336,7 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `endereco`, `tele
 -- Limitadores para a tabela `entrada`
 --
 ALTER TABLE `entrada`
-  ADD CONSTRAINT `fk_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE;
+  ADD CONSTRAINT `id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `estoque`
@@ -257,7 +349,7 @@ ALTER TABLE `estoque`
 --
 ALTER TABLE `itens_entrada`
   ADD CONSTRAINT `fk_id_estoque` FOREIGN KEY (`id_estoque`) REFERENCES `estoque` (`id_estoque`),
-  ADD CONSTRAINT `itens_entrada_ibfk_2` FOREIGN KEY (`id_entrada`) REFERENCES `entrada` (`id_entrada`);
+  ADD CONSTRAINT `id_entrada` FOREIGN KEY (`id_entrada`) REFERENCES `entrada` (`id_entrada`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `itens_saida`

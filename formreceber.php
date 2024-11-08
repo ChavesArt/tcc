@@ -5,47 +5,48 @@ $conexao = conectar();
 if (!$_SESSION['email']) {
     header("location:login.php");
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de doação</title>
+    <title>Formulário de Recebimento</title>
 
     <?php include('links.php'); ?>
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#tipo").on("click", function() {
-                hideShow();
-            });
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#tipo").on("click", function() {
             hideShow();
         });
+        hideShow();
+    });
 
-        function hideShow() {
-            if ($('#alimento').is(':checked')) {
-                $('#inv').show();
-                $('#inv2').hide();
-                $('#inv3').hide();
-            }
-            if ($('#roupa').is(':checked')) {
-
-                $('#inv3').show();
-                $('#inv2').hide();
-                $('#inv').hide();
-            }
-            if ($('#outro').is(':checked')) {
-                $('#inv2').show();
-                $('#inv').hide();
-                $('#inv3').hide();
-            }
+    function hideShow() {
+        if ($('#alimento').is(':checked')) {
+            $('#inv').show();
+            $('#inv2').hide();
+            $('#inv3').hide();
         }
-    </script>
+        if ($('#roupa').is(':checked')) {
 
+            $('#inv3').show();
+            $('#inv2').hide();
+            $('#inv').hide();
+        }
+        if ($('#outro').is(':checked')) {
+            $('#inv2').show();
+            $('#inv').hide();
+            $('#inv3').hide();
+        }
+    }
+</script>
+   
 </head>
 
 <body>
@@ -55,18 +56,18 @@ if (!$_SESSION['email']) {
         <div style="margin-top: 10%;" class="container">
             <div class="row">
                 <div class="col-md-12 text-center mb-4">
-                    <h1 class="">Sua doação ajuda muito!</h1>
+                    <h1>Bem-vindo</h1>
                 </div>
 
                 <div  class="col-md-6">
-                    <img class="img-fluid" src="img/doacao.svg" alt="formulário de doações">
+                    <img class="img-fluid" src="img/receber.svg" alt="formulário de doações">
                 </div>
 
                 <div class="col-md-6">
 
                     <div class="border bg-light">
 
-                        <h1 class="text-center">Formulário de doação</h1>
+                        <h1 class="text-center">Formulário de recebimento</h1>
 
 
 
@@ -78,7 +79,7 @@ if (!$_SESSION['email']) {
                             </p>
                         </div>
 
-                        <form id="inv2" action="crud/doar.php?tipo_doacao=outro" method="post" class="m-4">
+                        <form id="inv2" action="crud/receber.php?tipo_doacao=outro" method="post" class="m-4">
 
                             <!-- OUTRO -->
 
@@ -90,9 +91,6 @@ if (!$_SESSION['email']) {
 
                             <label class="form-label" for="descri">Descrição:</label>
                             <textarea name="descricao" class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
-
-                            <label class="form-label" for="data">Data de validade:</label>
-                            <input class="form-control" type="date" name="data_validade" id="data" placeholder="data de validade">
 
                             <label class="form-label" for="nome">Tamanho:</label>
                             <input class="form-control" type="text" name="tamanho" id="tamanho">
@@ -106,7 +104,7 @@ if (!$_SESSION['email']) {
                         </form>
 
                         <!-- ROUPA -->
-                        <form id="inv3" action="crud/doar.php?tipo_doacao=roupa" method="post" class="m-4">
+                        <form id="inv3" action="crud/receber.php?tipo_doacao=roupa" method="post" class="m-4">
                             
                         
                         <?php 
@@ -142,7 +140,7 @@ if (!$_SESSION['email']) {
                         </form>
 
                         <!-- ALIMENTO -->
-                        <form id="inv" action="crud/doar.php?tipo_doacao=alimento" method="post" class="m-4">
+                        <form id="inv" action="crud/receber.php?tipo_doacao=alimento" method="post" class="m-4">
 
                         <?php 
                         $sql = "SELECT * FROM produto WHERE tipo_produto ='alimento' ORDER BY subtipo_produto ASC";
@@ -165,9 +163,6 @@ if (!$_SESSION['email']) {
                             <label class="form-label" for="descri">Descrição:</label>
                             <textarea class="form-control" id="descri" name="descricao" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
 
-                            <label class="form-label" for="data">Data de validade:</label>
-                            <input class="form-control" type="date" name="data_validade" id="data">
-
                             <div class="col-12">
                                 <div class="row">
                                     <input class="btn btn-primary my-2" type="submit" value="Enviar">
@@ -185,33 +180,6 @@ if (!$_SESSION['email']) {
 
 
     </main>
-    <!-- <div class="main-form"> 
-         <div class="esquerda-form">
-            <h1>Sua doação pode ajuda uma pessoa</h1>
-            <img src="img/doacao.svg" class="esquerda-img" alt="Um homem dando alimento para outro">
-        </div>
-        <div class="direita-form mx-auto">
-            <div class="card-form">
-                <h1>Formulário de doação</h1>
-                <form action="#" method="post">
-                    <div class="campo-texto">
-                        <label for="alimento">alimento:</label>
-                        <input type="text" name="alimento" id="alimento" placeholder="alimento">
 
-                        <label for="quantidade">quantidade:</label>
-                        <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade">
-                        <label for="descri">Descrição:</label>
-                        <textarea cols="55" rows="2" id="descri" placeholder="Escreva aqui" maxlength="200"></textarea>
-
-                        <label for="data">Data de validade:</label>
-                        <input type="date" name="data_validade" id="data" placeholder="data de validade">
-
-
-                        <input type="submit" value="Enviar">
-                </form>
-            </div>
-        </div>
-    </div> -->
 </body>
-
 </html>

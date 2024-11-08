@@ -15,6 +15,8 @@ if (!empty($_POST['email']) and !empty($_POST['senha'])) {
     $dado = mysqli_fetch_assoc($result);
     //pega o nome
     $nome = $dado['nome'];
+    // pega o id
+    $id = $dado['id_usuario'];
     // o tipo 
     $tipo = $dado['tipo_cliente'];
 // se não existe alguém já cadastrado no banco 
@@ -24,7 +26,7 @@ if (!empty($_POST['email']) and !empty($_POST['senha'])) {
         unset($_SESSION['nome']);
         header('Location:login.php');
     } else {
-        $_SESSION['id_usuario'] = $email;
+        $_SESSION['id_usuario'] = $id;
         $_SESSION['email'] = $email;
         $_SESSION['senha'] = $senha;
         $_SESSION['nome'] = $nome;

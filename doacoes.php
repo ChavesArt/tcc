@@ -27,7 +27,7 @@
                 
                 <div style="border: 2px solid purple; padding:10px" class="col-12 justify-content text-center ">
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit consequuntur suscipit tenetur necessitatibus perferendis ea molestias perspiciatis. Enim fuga architecto facilis! Quo, nihil. Sapiente nemo repellat minima, quod enim nihil?Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia cumque impedit illum temporibus odio debitis repudiandae necessitatibus recusandae cum et! Autem voluptas porro ipsum odio repellat nisi libero est dolore!</p>
-                    <a class = "btn-index" href="receber.php">Receber</a>
+                    <a class = "btn-index" href="formreceber.php">Receber</a>
                 </div>
             </div>
         </div>
