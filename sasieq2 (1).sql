@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Nov-2024 às 01:37
+-- Tempo de geração: 09-Nov-2024 às 23:28
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -40,11 +40,13 @@ CREATE TABLE `entrada` (
 --
 
 INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`, `detalhamento`, `deferido`) VALUES
-(1, '2024-11-07 00:00:00', 4, 'Isso é um teste', NULL),
-(2, '2024-11-07 20:03:00', 4, 'Alimento: alface;\r\nQuantidade: 7;\r\nData de validade:2024-11-13\r\nDescrição: teste teste teeste', NULL),
-(3, '2024-11-07 20:07:00', 4, 'Alimento: arroz; <br> Quantidade: 9; <br> Data de validade:2024-12-07 <br> Descrição: Arroz Requinte fresquinha', NULL),
+(1, '2024-11-07 00:00:00', 4, 'Isso é um teste', 1),
+(2, '2024-11-07 20:03:00', 4, 'Alimento: alface;\r\nQuantidade: 7;\r\nData de validade:2024-11-13\r\nDescrição: teste teste teeste', 0),
+(3, '2024-11-07 20:07:00', 4, 'Alimento: arroz; <br> Quantidade: 9; <br> Data de validade:2024-12-07 <br> Descrição: Arroz Requinte fresquinha', 0),
 (4, '2024-11-07 20:08:00', 4, 'Roupa: ; <br> Quantidade: 2; <br> Tamanho: GG <br> Descrição: Casaco preto', NULL),
-(6, '2024-11-07 20:13:00', 4, 'Doação: ; <br> Quantidade: 32; <br> Data de validade: <br> Tamanho:  <br> Data de validade:  <br> Descrição: copo 20cm', NULL);
+(6, '2024-11-07 20:13:00', 4, 'Doação: ; <br> Quantidade: 32; <br> Data de validade: <br> Tamanho:  <br> Data de validade:  <br> Descrição: copo 20cm', NULL),
+(7, '2024-11-09 17:24:00', 1, 'Alimento: abóbora;Quantidade: 1;Data de validade:2024-11-29Descrição: doce', 1),
+(8, '2024-11-09 17:25:00', 1, 'Alimento: farinha;Quantidade: 6;Data de validade:2024-12-07Descrição: vem do trigo', NULL);
 
 -- --------------------------------------------------------
 
@@ -118,17 +120,10 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `deferido`, `id_usuario`, `detalhamento`) VALUES
-(1, '2024-11-07 00:00:00', 1, 1, ''),
-(2, '2024-11-07 00:00:00', NULL, 2, 'Alimento: carne bouvina\\Quantidade: 4\\Descrição: xxxxxxxxxxxxxxxxx'),
-(3, '2024-11-07 00:00:00', NULL, 4, 'Alimento: peixe;\r\nQuantidade: 5;\r\nDescrição: teste teste teste teste teste'),
-(4, '2024-11-07 00:00:00', NULL, 4, 'Doação: lençol;\r\nQuantidade: 1;\r\nTamanho:\r\nDescrição: 1 metro'),
-(5, '2024-11-07 00:00:00', NULL, 4, 'Roupa: ; <br> Quantidade: 2; <br> Tamanho: 40 <br> Descrição: asdfsfas'),
-(6, '2024-11-07 00:00:00', NULL, 4, 'Doação: copo;\r\nQuantidade: 2;\r\nTamanho:\r\nDescrição: mdf'),
-(7, '2024-11-07 00:00:00', NULL, 4, 'Roupa: ; <br> Quantidade: 2; <br> Tamanho: 32 <br> Descrição: asdasdfasdfasdf'),
-(8, '2024-11-07 00:00:00', NULL, 4, 'Alimento: abóbora; <br> Quantidade: 2; <br> Descrição: asdfasdf'),
-(9, '2024-11-07 21:33:00', NULL, 4, 'Alimento: maionese; <br> Quantidade: 8; <br> Descrição: call'),
-(10, '2024-11-07 21:34:00', NULL, 4, 'Roupa: ; <br> Quantidade: 1; <br> Tamanho: M <br> Descrição: sdfjk'),
-(11, '2024-11-07 21:34:00', NULL, 4, 'Doação: travesseiro; <br> Quantidade: 2; <br> Tamanho:  <br> Descrição: Algodão');
+(1, '2024-11-07 00:00:00', 0, 1, ''),
+(14, '2024-11-09 17:28:00', NULL, 1, 'Alimento: abóbora;#Quantidade: 2;#Descrição: Que seja doce'),
+(15, '2024-11-09 17:28:00', NULL, 1, 'Alimento: maionese;#Quantidade: 1;#Descrição: Helmanns'),
+(16, '2024-11-09 18:11:00', NULL, 1, 'Alimento: leite#Quantidade: 2#Descrição: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
 
 -- --------------------------------------------------------
 
@@ -209,25 +204,26 @@ CREATE TABLE `usuario` (
   `email` varchar(255) DEFAULT NULL,
   `endereco` varchar(255) DEFAULT NULL,
   `telefone` varchar(255) DEFAULT NULL,
-  `tipo_cliente` int(11) DEFAULT NULL
+  `tipo_cliente` int(11) DEFAULT NULL,
+  `foto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `endereco`, `telefone`, `tipo_cliente`) VALUES
-(1, 'João Silva', '111', 'joao.silva@email.com', 'Rua A, 123, São Paulo', '11987654321', 1),
-(2, 'Maria Oliveira', '111', 'maria.oliveira@email.com', 'Rua B, 456, Rio de Janeiro', '21987654321', 1),
-(3, 'Carlos Santos', '111', 'carlos.santos@email.com', 'Rua C, 789, Belo Horizonte', '31987654321', 1),
-(4, 'Ana Costa', '111', 'ana.costa@email.com', 'Rua D, 101, Curitiba', '41987654321', 1),
-(5, 'Pedro Souza', '111', 'pedro.souza@email.com', 'Rua E, 202, Porto Alegre', '51987654321', 1),
-(6, 'Juliana Lima', '111', 'juliana.lima@email.com', 'Rua F, 303, Salvador', '61987654321', 1),
-(7, 'Roberto Pereira', '111', 'roberto.pereira@email.com', 'Rua G, 404, Fortaleza', '71987654321', 1),
-(8, 'Fernanda Rodrigues', '111', 'fernanda.rodrigues@email.com', 'Rua H, 505, Recife', '81987654321', 1),
-(9, 'Ricardo Almeida', '111', 'ricardo.almeida@email.com', 'Rua I, 606, Brasília', '91987654321', 1),
-(10, 'Patricia Martins', '111', 'patricia.martins@email.com', 'Rua J, 707, Goiânia', '62987654321', 1),
-(11, 'Administrador', '111', 'admin@gmail.com', '', '', 0);
+INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `endereco`, `telefone`, `tipo_cliente`, `foto`) VALUES
+(1, 'João Silva', '111', 'joao.silva@email.com', 'Rua A, 123, São Paulo', '11987654321', 1, 'user.png'),
+(2, 'Maria Oliveira', '111', 'maria.oliveira@email.com', 'Rua B, 456, Rio de Janeiro', '21987654321', 1, 'user.png'),
+(3, 'Carlos Santos', '111', 'carlos.santos@email.com', 'Rua C, 789, Belo Horizonte', '31987654321', 1, 'user.png'),
+(4, 'Ana Costa', '111', 'ana.costa@email.com', 'Rua D, 101, Curitiba', '41987654321', 1, 'user.png'),
+(5, 'Pedro Souza', '111', 'pedro.souza@email.com', 'Rua E, 202, Porto Alegre', '51987654321', 1, 'user.png'),
+(6, 'Juliana Lima', '111', 'juliana.lima@email.com', 'Rua F, 303, Salvador', '61987654321', 1, 'user.png'),
+(7, 'Roberto Pereira', '111', 'roberto.pereira@email.com', 'Rua G, 404, Fortaleza', '71987654321', 1, 'user.png'),
+(8, 'Fernanda Rodrigues', '111', 'fernanda.rodrigues@email.com', 'Rua H, 505, Recife', '81987654321', 1, 'user.png'),
+(9, 'Ricardo Almeida', '111', 'ricardo.almeida@email.com', 'Rua I, 606, Brasília', '91987654321', 1, 'user.png'),
+(10, 'Patricia Martins', '111', 'patricia.martins@email.com', 'Rua J, 707, Goiânia', '62987654321', 1, 'user.png'),
+(11, 'Administrador', '111', 'admin@gmail.com', '', '', 0, 'user.png');
 
 --
 -- Índices para tabelas despejadas
@@ -290,7 +286,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `entrada`
 --
 ALTER TABLE `entrada`
-  MODIFY `id_entrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_entrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `estoque`
@@ -314,7 +310,7 @@ ALTER TABLE `itens_saida`
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
