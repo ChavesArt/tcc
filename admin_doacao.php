@@ -123,7 +123,7 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                             </div>
                         </form>
 
-                        <a href="solicitacoes.php" type="submit" class="btn btn-outline-primary">Solicitações</a>
+                        <a href="pedidos.php" type="submit" class="btn btn-outline-primary">Pedidos</a>
                     </div>
 
 

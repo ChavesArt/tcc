@@ -116,7 +116,7 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
                         <form action="#" method="get">
                             <button type="button" class="btn btn-outline-primary">Usuários</button>
                         </form>
-                        <a href="solicitacoes.php" class="btn btn-outline-primary">Solicitações</a>
+                        <a href="pedidos.php" class="btn btn-outline-primary">Pedidos</a>
                     </div>
 
 
