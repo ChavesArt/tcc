@@ -28,7 +28,7 @@ if ($tipo_doacao == "alimento") {
     date_default_timezone_set('America/Sao_Paulo'); // Ajusta para o seu fuso horário
     $tempo = date('Y-m-d H:i');
     
-    $descri = "Alimento: $nome; <br> Quantidade: $quantidade; <br> Descrição: $descricao";
+    $descri = "Alimento: $nome#Quantidade: $quantidade#Descrição: $descricao";
     $sql = "INSERT INTO pedido(data_pedido,id_usuario,detalhamento)Values('$tempo',$id_usuario,'$descri')";
     // var_dump($sql);die;
     // header("location:formdoar.php?aviso");
@@ -39,7 +39,7 @@ if ($tipo_doacao == "outro") {
     date_default_timezone_set('America/Sao_Paulo'); // Ajuste para o seu fuso horário
     $tempo = date('Y-m-d H:i');
     
-    $descri = "Doação: $nome; <br> Quantidade: $quantidade; <br> Tamanho: $tamanho <br> Descrição: $descricao";
+    $descri = "Doação: $nome#Quantidade: $quantidade#Tamanho: $tamanho#Descrição: $descricao";
     $sql = "INSERT INTO pedido(data_pedido,id_usuario,detalhamento)Values('$tempo',$id_usuario,'$descri')";
     // $sql = "INSERT INTO doacoes(nome,quantidade,descricao,data_validade,tamanho,tipo_doacao) 
     // var_dump($sql);die;
@@ -53,7 +53,7 @@ if ($tipo_doacao == "roupa") {
     date_default_timezone_set('America/Sao_Paulo'); // Ajuste para o seu fuso horário
     $tempo = date('Y-m-d H:i');
     
-    $descri = "Roupa: $nome; <br> Quantidade: $quantidade; <br> Tamanho: $tamanho <br> Descrição: $descricao";
+    $descri = "Roupa: $nome#Quantidade: $quantidade#Tamanho: $tamanho#Descrição: $descricao";
     $sql = "INSERT INTO pedido(data_pedido,id_usuario,detalhamento)Values('$tempo',$id_usuario,'$descri')";
     // header("location:formdoar.php?aviso");
 

@@ -21,7 +21,7 @@ $sql_id_pedido = "SELECT id_pedido FROM pedido WHERE deferido IS NULL";
 $resultado_id_pedido = mysqli_query($conexao,$sql_id_pedido);
 $IDs_pedido = mysqli_fetch_assoc($resultado_id_pedido);
 */
-$sql ="SELECT * FROM pedido WHERE deferido IS null";
+$sql ="SELECT * FROM entrada WHERE deferido IS null";
 $resultado = mysqli_query($conexao,$sql);
 
 while ($geral = mysqli_fetch_assoc($resultado)) {
@@ -29,8 +29,8 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
   $sql_usuario = "SELECT * FROM usuario WHERE id_usuario = " . $geral['id_usuario'];
   $resultado_usuario = mysqli_query($conexao, $sql_usuario);
   $dados = mysqli_fetch_assoc($resultado_usuario);
-  $date = date_create($geral['data_pedido']);
-  $id_pedido = $geral['id_pedido'];
+  $date = date_create($geral['data_entrada']);
+  $id_entrada = $geral['id_entrada'];
 ?>
 
 
@@ -40,7 +40,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pedidos</title>
+  <title>Entradas</title>
   <?php include "links.php"; ?>
 </head>
 
@@ -62,7 +62,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
               </div>
               <div class="col-md-8">
                 <div class="card-body p-4">
-                  <h6>Data do pedido: <?php echo date_format($date,"H:i   d/m/Y"); ?></h6>
+                  <h6>Data da entrada: <?php echo date_format($date,"H:i   d/m/Y"); ?></h6>
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
                     <div class="col-6 mb-3">
@@ -102,10 +102,10 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                     </div>
                     <div class="col-6 mb-3">
                       <h6>Ação</h6>
-                      <form action="crud/deferir.php?resposta=sim&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>" method="POST">
+                      <form action="crud/deferir.php?resposta=sim&movimentacao=entrada&id_pedido=<?php echo $id_entrada; ?>" method="POST">
                       <button class="btn btn-success mb-1">Deferir</button>
                     </form>
-                    <form action="crud/deferir.php?resposta=nao&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>" method="POST">
+                    <form action="crud/deferir.php?resposta=nao&movimentacao=entrada&id_pedido=<?php echo $id_entrada; ?>" method="POST">
                     <button class="btn btn-danger mb-1">Indeferir</button>
                     </form>
                       <button class="btn btn-primary" href="form-alterar-pedido.php">Alterar</button>
