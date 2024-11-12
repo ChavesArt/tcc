@@ -92,37 +92,36 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
                     <!-- grupo de botões -->
 
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-
-                        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Cadastrar</button>
-                        <div class="dropdown-menu">
-
-                            <a href="formdoar.php" class="dropdown-item">alimento</a>
-                            <a href="formcad.php" class="dropdown-item">usuário</a>
-                            <a href="formtipo.php" class="dropdown-item">tipo de doação</a>
-
-                        </div>
-
+                      
+                    <form action="#" method="get">
+                            <button type="button" class="btn btn-outline-primary">Usuários</button>
+                        </form>
+                        <a href="pedidos.php" class="btn btn-outline-primary">Pedidos</a>
+                        <a href="entradas.php"  class="btn btn-outline-primary">Entradas</a>
+                        
                         <form action="admin_doacao.php" method="GET">
                             <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
                             <div class="dropdown-menu">
-
+                                
                                 <input type="submit" class="dropdown-item" name="tabela" value="alimento">
                                 <input type="submit" class="dropdown-item" name="tabela" value="roupa">
                                 <input type="submit" class="dropdown-item" name="tabela" value="outro">
 
                             </div>
                         </form>
+                        
+                        
+                        
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Cadastrar</button>
+                        <div class="dropdown-menu">
+                            
+                            <a href="formdoar.php" class="dropdown-item">alimento</a>
+                            <a href="formcad.php" class="dropdown-item">usuário</a>
+                            <a href="formtipo.php" class="dropdown-item">tipo de doação</a>
 
-                        <form action="#" method="get">
-                            <button type="button" class="btn btn-outline-primary">Usuários</button>
-                        </form>
-                        <a href="pedidos.php" class="btn btn-outline-primary">Pedidos</a>
+                        </div>
                     </div>
-
-
-
-
-                    <!-- <div>
+                        <!-- <div>
                         <a href="formdoar.php">Cadastrar Alimento</a> <br>
                         <a href="formcad.php">Cadastrar Usuário</a>
                     </div>

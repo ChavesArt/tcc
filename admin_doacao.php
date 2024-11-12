@@ -103,29 +103,34 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                     <!-- grupo de botões -->
 
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <a href="formdoar.php" class="btn btn-outline-primary">Cadastrar alimento</a>
-                        <a href="formcad.php" class="btn btn-outline-primary">Cadastrar usuário</a>
-
-                        <form action="admin_usuario.php" method="get">
-                            <input type="submit" class="btn btn-outline-primary" value="Usuários">
-                        </form>
-
+                      
+                        <a href = "admin_usuario.php" type="button" class="btn btn-outline-primary">Usuários</a>
+                        
+                        <a href="pedidos.php" class="btn btn-outline-primary">Pedidos</a>
+                        <a href="entradas.php"  class="btn btn-outline-primary">Entradas</a>
+                        
                         <form action="admin_doacao.php" method="GET">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
-                                <div class="dropdown-menu">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
+                            <div class="dropdown-menu">
+                                
+                                <input type="submit" class="dropdown-item" name="tabela" value="alimento">
+                                <input type="submit" class="dropdown-item" name="tabela" value="roupa">
+                                <input type="submit" class="dropdown-item" name="tabela" value="outro">
 
-                                    <input type="submit" class="dropdown-item" name="tabela" value="alimento">
-                                    <input type="submit" class="dropdown-item" name="tabela" value="roupa">
-                                    <input type="submit" class="dropdown-item" name="tabela" value="outro">
-
-                                </div>
                             </div>
                         </form>
+                        
+                        
+                        
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Cadastrar</button>
+                        <div class="dropdown-menu">
+                            
+                            <a href="formdoar.php" class="dropdown-item">alimento</a>
+                            <a href="formcad.php" class="dropdown-item">usuário</a>
+                            <a href="formtipo.php" class="dropdown-item">tipo de doação</a>
 
-                        <a href="pedidos.php" type="submit" class="btn btn-outline-primary">Pedidos</a>
+                        </div>
                     </div>
-
 
                     <!-- <div>
                         <a href="formdoar.php">Cadastrar Alimento</a> <br>

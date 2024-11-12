@@ -108,7 +108,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                     <form action="crud/deferir.php?resposta=nao&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>" method="POST">
                     <button class="btn btn-danger mb-1">Indeferir</button>
                     </form>
-                      <button class="btn btn-primary" href="form-alterar-pedido.php">Alterar</button>
+                      <a class="btn btn-primary" href="form-alterar-pedido.php?id_pedido=<?php echo $id_pedido; ?>">Alterar</a>
                     </div>
                   </div>
                 </div>
