@@ -96,6 +96,10 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                       // echo $total;
                       // var_dump($detalhamento);die;
                       for($i = 0;$i < $total;$i++):
+                        if($detalhamento[$i] == 'data de validade'){
+                          $data = date_create($detalhamento[$i]);
+                          date_format($data,"d:m:Y");
+                        }
                         echo $detalhamento[$i] . "<br>";
                       endfor;
                        ?>
@@ -108,7 +112,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                     <form action="crud/deferir.php?resposta=nao&movimentacao=entrada&id_pedido=<?php echo $id_entrada; ?>" method="POST">
                     <button class="btn btn-danger mb-1">Indeferir</button>
                     </form>
-                      <button class="btn btn-primary" href="form-alterar-pedido.php">Alterar</button>
+                    <a class="btn btn-primary" href="form-alterar-entrada.php?id_entrada=<?php echo $id_entrada; ?>">Alterar</a>
                     </div>
                   </div>
                 </div>
