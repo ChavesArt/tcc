@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 09-Nov-2024 às 23:28
--- Versão do servidor: 10.4.24-MariaDB
--- versão do PHP: 7.4.29
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 14-Nov-2024 às 20:27
+-- Versão do servidor: 8.0.31
+-- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `sasieq2`
+-- Banco de dados: `sasieq3`
 --
 
 -- --------------------------------------------------------
@@ -27,26 +27,33 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `entrada`
 --
 
-CREATE TABLE `entrada` (
-  `id_entrada` int(11) NOT NULL,
+DROP TABLE IF EXISTS `entrada`;
+CREATE TABLE IF NOT EXISTS `entrada` (
+  `id_entrada` int NOT NULL AUTO_INCREMENT,
   `data_entrada` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `detalhamento` text NOT NULL,
-  `deferido` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_usuario` int DEFAULT NULL,
+  `deferido` tinyint(1) DEFAULT NULL,
+  `quantidade` int DEFAULT NULL,
+  `descricao` text,
+  `data_validade` date DEFAULT NULL,
+  `tamanho` varchar(3) DEFAULT NULL,
+  `subtipo_doacao` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_entrada`),
+  KEY `fk_usuario` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `entrada`
 --
 
-INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`, `detalhamento`, `deferido`) VALUES
-(1, '2024-11-07 00:00:00', 4, 'Isso é um teste', 1),
-(2, '2024-11-07 20:03:00', 4, 'Alimento: alface;\r\nQuantidade: 7;\r\nData de validade:2024-11-13\r\nDescrição: teste teste teeste', 0),
-(3, '2024-11-07 20:07:00', 4, 'Alimento: arroz; <br> Quantidade: 9; <br> Data de validade:2024-12-07 <br> Descrição: Arroz Requinte fresquinha', 0),
-(4, '2024-11-07 20:08:00', 4, 'Roupa: ; <br> Quantidade: 2; <br> Tamanho: GG <br> Descrição: Casaco preto', NULL),
-(6, '2024-11-07 20:13:00', 4, 'Doação: ; <br> Quantidade: 32; <br> Data de validade: <br> Tamanho:  <br> Data de validade:  <br> Descrição: copo 20cm', NULL),
-(7, '2024-11-09 17:24:00', 1, 'Alimento: abóbora;Quantidade: 1;Data de validade:2024-11-29Descrição: doce', 1),
-(8, '2024-11-09 17:25:00', 1, 'Alimento: farinha;Quantidade: 6;Data de validade:2024-12-07Descrição: vem do trigo', NULL);
+INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`, `deferido`, `quantidade`, `descricao`, `data_validade`, `tamanho`, `subtipo_doacao`, `nome`) VALUES
+(13, '2024-11-14 16:28:00', 11, NULL, 1, 'sadfafsd', '2024-12-07', NULL, 'alimento', 'açucar'),
+(14, '2024-11-14 16:29:00', 11, NULL, 2, 'sadfadafdfasfs', '2024-11-28', 'GG', 'outro', 'avatar'),
+(15, '2024-11-14 16:29:00', 11, NULL, 1, 'fsdfsdfsad121', NULL, 'GG', 'roupa', 'calça'),
+(16, '2024-11-14 16:40:00', 11, NULL, 1, '12', '2024-11-30', NULL, 'alimento', 'abobora'),
+(17, '2024-11-14 16:46:00', 11, NULL, 1121, '12121212', '2024-11-30', NULL, 'alimento', 'alface'),
+(18, '2024-11-14 16:46:00', 11, NULL, 13444, '09765', NULL, 'GG', 'roupa', 'casaco');
 
 -- --------------------------------------------------------
 
@@ -54,13 +61,16 @@ INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`, `detalhamento
 -- Estrutura da tabela `estoque`
 --
 
-CREATE TABLE `estoque` (
-  `id_estoque` int(11) NOT NULL,
-  `id_produto` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `estoque`;
+CREATE TABLE IF NOT EXISTS `estoque` (
+  `id_estoque` int NOT NULL AUTO_INCREMENT,
+  `id_produto` int DEFAULT NULL,
   `descricao` varchar(255) DEFAULT NULL,
   `tamanho` varchar(4) DEFAULT NULL,
-  `data_validade` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `data_validade` date DEFAULT NULL,
+  PRIMARY KEY (`id_estoque`),
+  KEY `id_produto` (`id_produto`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `estoque`
@@ -81,12 +91,16 @@ INSERT INTO `estoque` (`id_estoque`, `id_produto`, `descricao`, `tamanho`, `data
 -- Estrutura da tabela `itens_entrada`
 --
 
-CREATE TABLE `itens_entrada` (
-  `id_item_entrada` int(11) NOT NULL,
-  `quantidade` int(11) DEFAULT NULL,
-  `id_estoque` int(11) DEFAULT NULL,
-  `id_entrada` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `itens_entrada`;
+CREATE TABLE IF NOT EXISTS `itens_entrada` (
+  `id_item_entrada` int NOT NULL AUTO_INCREMENT,
+  `quantidade` int DEFAULT NULL,
+  `id_estoque` int DEFAULT NULL,
+  `id_entrada` int DEFAULT NULL,
+  PRIMARY KEY (`id_item_entrada`),
+  KEY `id_entrada` (`id_entrada`),
+  KEY `fk_id_estoque` (`id_estoque`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -94,12 +108,16 @@ CREATE TABLE `itens_entrada` (
 -- Estrutura da tabela `itens_saida`
 --
 
-CREATE TABLE `itens_saida` (
-  `id_item_pedido` int(11) NOT NULL,
-  `quantidade` int(11) DEFAULT NULL,
-  `id_pedido` int(11) DEFAULT NULL,
-  `id_estoque` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `itens_saida`;
+CREATE TABLE IF NOT EXISTS `itens_saida` (
+  `id_item_pedido` int NOT NULL AUTO_INCREMENT,
+  `quantidade` int DEFAULT NULL,
+  `id_pedido` int DEFAULT NULL,
+  `id_estoque` int NOT NULL,
+  PRIMARY KEY (`id_item_pedido`),
+  KEY `fk_pedido_item` (`id_pedido`),
+  KEY `id_estoque` (`id_estoque`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -107,23 +125,31 @@ CREATE TABLE `itens_saida` (
 -- Estrutura da tabela `pedido`
 --
 
-CREATE TABLE `pedido` (
-  `id_pedido` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pedido`;
+CREATE TABLE IF NOT EXISTS `pedido` (
+  `id_pedido` int NOT NULL AUTO_INCREMENT,
   `data_pedido` datetime DEFAULT NULL,
   `deferido` tinyint(1) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `detalhamento` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_usuario` int DEFAULT NULL,
+  `quantidade` int DEFAULT NULL,
+  `descricao` text,
+  `data_validade` date DEFAULT NULL,
+  `tamanho` varchar(3) DEFAULT NULL,
+  `subtipo_doacao` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_pedido`),
+  KEY `fk_usuario_pedido` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `pedido`
 --
 
-INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `deferido`, `id_usuario`, `detalhamento`) VALUES
-(1, '2024-11-07 00:00:00', 0, 1, ''),
-(14, '2024-11-09 17:28:00', NULL, 1, 'Alimento: abóbora;#Quantidade: 2;#Descrição: Que seja doce'),
-(15, '2024-11-09 17:28:00', NULL, 1, 'Alimento: maionese;#Quantidade: 1;#Descrição: Helmanns'),
-(16, '2024-11-09 18:11:00', NULL, 1, 'Alimento: leite#Quantidade: 2#Descrição: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `deferido`, `id_usuario`, `quantidade`, `descricao`, `data_validade`, `tamanho`, `subtipo_doacao`, `nome`) VALUES
+(1, '2024-11-07 00:00:00', 0, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, '2024-11-09 17:28:00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, '2024-11-09 17:28:00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, '2024-11-09 18:11:00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -131,11 +157,13 @@ INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `deferido`, `id_usuario`, `det
 -- Estrutura da tabela `produto`
 --
 
-CREATE TABLE `produto` (
-  `id_produto` int(11) NOT NULL,
+DROP TABLE IF EXISTS `produto`;
+CREATE TABLE IF NOT EXISTS `produto` (
+  `id_produto` int NOT NULL AUTO_INCREMENT,
   `tipo_produto` varchar(255) DEFAULT NULL,
-  `subtipo_produto` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `subtipo_produto` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_produto`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `produto`
@@ -177,12 +205,13 @@ INSERT INTO `produto` (`id_produto`, `tipo_produto`, `subtipo_produto`) VALUES
 -- Estrutura da tabela `recuperar_senha`
 --
 
-CREATE TABLE `recuperar_senha` (
+DROP TABLE IF EXISTS `recuperar_senha`;
+CREATE TABLE IF NOT EXISTS `recuperar_senha` (
   `email` varchar(255) NOT NULL,
   `token` char(100) NOT NULL,
   `data_criacao` datetime NOT NULL,
   `usado` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `recuperar_senha`
@@ -197,16 +226,18 @@ INSERT INTO `recuperar_senha` (`email`, `token`, `data_criacao`, `usado`) VALUES
 -- Estrutura da tabela `usuario`
 --
 
-CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL,
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) DEFAULT NULL,
   `senha` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `endereco` varchar(255) DEFAULT NULL,
   `telefone` varchar(255) DEFAULT NULL,
-  `tipo_cliente` int(11) DEFAULT NULL,
-  `foto` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `tipo_cliente` int DEFAULT NULL,
+  `foto` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -224,105 +255,6 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `endereco`, `tele
 (9, 'Ricardo Almeida', '111', 'ricardo.almeida@email.com', 'Rua I, 606, Brasília', '91987654321', 1, 'user.png'),
 (10, 'Patricia Martins', '111', 'patricia.martins@email.com', 'Rua J, 707, Goiânia', '62987654321', 1, 'user.png'),
 (11, 'Administrador', '111', 'admin@gmail.com', '', '', 0, 'user.png');
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices para tabela `entrada`
---
-ALTER TABLE `entrada`
-  ADD PRIMARY KEY (`id_entrada`),
-  ADD KEY `fk_usuario` (`id_usuario`);
-
---
--- Índices para tabela `estoque`
---
-ALTER TABLE `estoque`
-  ADD PRIMARY KEY (`id_estoque`),
-  ADD KEY `id_produto` (`id_produto`);
-
---
--- Índices para tabela `itens_entrada`
---
-ALTER TABLE `itens_entrada`
-  ADD PRIMARY KEY (`id_item_entrada`),
-  ADD KEY `id_entrada` (`id_entrada`),
-  ADD KEY `fk_id_estoque` (`id_estoque`);
-
---
--- Índices para tabela `itens_saida`
---
-ALTER TABLE `itens_saida`
-  ADD PRIMARY KEY (`id_item_pedido`),
-  ADD KEY `fk_pedido_item` (`id_pedido`),
-  ADD KEY `id_estoque` (`id_estoque`);
-
---
--- Índices para tabela `pedido`
---
-ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`id_pedido`),
-  ADD KEY `fk_usuario_pedido` (`id_usuario`);
-
---
--- Índices para tabela `produto`
---
-ALTER TABLE `produto`
-  ADD PRIMARY KEY (`id_produto`);
-
---
--- Índices para tabela `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usuario`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `entrada`
---
-ALTER TABLE `entrada`
-  MODIFY `id_entrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de tabela `estoque`
---
-ALTER TABLE `estoque`
-  MODIFY `id_estoque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de tabela `itens_entrada`
---
-ALTER TABLE `itens_entrada`
-  MODIFY `id_item_entrada` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `itens_saida`
---
-ALTER TABLE `itens_saida`
-  MODIFY `id_item_pedido` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `pedido`
---
-ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT de tabela `produto`
---
-ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT de tabela `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restrições para despejos de tabelas

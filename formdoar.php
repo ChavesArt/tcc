@@ -115,7 +115,7 @@ if (!$_SESSION['email']) {
                         ?>
                         
                         <label class="form-label" for="tipo">qual o tipo de roupa:</label>
-                            <select name="alimentos" id="tipo" class="form-select" required>
+                            <select name="nome" id="tipo" class="form-select" required>
 
                                 <?php
                                 while ($info = mysqli_fetch_assoc($resultado)) {
@@ -156,7 +156,7 @@ if (!$_SESSION['email']) {
                                 <?php
                                 while ($info = mysqli_fetch_assoc($resultado)) {
                                     echo "<option value=" . $info['subtipo_produto'] . ">" . $info['subtipo_produto'] . "</option>";
-                                }
+                                } 
                                 ?>
                             </select>
 
