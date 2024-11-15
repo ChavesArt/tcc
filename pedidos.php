@@ -5,27 +5,28 @@ $conexao = conectar();
 $id_usuario = $_SESSION['id_usuario'];
 // logar();
 
-/*
-// Pega todos os IDs dos usuarios da tabela pedido
-$sql = "SELECT id_usuario From pedido Where deferido IS NULL";
-$resultado = mysqli_query($conexao, $sql);
-$IDs = mysqli_fetch_assoc($resultado);
 
-// Pega todos os detalhementos da tabela pedido
-$sql_detalhamento = "SELECT detalhamento FROM pedido WHERE deferido IS NULL";
-$resultado_detalhamento = mysqli_query($conexao,$sql_detalhamento);
-$detalhamentos = mysqli_fetch_assoc($resultado_detalhamento);
+// while ($i = 1;$i>10){
+// // Pega todos os IDs dos usuarios da tabela pedido
+// $sql = "SELECT id_usuario From pedido Where deferido IS NULL";
+// $resultado = mysqli_query($conexao, $sql);
+// $IDs = mysqli_fetch_assoc($resultado);
 
-// Pega todos os IDs da tabela pedido
-$sql_id_pedido = "SELECT id_pedido FROM pedido WHERE deferido IS NULL";
-$resultado_id_pedido = mysqli_query($conexao,$sql_id_pedido);
-$IDs_pedido = mysqli_fetch_assoc($resultado_id_pedido);
-*/
+// // Pega todos os detalhementos da tabela pedido
+// $sql_detalhamento = "SELECT detalhamento FROM pedido WHERE deferido IS NULL";
+// $resultado_detalhamento = mysqli_query($conexao,$sql_detalhamento);
+// $detalhamentos = mysqli_fetch_assoc($resultado_detalhamento);
+
+// // Pega todos os IDs da tabela pedido
+// $sql_id_pedido = "SELECT id_pedido FROM pedido WHERE deferido IS NULL";
+// $resultado_id_pedido = mysqli_query($conexao,$sql_id_pedido);
+// $IDs_pedido = mysqli_fetch_assoc($resultado_id_pedido);
+// }
+
 $sql ="SELECT * FROM pedido WHERE deferido IS null";
 $resultado = mysqli_query($conexao,$sql);
 
 while ($geral = mysqli_fetch_assoc($resultado)) {
-  $detalhamento = $geral['detalhamento'];
   $sql_usuario = "SELECT * FROM usuario WHERE id_usuario = " . $geral['id_usuario'];
   $resultado_usuario = mysqli_query($conexao, $sql_usuario);
   $dados = mysqli_fetch_assoc($resultado_usuario);
@@ -40,7 +41,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pedidos</title>
+  <title>Entradas</title>
   <?php include "links.php"; ?>
 </head>
 
@@ -89,26 +90,28 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
                     <div class="col-6 mb-3">
-                    <h6>Pedido</h6>
-                      <?php 
-                      $detalhamento = explode("#",$detalhamento);
-                      $total = count($detalhamento);
-                      // echo $total;
-                      // var_dump($detalhamento);die;
-                      for($i = 0;$i < $total;$i++):
-                        echo $detalhamento[$i] . "<br>";
-                      endfor;
+                    <h6>Entrada:</h6>
+                    <?php 
+                     echo"<b>Produto: </b>" . $geral['tipo_doacao'] . "<br>";
+                     echo"<b>Nome: </b>" . $geral['subtipo_doacao'] . "<br>";
+                    //  if($geral['subtipo_doacao'] == 'alimento'){
+                    //  echo"<b>Data de validade: </b>" . date_format($date,"d/m/Y") . "<br>";}
+                     echo"<b>Quantidade: </b>" . $geral['quantidade'] . "<br>";
+                     if($geral['subtipo_doacao'] !='alimento'){echo"<b>Tamanho: </b>" . $geral['tamanho'] . "<br>";}
+                     echo"<b>Descrição:</b> " . $geral['descricao'] . "<br>";
                        ?>
                     </div>
                     <div class="col-6 mb-3">
                       <h6>Ação</h6>
-                      <form action="crud/deferir.php?resposta=sim&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>" method="POST">
+                      <form action="crud/deferir.php?resposta=sim&movimentacao=entrada&id_pedido=<?php echo $id_pedido; ?>" method="POST">
+                      <input type="hidden" name="tipo_doacao" value="<?php echo $geral['tipo_doacao'] ?>">                      
+                      <input type="hidden" name="subtipo_doacao" value="<?php echo $geral['subtipo_doacao'] ?>">                      
                       <button class="btn btn-success mb-1">Deferir</button>
                     </form>
-                    <form action="crud/deferir.php?resposta=nao&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>" method="POST">
+                    <form action="crud/deferir.php?resposta=nao&movimentacao=entrada&id_pedido=<?php echo $id_pedido; ?>" method="POST">
                     <button class="btn btn-danger mb-1">Indeferir</button>
                     </form>
-                      <a class="btn btn-primary" href="form-alterar-pedido.php?id_pedido=<?php echo $id_pedido; ?>">Alterar</a>
+                    <a class="btn btn-primary" href="form-alterar-pedido.php?id_pedido=<?php echo $id_pedido; ?>">Alterar</a>
                     </div>
                   </div>
                 </div>

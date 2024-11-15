@@ -90,11 +90,11 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
                     <div class="col-6 mb-3">
-                    <h6>Pedido</h6>
+                    <h6>Entrada:</h6>
                     <?php 
                     $date = date_create($geral['data_validade']);
-                     echo"<b>Produto: </b>" . $geral['subtipo_doacao'] . "<br>";
-                     echo"<b>Nome: </b>" . $geral['nome'] . "<br>";
+                     echo"<b>Produto: </b>" . $geral['tipo_doacao'] . "<br>";
+                     echo"<b>Nome: </b>" . $geral['subtipo_doacao'] . "<br>";
                      if($geral['subtipo_doacao'] == 'alimento'){
                      echo"<b>Data de validade: </b>" . date_format($date,"d/m/Y") . "<br>";}
                      echo"<b>Quantidade: </b>" . $geral['quantidade'] . "<br>";
@@ -104,10 +104,13 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                     </div>
                     <div class="col-6 mb-3">
                       <h6>Ação</h6>
-                      <form action="crud/deferir.php?resposta=sim&movimentacao=entrada&id_pedido=<?php echo $id_entrada; ?>" method="POST">
+                      <form action="crud/deferir.php?resposta=sim&movimentacao=entrada&id_entrada=<?php echo $id_entrada; ?>" method="POST">
+                        <input type="hidden" name="tipo_doacao" value="<?php echo $geral['tipo_doacao'] ?>">
+                        <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['subtipo_doacao'] ?>">
+                        <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['quantidade'] ?>">
                       <button class="btn btn-success mb-1">Deferir</button>
                     </form>
-                    <form action="crud/deferir.php?resposta=nao&movimentacao=entrada&id_pedido=<?php echo $id_entrada; ?>" method="POST">
+                    <form action="crud/deferir.php?resposta=nao&movimentacao=entrada&id_entrada=<?php echo $id_entrada; ?>" method="POST">
                     <button class="btn btn-danger mb-1">Indeferir</button>
                     </form>
                     <a class="btn btn-primary" href="form-alterar-entrada.php?id_entrada=<?php echo $id_entrada; ?>">Alterar</a>
