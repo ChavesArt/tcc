@@ -41,7 +41,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entradas</title>
+  <title>pedidos</title>
   <?php include "links.php"; ?>
 </head>
 
@@ -90,27 +90,37 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
                     <div class="col-6 mb-3">
-                    <h6>Entrada:</h6>
+                    <h6>pedido:</h6>
                     <?php 
+                    $date = date_create($geral['data_validade']);
+                    // exibe o tipo do produto 'alimento'
                      echo"<b>Produto: </b>" . $geral['tipo_doacao'] . "<br>";
+                    //  exibe o subtipo do produto 'casaco'
                      echo"<b>Nome: </b>" . $geral['subtipo_doacao'] . "<br>";
-                    //  if($geral['subtipo_doacao'] == 'alimento'){
-                    //  echo"<b>Data de validade: </b>" . date_format($date,"d/m/Y") . "<br>";}
+                    //  exibe data de validade se for alimento
+                     if($geral['subtipo_doacao'] == 'alimento'){echo"<b>Data de validade: </b>" . date_format($date,"d/m/Y") . "<br>";}
+                    //  exibe a quantidade entregada
                      echo"<b>Quantidade: </b>" . $geral['quantidade'] . "<br>";
-                     if($geral['subtipo_doacao'] !='alimento'){echo"<b>Tamanho: </b>" . $geral['tamanho'] . "<br>";}
+                    //  exibe o tamanho ser for roupa
+                     if($geral['tipo_doacao'] !='alimento'){echo"<b>Tamanho: </b>" . $geral['tamanho'] . "<br>";}
+                    //  exibe a descrição
                      echo"<b>Descrição:</b> " . $geral['descricao'] . "<br>";
                        ?>
                     </div>
                     <div class="col-6 mb-3">
                       <h6>Ação</h6>
-                      <form action="crud/deferir.php?resposta=sim&movimentacao=entrada&id_pedido=<?php echo $id_pedido; ?>" method="POST">
-                      <input type="hidden" name="tipo_doacao" value="<?php echo $geral['tipo_doacao'] ?>">                      
-                      <input type="hidden" name="subtipo_doacao" value="<?php echo $geral['subtipo_doacao'] ?>">                      
+                      <form action="crud/deferir.php?resposta=sim&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>" method="POST">
+                        <!-- botão de deferir pega todas essas informações -->
+                        <input type="hidden" name="tipo_doacao" value="<?php echo $geral['tipo_doacao'] ?>">
+                        <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['subtipo_doacao'] ?>">
+                        <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['quantidade'] ?>">
                       <button class="btn btn-success mb-1">Deferir</button>
                     </form>
-                    <form action="crud/deferir.php?resposta=nao&movimentacao=entrada&id_pedido=<?php echo $id_pedido; ?>" method="POST">
+                    <form action="crud/deferir.php?resposta=nao&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>" method="POST">
+                       <!-- botão de indeferir pega todas essas informações -->
                     <button class="btn btn-danger mb-1">Indeferir</button>
                     </form>
+                    <!-- botão de alterar -->
                     <a class="btn btn-primary" href="form-alterar-pedido.php?id_pedido=<?php echo $id_pedido; ?>">Alterar</a>
                     </div>
                   </div>

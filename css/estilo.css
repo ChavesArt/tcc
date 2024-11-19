@@ -20,10 +20,10 @@ header,.navbar{
 .navbar-nav a{
     color: white;
 }
-#nav-container{
+/* #nav-container{
     padding-top: 0;
     padding-bottom: 0;
-}
+} */
 #logo{
     width: 75px;
 }

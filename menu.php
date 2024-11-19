@@ -1,23 +1,22 @@
-<header>
-    <div class="container-fluid" id="nav-container">
-        <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-            <a href="index.php" class="navbar-brand">
-                <img id="logo" src="img/logo.png" alt="logo SASIEQ">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links"
-                aria-controls="navbar-links" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
-                <div class="navbar-nav">
-                    <a href="index.php" class="nav-item nav-link" id="home-menu">Início</a>
-                    <a href="index.php#sobre-area" class="nav-item nav-link" id="about-menu">Sobre nos</a>
-                    <a href="formcad.php" class="nav-item nav-link" id="cad-menu">Cadastrar</a>
-                    <a href="login.php" class="nav-item nav-link" id="login-menu">Entrar</a>
-                    <a href="logout.php" class="nav-item nav-link" id="login-menu">Sair</a>
-                </div>
+<header class="container">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <a href="index.php" class="navbar-brand">
+            <img id="logo" src="img/logo.png" alt="logo SASIEQ">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links"
+            aria-controls="navbar-links" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
+            <div class="navbar-nav">
+                <a href="index.php" class="nav-item nav-link me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Início" id="home-menu"><i class="fa-solid fa-house"></i></a>
+                <a href="index.php#sobre-area" class="nav-item nav-link me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sobre nós" id="about-menu"><i class="fa-solid fa-address-card"></i></a>
+                <a href="formcad.php" class="nav-item nav-link me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cadastrar-se" id="cad-menu"><i class="fa-solid fa-user-plus"></i></a>
+                <a href="login.php" class="nav-item nav-link me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Login" id="login-menu"><i class="fa-solid fa-right-to-bracket"></i></a>
+                <?php if(isset($_SESSION['email'])){?>
+                    <a href="logout.php" class="nav-item nav-link me-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Deslogar-se" id="login-menu"><i class="fa-solid fa-door-open"></i></a>
+                <?php } ?>
             </div>
-        </nav>
-
-    </div>
+        </div>
+    </nav>
 </header>
