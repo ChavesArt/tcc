@@ -333,10 +333,10 @@ main{
 
 /* slider */
 
-#mainSlider .carousel-inner, #mainSlider .carousel-item{
-    margin: auto;
-    height: auto;
-}
+ /* #mainSlider .carousel-inner, #mainSlider .carousel-item{
+    margin: 1000000px;
+    height: 100000px;
+}  */
 
 #mainSlider .carousel-caption h2{
     font-size: 28px;
