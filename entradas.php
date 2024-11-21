@@ -94,7 +94,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                     <?php 
                     $date = date_create($geral['data_validade']);
                     // exibe o tipo do produto 'alimento'
-                     echo"<b>Produto: </b>" . $geral['tipo_doacao'] . "<br>";
+                     echo"<b>Produto: </b>" . $geral['subtipo_doacao'] . "<br>";
                     //  exibe o subtipo do produto 'casaco'
                      echo"<b>Nome: </b>" . $geral['subtipo_doacao'] . "<br>";
                     //  exibe data de validade se for alimento
@@ -102,7 +102,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                     //  exibe a quantidade entregada
                      echo"<b>Quantidade: </b>" . $geral['quantidade'] . "<br>";
                     //  exibe o tamanho ser for roupa
-                     if($geral['tipo_doacao'] !='alimento'){echo"<b>Tamanho: </b>" . $geral['tamanho'] . "<br>";}
+                     if($geral['subtipo_doacao'] !='alimento'){echo"<b>Tamanho: </b>" . $geral['tamanho'] . "<br>";}
                     //  exibe a descrição
                      echo"<b>Descrição:</b> " . $geral['descricao'] . "<br>";
                        ?>
@@ -111,7 +111,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                       <h6>Ação</h6>
                       <form action="crud/deferir.php?resposta=sim&movimentacao=entrada&id_entrada=<?php echo $id_entrada; ?>" method="POST">
                         <!-- botão de deferir pega todas essas informações -->
-                        <input type="hidden" name="tipo_doacao" value="<?php echo $geral['tipo_doacao'] ?>">
+                        <input type="hidden" name="tipo_doacao" value="<?php echo $geral['subtipo_doacao'] ?>">
                         <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['subtipo_doacao'] ?>">
                         <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['quantidade'] ?>">
                       <button class="btn btn-success mb-1">Deferir</button>
