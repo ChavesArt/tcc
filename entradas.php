@@ -109,11 +109,12 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                     </div>
                     <div class="col-6 mb-3">
                       <h6>Ação</h6>
-                      <form action="crud/deferir.php?resposta=sim&movimentacao=entrada&id_entrada=<?php echo $id_entrada; ?>" method="POST">
+                      <form action="crud/deferir.php?resposta=sim&movimentacao=entrada" method="POST">
                         <!-- botão de deferir pega todas essas informações -->
                         <input type="hidden" name="tipo_doacao" value="<?php echo $geral['subtipo_doacao'] ?>">
                         <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['subtipo_doacao'] ?>">
                         <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['quantidade'] ?>">
+                        <input type="hidden" name="id_entrada" value="<?php echo $id_entrada; ?>">
                       <button class="btn btn-success mb-1">Deferir</button>
                     </form>
                     <form action="crud/deferir.php?resposta=nao&movimentacao=entrada&id_entrada=<?php echo $id_entrada; ?>" method="POST">

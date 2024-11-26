@@ -35,3 +35,14 @@ function executarSQL($conexao, $sql)
     }
     return $resultado;
 }
+
+function pegarMesEAno($data_validade) {
+    // Converte a string de data para um timestamp
+    $timestamp = strtotime($data_validade);
+    
+    // Formata o mês e o ano
+    $mes = date("m", $timestamp);  // "m" retorna o mês com dois dígitos (ex: 01, 02, ..., 12)
+    $ano = date("Y", $timestamp);  // "Y" retorna o ano com quatro dígitos (ex: 2024)
+
+    return ['mes' => $mes, 'ano' => $ano];
+}

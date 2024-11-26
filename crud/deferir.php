@@ -46,7 +46,7 @@ if ($_GET['resposta'] == 'nao' and $_GET['movimentacao'] == 'pedido') {
 
 
 if ($_GET['resposta'] == 'sim' and $_GET['movimentacao'] == 'entrada') {
-    $id_entrada = $_GET['id_entrada'];
+    $id_entrada = $_POST['id_entrada'];
 
     $tipo_doacao = $_POST['tipo_doacao'];
     $subtipo = $_POST['subtipo_doacao'];
@@ -64,7 +64,7 @@ if ($_GET['resposta'] == 'sim' and $_GET['movimentacao'] == 'entrada') {
 
         $id_produto = $linha['id_produto'];  // Pega o Id_produto
         // procura no banco o id_estoque referente ao mesmo id_produto
-        $sql2 = "SELECT id_estoque FROM estoque WHERE id_produto= $id_produto";
+        $sql2 = "SELECT id_estoque FROM estoque WHERE id_produto= $id_produto AND " ;
         $resultado_estoque = mysqli_query($conexao, $sql2);
 
         $linha2 = mysqli_fetch_assoc($resultado_estoque);

@@ -115,11 +115,11 @@ if (!$_SESSION['email']) {
                         ?>
                         
                         <label class="form-label" for="tipo">qual o tipo de roupa:</label>
-                            <select name="nome" id="tipo" class="form-select" required>
+                            <select name="id_produto" id="tipo" class="form-select" required>
 
                                 <?php
                                 while ($info = mysqli_fetch_assoc($resultado)) {
-                                    echo "<option value=" . $info['subtipo_produto'] . ">" . $info['subtipo_produto'] . "</option>";
+                                    echo "<option value=" . $info['id_produto'] . ">" . $info['subtipo_produto'] . "</option>";
                                 }
                                 ?>
                             </select>                        
@@ -151,23 +151,22 @@ if (!$_SESSION['email']) {
                         ?>
 
                             <label class="form-label" for="alimentos">Escolha o alimento:</label>
-                            <select name="alimentos" id="alimentos" class="form-select" required>
-
+                            <select name="id_produto" id="alimentos" class="form-select" required>
+                                
                                 <?php
                                 while ($info = mysqli_fetch_assoc($resultado)) {
-                                    echo "<option value=" . $info['subtipo_produto'] . ">" . $info['subtipo_produto'] . "</option>";
+                                    echo "<option value=" . $info['id_produto'] . ">" . $info['subtipo_produto'] . "</option>";
                                 } 
                                 ?>
                             </select>
-
+                            
                             <label class="form-label" for="quantidade">Quantidade:</label>
                             <input class="form-control" type="number" name="quantidade" id="quantidade">
                             <label class="form-label" for="descri">Descrição:</label>
                             <textarea class="form-control" id="descri" name="descricao" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
-
+                            
                             <label class="form-label" for="data">Data de validade:</label>
                             <input class="form-control" type="date" name="data_validade" id="data">
-
                             <div class="col-12">
                                 <div class="row">
                                     <input class="btn btn-primary my-2" type="submit" value="Enviar">
