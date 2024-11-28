@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 26-Nov-2024 às 20:04
+-- Tempo de geração: 28-Nov-2024 às 19:52
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `entrada` (
   `tamanho` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id_entrada`),
   KEY `fk_usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `entrada`
@@ -56,7 +56,12 @@ INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`, `deferido`, `
 (21, '2024-11-26 15:32:00', 11, NULL, 0, '', NULL),
 (22, '2024-11-26 16:40:00', 11, NULL, 0, '', NULL),
 (23, '2024-11-26 17:00:00', 11, NULL, 2, 'fsd', NULL),
-(25, '2024-11-26 17:03:00', 11, NULL, 1, 'q1', 'GG');
+(25, '2024-11-26 17:03:00', 11, NULL, 1, 'q1', 'GG'),
+(26, '2024-11-28 15:43:00', 11, NULL, 2, '', NULL),
+(27, '2024-11-28 15:45:00', 11, NULL, 22, '', NULL),
+(28, '2024-11-28 15:46:00', 11, NULL, 22, '', NULL),
+(29, '2024-11-28 15:47:00', 11, NULL, 3, 'fsd', NULL),
+(30, '2024-11-28 15:47:00', 11, NULL, 1, '1', '1');
 
 -- --------------------------------------------------------
 
@@ -71,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `estoque` (
   `data_validade` date DEFAULT NULL,
   PRIMARY KEY (`id_estoque`),
   KEY `id_produto` (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `estoque`
@@ -88,7 +93,10 @@ INSERT INTO `estoque` (`id_estoque`, `id_produto`, `data_validade`) VALUES
 (10, 27, '1200-11-12'),
 (11, 21, '1200-11-12'),
 (12, 11, '0000-00-00'),
-(13, 2, '0000-00-00');
+(15, 2, '0000-00-00'),
+(16, 2, '0000-00-00'),
+(17, 27, '1300-12-12'),
+(18, 5, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -105,7 +113,14 @@ CREATE TABLE IF NOT EXISTS `itens_entrada` (
   PRIMARY KEY (`id_item_entrada`),
   KEY `id_entrada` (`id_entrada`),
   KEY `fk_id_estoque` (`id_estoque`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `itens_entrada`
+--
+
+INSERT INTO `itens_entrada` (`id_item_entrada`, `quantidade`, `id_estoque`, `id_entrada`) VALUES
+(1, 1, 18, 30);
 
 -- --------------------------------------------------------
 
@@ -176,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
 
 INSERT INTO `produto` (`id_produto`, `tipo_produto`, `subtipo_produto`) VALUES
 (1, 'alimento', 'arroz'),
-(2, 'roupa', 'camiseta de manga longa'),
+(2, 'outro', NULL),
 (3, 'alimento', 'maionese'),
 (4, 'roupa', 'camiseta de manga curta'),
 (5, 'roupa', 'calça'),
@@ -257,7 +272,6 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `endereco`, `tele
 (6, 'Juliana Lima', '111', 'juliana.lima@email.com', 'Rua F, 303, Salvador', '61987654321', 1, 'user.png'),
 (7, 'Roberto Pereira', '111', 'roberto.pereira@email.com', 'Rua G, 404, Fortaleza', '71987654321', 1, 'user.png'),
 (8, 'Fernanda Rodrigues', '111', 'fernanda.rodrigues@email.com', 'Rua H, 505, Recife', '81987654321', 1, 'user.png'),
-(9, 'Ricardo Almeida', '111', 'ricardo.almeida@email.com', 'Rua I, 606, Brasília', '91987654321', 1, 'user.png'),
 (10, 'Patricia Martins', '111', 'patricia.martins@email.com', 'Rua J, 707, Goiânia', '62987654321', 1, 'user.png'),
 (11, 'Administrador', '111', 'admin@gmail.com', '', '', 0, 'user.png');
 
