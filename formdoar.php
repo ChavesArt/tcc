@@ -94,7 +94,7 @@ if (!$_SESSION['email']) {
                             <label class="form-label" for="data">Data de validade:</label>
                             <input class="form-control" type="date" name="data_validade" id="data" placeholder="data de validade">
 
-                            <label class="form-label" for="nome">Tamanho:</label>
+                            <label class="form-label" for="nome">Tamanho:</label> 
                             <input class="form-control" type="text" name="tamanho" id="tamanho">
 
                             <div class="col-12">
