@@ -1,4 +1,4 @@
-<div id="donation-area">
+<!-- <div id="donation-area">
 
     <div class="container ">
         <div class="row">
@@ -34,4 +34,72 @@
 
 </div>
 
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="donation-area" class="my-5">
+
+    <div class="container">
+        <!-- Seção: Seja um doador -->
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6 text-center mb-4 mb-md-0">
+                <h1 class="main-title display-4 ">Seja um doador</h1>
+                <p class="text-muted">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit nam officiis quidem cum dignissimos eveniet, est ipsam enim. Sit eaque non eius reiciendis facilis minus ipsam aut quaerat ad ea.
+                </p>
+                <a class="btn btn-primary btn-lg" href="formdoar.php">Doar</a>
+            </div>
+
+            <div class="col-md-6">
+                <img src="img/doacao.svg" alt="doação de alimento" class="img-fluid">
+            </div>
+        </div>
+
+        <!-- Seção: Precisa de doação -->
+        <div class="row align-items-center">
+        <div class="col-md-6">
+                <img src="img/receber.svg" alt="recepção de alimento" class="img-fluid">
+            </div>
+            <div class="col-md-6 text-center mb-4 mb-md-0">
+                <h1 class="main-title display-4 ">Precisa de doação</h1>
+                <p class="text-muted">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit consequuntur suscipit tenetur necessitatibus perferendis ea molestias perspiciatis. Enim fuga architecto facilis! Quo, nihil. Sapiente nemo repellat minima, quod enim nihil?
+                </p>
+                <a  class="btn btn-primary btn-lg" href="formreceber.php">Receber</a>
+            </div>
+
+
+        </div>
+    </div>
+
 </div>
+
+
