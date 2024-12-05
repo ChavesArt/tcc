@@ -18,9 +18,6 @@ if (!$_SESSION['email']) {
     <?php include('links.php'); ?>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-
-
-
 </head>
 
 <body>
@@ -38,38 +35,35 @@ if (!$_SESSION['email']) {
                 </div>
 
                 <div class="col-md-6">
-
-                    <form  action="crud/receber.php" method="post" class="m-4 p-4 border rounded-3 shadow-lg bg-light">
-
-                        <div class="form-check mb-3">
+                    <form action="crud/receber.php" method="post" class="m-4 p-4 border rounded-3 shadow-lg bg-light">
+                        <!-- Seção do select e input de quantidade lado a lado -->
+                        <div class="row">
+                            <div class="col-md-12">
                             <h4>Qual o kit de cesta básica você deseja receber?</h4>
-                            <input type="checkbox" class="form-check-input" id="mesmo-endereco" name="kit_alimento" value="kit_alimento">
-                            <label class="form-check-label" for="mesmo-endereco">Kit de alimentos</label>
-                        </div>
+                            </div>
+                            <!-- Campo Select para o tipo de kit -->
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="tipo">Qual o tipo de kit?</label>
+                                <select name="alimentos" id="tipo" class="form-select" required>
+                                    <option value="kit_alimento">Kit de alimento</option>
+                                    <option value="kit_roupa">Kit de roupa</option>
+                                </select>
+                            </div>
 
-                        <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="salvar-info" name="kit_roupa" value="kit_vestuario">
-                            <label class="form-check-label" for="salvar-info">Kit de vestuários</label>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade" min="1" placeholder="Informe a quantidade desejada">
+                            <!-- Campo de Quantidade -->
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="quantidade">Quantidade:</label>
+                                <input class="form-control" type="number" name="quantidade" id="quantidade" min="1" placeholder="Informe a quantidade desejada">
+                            </div>
                         </div>
 
                         <div class="text-center">
                             <button class="btn btn-primary px-4 py-2" type="submit">Enviar</button>
                         </div>
                     </form>
-
-
-
                 </div>
             </div>
         </div>
-        
-
-
     </main>
 
 </body>

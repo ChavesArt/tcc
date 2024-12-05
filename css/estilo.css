@@ -49,7 +49,14 @@ main{
 #mainSlider .carousel-caption{
     top: 20%;
 }
+#mainSlider a{
+    text-decoration: none;
+}
 
+#mainSlider .carousel-indicators{
+
+    padding: 7.8%;
+}
 #mainSlider .carousel-caption h2{
      font-size: 50px;
      margin-bottom: 30px;
