@@ -33,9 +33,11 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
   <section class="vh-25" style="background-color: #f4f5f7;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-lg-6 mb-4 mb-lg-0">
-          <div class="card mb-3" style="border-radius: .5rem;">
+        <!-- Ajustando as colunas para ocupar metade da largura da tela -->
+        <div class="col-md-6 mb-4 mb-lg-0">
+          <div class="card mb-3" style="border-radius: .5rem; height: 100%;"> <!-- Definindo altura do card -->
             <div class="row g-0">
+              <!-- Coluna da imagem do usuário (40% da largura) -->
               <div class="col-md-4 gradient-custom text-center text-white"
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                 <tr>
@@ -45,6 +47,7 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
                 <h5 class="text-dark"><?php echo $dadosUsuario['nome'] ?></h5>
                 <i class="far fa-edit mb-5"></i>
               </div>
+              <!-- Coluna do conteúdo do pedido (60% da largura) -->
               <div class="col-md-8">
                 <div class="card-body p-4">
                   <h6>Data do pedido: <?php echo date_format($date, "H:i   d/m/Y"); ?></h6>
@@ -55,7 +58,7 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
                       <?php echo $dadosUsuario['nome']; ?>
                     </div>
                     <div class="col-6 mb-3">
-                      <h6>telefone</h6>
+                      <h6>Telefone</h6>
                       <p class="text-muted"> <?php echo  $dadosUsuario['telefone'] . "</p>"; ?>
                     </div>
                   </div>
@@ -71,43 +74,55 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
                   </div>
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
-                    <div class="col-6 mb-3">
-                      <h6>Pedido:</h6>
-                      <?php
-                      $sql_kit = "SELECT * FROM produto WHERE tipo_produto ='" .  $pedido['kit'] . "' ORDER BY subtipo_produto ASC";
-                      $resultado_kit = mysqli_query($conexao, $sql_kit);
-                      ?>
-                      <label class="form-label" for="tipo">Qual produto deseja colocar no kit:</label>
-                      <select name="alimentos" id="tipo" class="form-select" required>
-                        <?php
-                        while ($kit = mysqli_fetch_assoc($resultado_kit)) {
-                          echo "<option value=" . $kit['id_produto'] . ">" . $kit['subtipo_produto'] . "</option>";
-                        }
-                        ?>
-                      </select>
+  <div class="col-12 mb-3">
+    <h6>Pedido:</h6>
+    <?php
+    $sql_kit = "SELECT * FROM produto WHERE tipo_produto ='" .  $pedido['kit'] . "' ORDER BY subtipo_produto ASC";
+    $resultado_kit = mysqli_query($conexao, $sql_kit);
+    ?>
 
-                    
-                      <div class="row pt-3">
-                        <div class="col-6">
-                          <label for="estoque" class="form-label">Estoque</label>
-                          <select name="estoque" id="estoque" class="form-select">
-                            <option value="" selected disabled>Selecione um produto</option>
-                            <?php
-                          
-                            while ($produto = mysqli_fetch_assoc($resultado)) {
-                              echo "<option value='" . $produto['id_produto'] . "'>Estoque</option>";
-                            }
-                            ?>
-                          </select>
-                        </div>
+    <form onclick="return SelecionaEstoque(event);">
+      <input type="hidden" name="tipo_produto" value="<?php // echo $pedido['kit'] ?>">
+    <label class="form-label" for="tipo">Qual produto deseja colocar no kit:</label>
+    <select name="produto" id="kit" class="form-select" required>
+      <option value="" selected disabled>Selecione um produto</option>
 
-                        <div class="col-6">
-                          <label for="quantidade" class="form-label">Quantidade</label>
-                          <input type="number" id="quantidade" class="form-control" min="0">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-6 mb-3">
+      <?php
+      while ($kit = mysqli_fetch_assoc($resultado_kit)) {
+        echo "<option name = 'subtipo_produto' value=" . $kit['id_produto'] . ">" . $kit['subtipo_produto'] . "</option>";
+      }
+      ?>
+    </select>
+  </form>
+
+    <div class="row pt-3">
+      <!-- Coluna de 4 unidades para o estoque -->
+      <div class="col-md-4">
+        <label for="estoque" class="form-label">Estoque</label>
+        <select name="estoque" id="estoque" class="form-select">
+          <option value="" selected disabled>Selecione um estoque</option>
+          
+        </select>
+      </div>
+
+      <!-- Coluna de 3 unidades para a quantidade -->
+      <div class="col-md-3">
+        <label for="quantidade" class="form-label">Quantidade</label>
+        <input type="number" id="quantidade" class="form-control" min="0">
+      </div>
+
+      <!-- Coluna de 3 unidades para o botão -->
+      <div class="col-md-4 py-4">
+        <form action="#" method="POST">
+          <button type="submit" class="btn btn-danger ">
+          <i class="bi bi-clipboard-plus"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+                    <!-- <div class="col-6 mb-3">
                       <h6>Ação</h6>
                       <form action="crud/deferir.php?resposta=sim&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>"
                         method="POST">
@@ -116,12 +131,12 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
                         <input type="hidden" name="quantidade" value="<?php echo $pedido['quantidade'] ?>">
                         <button class="btn btn-success mb-1">Deferir</button>
                       </form>
-                      <form action="crud/deferir.php?resposta=nao&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>"
+                      <form action="crud/deferir.php?resposta=nao&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?> "
                         method="POST">
                         <button class="btn btn-danger mb-1">Indeferir</button>
                       </form>
                       <a class="btn btn-primary" href="form-alterar-pedido.php?id_pedido=<?php echo $id_pedido; ?>">Alterar</a>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -133,6 +148,9 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
   </section>
 
 <?php } ?>
+
+<script src="js/scripts.js"></script>
+
 </body>
 
 </html>

@@ -18,7 +18,7 @@
 
                     <div class="col-md-4 contact-box">
                         <i class="fas fa-map-marker-alt" alt="Envelope"></i>
-                        <p><span class="contact-title">Localização:</span> Rua Lorem, ipsum dolor sit amet 1212 </p>
+                        <p><span class="contact-title">Localização:</span> Rua Benjamin Constant 1991</p>
                     </div>
 
                 </div>

@@ -121,7 +121,17 @@ session_start();
                     <div class="col-md-6">
                         <h3 class="about-title my-5 text-center">IEQ flores</h3>
 
-                        <p id="p-sobre">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio animi vero quis magni, debitis nesciunt inventore odit quo dolorem cupiditate maiores eum magnam impedit deserunt pariatur doloribus adipisci illum aperiam.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo similique totam sapiente ducimus debitis minus, iusto rerum illum sequi porro cumque mollitia et sint. Minima asperiores amet quae quasi voluptate!login Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere amet nostrum sequi illum aliquam cum odit saepe. Asperiores numquam, mollitia nemo dolorum ipsam ipsa commodi iure inventore obcaecati. Esse, mollitia!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro repudiandae veritatis natus reprehenderit incidunt dolorem nulla beatae ex, nemo, vitae ducimus. Laudantium nisi error sed minus quam ex eligendi aliquam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic praesentium corrupti eum voluptatem. Qui delectus inventore error magni mollitia voluptas, est, adipisci nam, molestias necessitatibus atque iure dolor natus quo.</p>
+                        <p id="p-sobre">A Igreja do Evangelho Quadrangular Flores (IEQ Flores) é uma instituição religiosa, fundada em 1º de julho de 2019, em Uruguaiana (RS), com o objetivo de levar a palavra de Deus e ajudar a comunidade por meio de ações sociais que promovam seu desenvolvimento espiritual.
+
+A instituição foi criada no contexto da pré-pandemia, quando houve uma grande necessidade de ajudar pessoas em situação de precariedade alimentar e espiritual, entre outras coisas. Foi fundada pelo Pastor Thiago Freitas e pela Pastora Graziela Freitas, que desejavam transmitir a palavra de Deus de maneira séria e clara.
+
+Nos primeiros 3 anos, a IEQ Flores já contava com 100 membros, mas ao longo dos anos chegou à marca de 400 membros.
+
+Com o passar do tempo, a instituição se tornou referência no ensino da palavra, chegando a ser uma das grandes igrejas da região 795.
+
+Em 2020, a igreja enfrentou um momento crítico: a pandemia do coronavírus. Para poder atender a todos os seus membros, chegou a fazer 5 cultos por dia, com cada reunião contendo no máximo 25 pessoas. Apesar disso, a igreja conseguiu ajudar todos os seus membros nesse período difícil, além de conseguir avançar no ensino da palavra.
+
+Hoje, a instituição conta com vários departamentos, como: SASIEQ (Serviço de Ação Social da Igreja do Evangelho Quadrangular), Escola Bíblica, Rede de Homens, Rede de Mulheres, Rede Teens, entre outros, oferecendo ajuda nas mais diversas áreas da sociedade.</p>
                     </div>
                 </div>
             </div>

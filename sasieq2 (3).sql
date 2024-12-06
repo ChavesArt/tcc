@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `entrada` (
   `tamanho` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id_entrada`),
   KEY `fk_usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31;
 
 --
 -- Extraindo dados da tabela `entrada`
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `estoque` (
   `data_validade` date DEFAULT NULL,
   PRIMARY KEY (`id_estoque`),
   KEY `id_produto` (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19;
 
 --
 -- Extraindo dados da tabela `estoque`
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `itens_entrada` (
   PRIMARY KEY (`id_item_entrada`),
   KEY `id_entrada` (`id_entrada`),
   KEY `fk_id_estoque` (`id_estoque`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 
 --
 -- Extraindo dados da tabela `itens_entrada`
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `itens_saida` (
   PRIMARY KEY (`id_item_pedido`),
   KEY `fk_pedido_item` (`id_pedido`),
   KEY `id_estoque` (`id_estoque`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB;
 
 -- --------------------------------------------------------
 
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `nome` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `fk_usuario_pedido` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 ;
 
 --
 -- Extraindo dados da tabela `pedido`
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `tipo_produto` varchar(255) DEFAULT NULL,
   `subtipo_produto` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 ;
 
 --
 -- Extraindo dados da tabela `produto`
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `recuperar_senha` (
   `token` char(100) NOT NULL,
   `data_criacao` datetime NOT NULL,
   `usado` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM ;
 
 --
 -- Extraindo dados da tabela `recuperar_senha`
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `tipo_cliente` int DEFAULT NULL,
   `foto` varchar(255) NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12;
 
 --
 -- Extraindo dados da tabela `usuario`
