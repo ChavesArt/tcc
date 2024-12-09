@@ -130,7 +130,7 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   </section>
   <?php } ?>

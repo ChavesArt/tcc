@@ -18,110 +18,121 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+  <!DOCTYPE html>
+  <html lang="pt-BR">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pedidos</title>
-  <?php include "links.php"; ?>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pedidos</title>
+    <?php include "links.php"; ?>
+  </head>
 
-<body>
+  <body>
 
-  <section class="vh-25" style="background-color: #f4f5f7;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <!-- Ajustando as colunas para ocupar metade da largura da tela -->
-        <div class="col-md-6 mb-4 mb-lg-0">
-          <div class="card mb-3" style="border-radius: .5rem; height: 100%;"> <!-- Definindo altura do card -->
-            <div class="row g-0">
-              <!-- Coluna da imagem do usuário (40% da largura) -->
-              <div class="col-md-4 gradient-custom text-center text-white"
-                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                <tr>
-                  <td><img class="my-4" src='img/<?php echo $dadosUsuario['foto'] ?>' width='170px' height='170px'>
-                  </td>
-                </tr>
-                <h5 class="text-dark"><?php echo $dadosUsuario['nome'] ?></h5>
-                <i class="far fa-edit mb-5"></i>
-              </div>
-              <!-- Coluna do conteúdo do pedido (60% da largura) -->
-              <div class="col-md-8">
-                <div class="card-body p-4">
-                  <h6>Data do pedido: <?php echo date_format($date, "H:i   d/m/Y"); ?></h6>
-                  <hr class="mt-0 mb-4">
-                  <div class="row pt-1">
-                    <div class="col-6 mb-3">
-                      <h6>Nome</h6>
-                      <?php echo $dadosUsuario['nome']; ?>
+    <section class="vh-25" style="background-color: #f4f5f7;">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <!-- Ajustando as colunas para ocupar metade da largura da tela -->
+          <div class="col-md-6 mb-4 mb-lg-0">
+            <div class="card mb-3" style="border-radius: .5rem; height: 100%;"> <!-- Definindo altura do card -->
+              <div class="row g-0">
+                <!-- Coluna da imagem do usuário (40% da largura) -->
+                <div class="col-md-4 gradient-custom text-center text-white"
+                  style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                  <tr>
+                    <td><img class="my-4" src='img/<?php echo $dadosUsuario['foto'] ?>' width='170px' height='170px'>
+                    </td>
+                  </tr>
+                  <h5 class="text-dark"><?php echo $dadosUsuario['nome'] ?></h5>
+                  <i class="far fa-edit mb-5"></i>
+                </div>
+                <!-- Coluna do conteúdo do pedido (60% da largura) -->
+                <div class="col-md-8">
+                  <div class="card-body p-4">
+                    <h6>Data do pedido: <?php echo date_format($date, "H:i   d/m/Y"); ?></h6>
+                    <hr class="mt-0 mb-4">
+                    <div class="row pt-1">
+                      <div class="col-6 mb-3">
+                        <h6>Nome</h6>
+                        <?php echo $dadosUsuario['nome']; ?>
+                      </div>
+                      <div class="col-6 mb-3">
+                        <h6>Telefone</h6>
+                        <p class="text-muted"> <?php echo  $dadosUsuario['telefone'] . "</p>"; ?>
+                      </div>
                     </div>
-                    <div class="col-6 mb-3">
-                      <h6>Telefone</h6>
-                      <p class="text-muted"> <?php echo  $dadosUsuario['telefone'] . "</p>"; ?>
+                    <div class="row pt-1">
+                      <div class="col-6 mb-3">
+                        <h6>Endereço</h6>
+                        <p class="text-muted"><?php echo $dadosUsuario['endereco'] ?> </p>
+                      </div>
+                      <div class="col-6 mb-3">
+                        <h6>Email</h6>
+                        <p class="text-muted"> <?php echo  $dadosUsuario['email'] . "</p>"; ?>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row pt-1">
-                    <div class="col-6 mb-3">
-                      <h6>Endereço</h6>
-                      <p class="text-muted"><?php echo $dadosUsuario['endereco'] ?> </p>
+                    <hr class="mt-0 mb-4">
+                    <div class="row pt-1">
+                      <div class="col-12 mb-3">
+                        <h6>Pedido:</h6>
+                        <?php
+                        $sql_kit = "SELECT * FROM produto WHERE tipo_produto ='" .  $pedido['kit'] . "' ORDER BY subtipo_produto ASC";
+                        $resultado_kit = mysqli_query($conexao, $sql_kit);
+                        ?>
+
+                        <form onclick="return SelecionaEstoque(event);">
+                          <input type="hidden" name="tipo_produto" value="<?php  //echo $pedido['kit'] 
+                                                                          ?>">
+                          <label class="form-label" for="tipo">Qual produto deseja colocar no kit:</label>
+                          <select name="produto" id="kit" class="form-select" required>
+                            <option value="" selected disabled>Selecione um produto</option>
+
+                            <?php
+                            while ($kit = mysqli_fetch_assoc($resultado_kit)) {
+                              echo "<option name = 'subtipo_produto' value='" . $kit['id_produto'] . "'>" . $kit['subtipo_produto'] . "</option>";
+                            }
+                            ?>
+                          </select>
+                        </form>
+
+                        <div class="row pt-3">
+                          <!-- Coluna de 4 unidades para o estoque -->
+                          <div class="col-md-4">
+                            <label for="estoque" class="form-label">Estoque</label>
+                            <select name="estoque" id="estoque" class="form-select">
+                              <option value="" selected disabled>Selecione um estoque</option>
+
+                            </select>
+                          </div>
+
+                          <!-- Coluna de 3 unidades para a quantidade -->
+                          <div class="col-md-3">
+                            <label for="quantidade" class="form-label">Quantidade</label>
+                            <input type="number" id="quantidade" class="form-control" min="0">
+                          </div>
+
+                          <!-- Coluna de 3 unidades para o botão -->
+                          <div class="col-md-4 py-4">
+                              <button type="submit" onclick="return AdicionaLinha();" class="btn btn-danger ">
+                                <i class="bi bi-clipboard-plus"></i>
+                              </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-6 mb-3">
-                      <h6>Email</h6>
-                      <p class="text-muted"> <?php echo  $dadosUsuario['email'] . "</p>"; ?>
-                    </div>
-                  </div>
-                  <hr class="mt-0 mb-4">
-                  <div class="row pt-1">
-  <div class="col-12 mb-3">
-    <h6>Pedido:</h6>
-    <?php
-    $sql_kit = "SELECT * FROM produto WHERE tipo_produto ='" .  $pedido['kit'] . "' ORDER BY subtipo_produto ASC";
-    $resultado_kit = mysqli_query($conexao, $sql_kit);
-    ?>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Item</th>
+                          <th>Estoque</th>
+                          <th>Quantidade</th>
+                          <th>Opções</th>
+                        </tr>
+                      </thead>
+                      <tbody id="cesta_basica"></tbody>
+                    </table>
 
-    <form onclick="return SelecionaEstoque(event);">
-      <input type="hidden" name="tipo_produto" value="<?php // echo $pedido['kit'] ?>">
-    <label class="form-label" for="tipo">Qual produto deseja colocar no kit:</label>
-    <select name="produto" id="kit" class="form-select" required>
-      <option value="" selected disabled>Selecione um produto</option>
-
-      <?php
-      while ($kit = mysqli_fetch_assoc($resultado_kit)) {
-        echo "<option name = 'subtipo_produto' value=" . $kit['id_produto'] . ">" . $kit['subtipo_produto'] . "</option>";
-      }
-      ?>
-    </select>
-  </form>
-
-    <div class="row pt-3">
-      <!-- Coluna de 4 unidades para o estoque -->
-      <div class="col-md-4">
-        <label for="estoque" class="form-label">Estoque</label>
-        <select name="estoque" id="estoque" class="form-select">
-          <option value="" selected disabled>Selecione um estoque</option>
-          
-        </select>
-      </div>
-
-      <!-- Coluna de 3 unidades para a quantidade -->
-      <div class="col-md-3">
-        <label for="quantidade" class="form-label">Quantidade</label>
-        <input type="number" id="quantidade" class="form-control" min="0">
-      </div>
-
-      <!-- Coluna de 3 unidades para o botão -->
-      <div class="col-md-4 py-4">
-        <form action="#" method="POST">
-          <button type="submit" class="btn btn-danger ">
-          <i class="bi bi-clipboard-plus"></i>
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
                     <!-- <div class="col-6 mb-3">
                       <h6>Ação</h6>
                       <form action="crud/deferir.php?resposta=sim&movimentacao=pedido&id_pedido=<?php echo $id_pedido; ?>"
@@ -144,13 +155,13 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
           </div>
         </div>
       </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-<?php } ?>
+  <?php } ?>
 
-<script src="js/scripts.js"></script>
+  <script src="js/scripts.js"></script>
 
-</body>
+  </body>
 
-</html>
+  </html>

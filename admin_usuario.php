@@ -109,7 +109,7 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 
                             </div>
                         </form>
-                        
+                         
                         
                         
                             <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Cadastrar</button>
