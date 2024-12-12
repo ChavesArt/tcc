@@ -81,10 +81,10 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
                         $resultado_kit = mysqli_query($conexao, $sql_kit);
                         ?>
 
-                        <form onclick="return SelecionaEstoque(event, <?= $id_pedido ?>);">
+                        <form >
                           <input type="hidden" name="tipo_produto" value="<?php  //echo $pedido['kit'] ?>">
                           <label class="form-label" for="tipo">Qual produto deseja colocar no kit:</label>
-                          <select name="produto" id="kit" class="form-select selectKits" required>
+                          <select name="produto"  onchange="preencherSelectDoEstoque(<?= $id_pedido ?>)"   id="selectProduto-<?= $id_pedido?>" class="form-select selectKits" required>
                             <option value="" selected disabled>Selecione um produto</option>
 
                             <?php
@@ -99,9 +99,8 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
                           <!-- Coluna de 4 unidades para o estoque -->
                           <div class="col-md-4">
                             <label for="estoque" class="form-label">Estoque</label>
-                            <select name="estoque" id="estoque" class="form-select">
+                            <select name="estoque" id="selectEstoque-<?= $id_pedido ?>" class="form-select">
                               <option value="" selected disabled>Selecione um estoque</option>
-
                             </select>
                           </div>
 
