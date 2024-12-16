@@ -6,7 +6,7 @@ function SelecionaEstoque(event, id_pedido) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    //listarTodos2();
+    listarTodos2();
 });
 
 
