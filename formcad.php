@@ -16,6 +16,26 @@
     <?php include_once('menu.php'); ?>
 
     <main >
+
+    <?php if (isset($_SESSION['cadastrar_success']) && $_SESSION['cadastrar_success'] == false) { ?>
+    <script>
+        Swal.fire({
+            position: "top-middle",
+            icon: "danger",
+            title: "Houve um erro ao se cadastrar!",
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+    popup: 'small-popup'  // Aplique uma classe CSS personalizada
+  }
+        });
+    </script>
+    <?php
+    // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
+    unset($_SESSION['login_success']);
+    ?>
+<?php } ?>
+
    <div style="margin-top:9%;padding-right:50px;" class="container border border-dark rounded">
     <div class="row">
 
@@ -33,7 +53,7 @@
                         <form action="crud/cadastrar.php" method="post">
 
                             <label class="form-label" for="nome">Nome:</label>
-                            <input class="form-control" type="text" name="nome" id="nome" pattern="^[A-Za-zÀ-ÿ]+$" required><br>
+                            <input class="form-control" type="text" name="nome" id="nome" pattern="^[A-Za-zÀ-ÿ\s]+$" required><br>
 
                             <label class="form-label" for="endereco">Endereço:</label>
                             <input class="form-control" type="text" name="endereco" id="endereco" required><br>
@@ -41,14 +61,14 @@
                             <label class="form-label" for="email">Email:</label>
                             <input class="form-control" type="email" name="email" id="email" required><br>
 
+                            <label class="form-label" for="telefone">Telefone:</label>
+                            <input class="form-control" type="text" name="telefone" id="telefone" placeholder="Formato: XX-X XXXX-XXXX" pattern="^\d{2}-\d{4}-\d{4}$" required><br>
+
                             <label class="form-label" for="senha">Senha:</label>
                             <input class="form-control" placeholder="Deve conter: 1 número maiúscula, 1 minúscula, 1 caracter especial" type="password" name="senha" id="senha" required><br>
 
                             <label class="form-label" for="senha">Confirmar senha:</label>
                             <input class="form-control" type="password" name="senha" id="senha" required><br>
-
-                            <label class="form-label" for="telefone">Telefone:</label>
-                            <input class="form-control" type="text" name="telefone" id="telefone" placeholder="Formato: XX-X XXXX-XXXX" required><br>
 
                             <div class="col-12">
                                 <div class="row">

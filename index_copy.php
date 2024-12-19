@@ -34,31 +34,28 @@ session_start();
             box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5);
             /* Sombras com a cor roxa quando o botão recebe foco */
         }
-        .small-popup {
-  width: 500px !important; /* Ajuste a largura conforme necessário */
-  font-size: 14px;         /* Ajuste o tamanho da fonte */
-}
     </style>
 
 </head>
 
 <body>
 
-    <?php include('menu.php'); ?>
+
+
+    <?php  include('menu.php'); ?>
+
+    
 
     <main style="margin-top: 6.5%;" class="container ">
 
     <?php if (isset($_SESSION['login_success']) && $_SESSION['login_success'] == true) { ?>
     <script>
         Swal.fire({
-            position: "top-middle",
+            position: "top-end",
             icon: "success",
             title: "Seu login foi realizado com sucesso!",
             showConfirmButton: false,
-            timer: 1500,
-            customClass: {
-    popup: 'small-popup'  // Aplique uma classe CSS personalizada
-  }
+            timer: 1500
         });
     </script>
     <?php
@@ -66,26 +63,6 @@ session_start();
     unset($_SESSION['login_success']);
     ?>
 <?php } ?>
-
-<?php if (isset($_SESSION['cadastrar_success']) && $_SESSION['cadastrar_success'] == true) { ?>
-    <script>
-        Swal.fire({
-            position: "top-middle",
-            icon: "success",
-            title: "Você foi cadastrado com sucesso!",
-            showConfirmButton: false,
-            timer: 1500,
-            customClass: {
-    popup: 'small-popup'  // Aplique uma classe CSS personalizada
-  }
-        });
-    </script>
-    <?php
-    // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
-    unset($_SESSION['cadastrar_success']);
-    ?>
-<?php } ?>
-
 
         <div id="mainSlider" class="carousel slide" data-bs-ride="carousel">
 

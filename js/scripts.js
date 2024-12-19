@@ -6,7 +6,7 @@ function SelecionaEstoque(event, id_pedido) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    listarTodos2();
+    //listarTodos2();
 });
 
 
@@ -18,7 +18,7 @@ function listarTodos2() {
    
    
     Array.from(selectKits).forEach(function(selectKit) {
-        console.log(kit); // Exemplo de ação: exibindo o elemento no console
+        
     
     
          // Adiciona um ouvinte de evento para o evento 'change'
@@ -51,6 +51,7 @@ function listarTodos2() {
 function listarTodos() {
 
 
+    
     // Obtém o select do produto
     let selectKit = document.getElementById('kit');
    
@@ -90,37 +91,48 @@ function preencherSelectDoEstoque( idPedido){
     }
 
     fetch('crud/listar.php?id_produto=' + produtoIdEscolhido, {
-        method: "GET",
-        headers: { 'Content-Type': "application/json; charset=UTF-8" }
-    }
-    ).then(Response => Response.json())
-        .then(produtos => inserirProdutos(produtos, idPedido ))
+            method: "GET",
+            headers: { 'Content-Type': "application/json; charset=UTF-8" }
+        }
+    )
+
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na resposta da rede');
+        }
+        return response.json(); // Aqui, chamamos o .json() corretamente para processar o JSON da resposta
+    })
+    .then(produtos => {
+        inserirProdutos(produtos, idPedido); // Chama a função inserindo os produtos e o idPedido
+    })
+    ///.then(Response => Response.json())
+        
+    
+    //.then(produtos => inserirProdutos(produtos, idPedido ))
         // erro no http
-        .catch(error => console.log(error));
+    .catch(error => console.log(error));
+ 
 
-}
 
-
+    }
 
 function inserirProdutos(produtos, idPedido) {
     let selectEstoque = document.getElementById('selectEstoque-' + idPedido); 
+    
     selectEstoque.innerHTML = ''; // Remove todas as opções
-
-
 
     for (const produto of produtos) {
 
-        let dataSelecionada = produto.data_validade.toString().split("-");
+        let dataSelecionada = produto.edata.toString().split("-");
         dataSelecionada =  dataSelecionada[2] + "/" +   dataSelecionada[1]  + "/" + dataSelecionada[0] 
     
         let option = document.createElement('option');
         option.value = produto.id_estoque;
-        option.innerHTML = dataSelecionada;
+        option.innerHTML = dataSelecionada + " Saldo: " + produto.resultado;
         selectEstoque.appendChild(option);
 
     }
 }
-
 function inserirProduto(produto) {
     let select = document.getElementById('estoque');
     let option = document.createElement('option');

@@ -31,6 +31,7 @@ if (!empty($_POST['email']) and !empty($_POST['senha'])) {
         $_SESSION['senha'] = $senha;
         $_SESSION['nome'] = $nome;
         $_SESSION['tipo_cliente'] = $tipo;
+        $_SESSION['login_success'] = true;
         if($tipo == 0){
             // se for o admin
             header("location:admin_usuario.php");
