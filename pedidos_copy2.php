@@ -81,10 +81,11 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
                         $resultado_kit = mysqli_query($conexao, $sql_kit);
                         ?>
 
-                        <form >
-                          <input type="hidden" name="tipo_produto" value="<?php  //echo $pedido['kit'] ?>">
+                        <form>
+                          <input type="hidden" name="tipo_produto" value="<?php  //echo $pedido['kit'] 
+                                                                          ?>">
                           <label class="form-label" for="tipo">Qual produto deseja colocar no kit:</label>
-                          <select name="produto"  onchange="preencherSelectDoEstoque(<?= $id_pedido ?>)"   id="selectProduto-<?= $id_pedido?>" class="form-select selectKits" required>
+                          <select name="produto" onchange="preencherSelectDoEstoque(<?= $id_pedido ?>)" id="selectProduto-<?= $id_pedido ?>" class="form-select selectKits" required>
                             <option value="" selected disabled>Selecione um produto</option>
 
                             <?php
@@ -107,34 +108,39 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
                           <!-- Coluna de 3 unidades para a quantidade -->
                           <div class="col-md-3">
                             <label for="quantidade" class="form-label">Quantidade</label>
-                            <input name = "quantidade" type="number" id="quantidade-<?= $id_pedido ?>" class="form-control" min="0">
+                            <input name="quantidade" type="number" id="quantidade-<?= $id_pedido ?>" class="form-control" min="0">
                           </div>
 
                           <!-- Coluna de 3 unidades para o botão -->
                           <div class="col-md-4 py-4">
-                              <button type="submit" onclick="AdicionaLinha(<?= $id_pedido?>);" class="btn btn-danger ">
-                                <i class="bi bi-clipboard-plus"></i>
-                              </button>
+                            <button type="submit" onclick="AdicionaLinha(<?= $id_pedido ?>);" class="btn btn-danger ">
+                              <i class="bi bi-clipboard-plus"></i>
+                            </button>
                           </div>
                         </div>
                       </div>
                     </div>
-                 <!-- Estrutura da Tabela com as classes do Bootstrap -->
-                  <div class="container mt-5">
-                    <table class="table table-striped table-bordered">
-                      <thead class="table-dark">
-                        <tr>
-                          <th>Item</th>
-                          <th>Estoque</th>
-                          <th>Quantidade</th>
-                          <th>Opções</th>
-                        </tr>
-                      </thead>
-                      <tbody id="cesta_basica">
-                        <!-- Os dados serão inseridos aqui -->
-                      </tbody>
-                    </table>
-                  </div>
+                    <!-- Estrutura da Tabela com as classes do Bootstrap -->
+                    <div class="container mt-5">
+                      <form id="formTabela">
+                        <div id="tabela-wrapper">
+                          <table class="table table-striped table-bordered">
+                          <thead class="table-dark" id="tabela-cabecalho" style="display:none;">
+                              <tr>
+                                <th>Item</th>
+                                <th>Estoque</th>
+                                <th>Quantidade</th>
+                                <th>Opções</th>
+                              </tr>
+                            </thead>
+                            <tbody id="cesta_basica">
+                              <!-- Os dados serão inseridos aqui -->
+                            </tbody>
+                          </table>
+                        </div>
+                        <input type="submit" value="Enviar" class="btn btn-primary mt-3" id="submitBtn" style="display:none;" onclick="cadastrar_itens_saida();">
+                      </form>
+                    </div>
 
                     <!-- <div class="col-6 mb-3">
                       <h6>Ação</h6>

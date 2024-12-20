@@ -2,6 +2,7 @@
 <div id="donation-area" class="my-5">
 
     <div class="container">
+        
         <!-- Seção: Seja um doador -->
         <div class="row align-items-center mb-5">
             <div class="col-md-6 text-center mb-4 mb-md-0">
