@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 14-Nov-2024 às 20:27
+-- Tempo de geração: 20-Dez-2024 às 19:24
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `sasieq3`
+-- Banco de dados: `sasieq2`
 --
 
 -- --------------------------------------------------------
@@ -35,25 +35,33 @@ CREATE TABLE IF NOT EXISTS `entrada` (
   `deferido` tinyint(1) DEFAULT NULL,
   `quantidade` int DEFAULT NULL,
   `descricao` text,
-  `data_validade` date DEFAULT NULL,
   `tamanho` varchar(3) DEFAULT NULL,
-  `subtipo_doacao` varchar(255) DEFAULT NULL,
-  `nome` varchar(255) NOT NULL,
   PRIMARY KEY (`id_entrada`),
   KEY `fk_usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `entrada`
 --
 
-INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`, `deferido`, `quantidade`, `descricao`, `data_validade`, `tamanho`, `subtipo_doacao`, `nome`) VALUES
-(13, '2024-11-14 16:28:00', 11, NULL, 1, 'sadfafsd', '2024-12-07', NULL, 'alimento', 'açucar'),
-(14, '2024-11-14 16:29:00', 11, NULL, 2, 'sadfadafdfasfs', '2024-11-28', 'GG', 'outro', 'avatar'),
-(15, '2024-11-14 16:29:00', 11, NULL, 1, 'fsdfsdfsad121', NULL, 'GG', 'roupa', 'calça'),
-(16, '2024-11-14 16:40:00', 11, NULL, 1, '12', '2024-11-30', NULL, 'alimento', 'abobora'),
-(17, '2024-11-14 16:46:00', 11, NULL, 1121, '12121212', '2024-11-30', NULL, 'alimento', 'alface'),
-(18, '2024-11-14 16:46:00', 11, NULL, 13444, '09765', NULL, 'GG', 'roupa', 'casaco');
+INSERT INTO `entrada` (`id_entrada`, `data_entrada`, `id_usuario`, `deferido`, `quantidade`, `descricao`, `tamanho`) VALUES
+(13, '2024-11-14 16:28:00', 11, 1, 1, 'sadfafsd', NULL),
+(14, '2024-11-14 16:29:00', 11, 1, 2, 'sadfadafdfasfs', 'GG'),
+(15, '2024-11-14 16:29:00', 11, 1, 1, 'fsdfsdfsad121', 'GG'),
+(16, '2024-11-14 16:40:00', 11, 1, 1, '12', NULL),
+(17, '2024-11-14 16:46:00', 11, 1, 1121, '12121212', NULL),
+(18, '2024-11-14 16:46:00', 11, NULL, 13444, '09765', 'GG'),
+(19, '2024-11-26 14:49:00', 11, NULL, 0, '', NULL),
+(20, '2024-11-26 15:31:00', 11, 1, 0, '', NULL),
+(21, '2024-11-26 15:32:00', 11, NULL, 0, '', NULL),
+(22, '2024-11-26 16:40:00', 11, NULL, 0, '', NULL),
+(23, '2024-11-26 17:00:00', 11, NULL, 2, 'fsd', NULL),
+(25, '2024-11-26 17:03:00', 11, 1, 1, 'q1', 'GG'),
+(26, '2024-11-28 15:43:00', 11, 1, 2, '', NULL),
+(27, '2024-11-28 15:45:00', 11, 1, 22, '', NULL),
+(28, '2024-11-28 15:46:00', 11, 1, 22, '', NULL),
+(29, '2024-11-28 15:47:00', 11, 1, 3, 'fsd', NULL),
+(30, '2024-11-28 15:47:00', 11, 1, 1, '1', '1');
 
 -- --------------------------------------------------------
 
@@ -65,25 +73,30 @@ DROP TABLE IF EXISTS `estoque`;
 CREATE TABLE IF NOT EXISTS `estoque` (
   `id_estoque` int NOT NULL AUTO_INCREMENT,
   `id_produto` int DEFAULT NULL,
-  `descricao` varchar(255) DEFAULT NULL,
-  `tamanho` varchar(4) DEFAULT NULL,
   `data_validade` date DEFAULT NULL,
   PRIMARY KEY (`id_estoque`),
   KEY `id_produto` (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `estoque`
 --
 
-INSERT INTO `estoque` (`id_estoque`, `id_produto`, `descricao`, `tamanho`, `data_validade`) VALUES
-(1, 13, 'Camili', NULL, '2025-12-09'),
-(2, 6, 'Integral', NULL, '2026-09-02'),
-(3, 7, 'girassol', NULL, '2026-10-03'),
-(4, 14, 'Spagheti', NULL, '2026-11-04'),
-(5, 15, 'oliva', NULL, '2026-12-05'),
-(6, 16, 'cristal', NULL, '2027-01-06'),
-(7, 17, 'grosso', NULL, '2027-02-07');
+INSERT INTO `estoque` (`id_estoque`, `id_produto`, `data_validade`) VALUES
+(1, 13, '2025-12-09'),
+(2, 6, '2026-09-02'),
+(3, 7, '2026-10-03'),
+(4, 14, '2026-11-04'),
+(5, 15, '2026-12-05'),
+(6, 16, '2027-01-06'),
+(7, 14, '2027-02-07'),
+(10, 14, '1200-11-12'),
+(11, 21, '1200-11-12'),
+(12, 11, '0000-00-00'),
+(15, 2, '0000-00-00'),
+(16, 2, '0000-00-00'),
+(17, 27, '1300-12-12'),
+(18, 5, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -100,7 +113,48 @@ CREATE TABLE IF NOT EXISTS `itens_entrada` (
   PRIMARY KEY (`id_item_entrada`),
   KEY `id_entrada` (`id_entrada`),
   KEY `fk_id_estoque` (`id_estoque`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `itens_entrada`
+--
+
+INSERT INTO `itens_entrada` (`id_item_entrada`, `quantidade`, `id_estoque`, `id_entrada`) VALUES
+(1, 1, 18, 30),
+(2, 10, 12, 18),
+(3, 10, 2, 14),
+(4, 10, 2, 13),
+(5, 10, 2, 20),
+(6, 10, 2, 14),
+(7, 10, 2, 13),
+(8, 10, 2, 20),
+(9, 10, 2, 14),
+(10, 10, 2, 13),
+(11, 10, 2, 20),
+(22, 10, 2, 29),
+(32, 9, 10, 28),
+(33, 9, 10, 29),
+(34, 9, 10, 30),
+(35, 9, 10, 28),
+(36, 9, 10, 29),
+(37, 9, 10, 30),
+(38, 9, 10, 28),
+(39, 9, 10, 29),
+(40, 9, 10, 30),
+(41, 9, 10, 29),
+(42, 9, 10, 28),
+(43, 9, 7, 28),
+(44, 9, 7, 29),
+(45, 9, 7, 30),
+(46, 9, 4, 28),
+(47, 9, 4, 29),
+(48, 9, 4, 30),
+(49, 9, 4, 28),
+(50, 9, 7, 29),
+(51, 9, 4, 30),
+(52, 9, 4, 29),
+(53, 9, 4, 28),
+(54, 10, 3, 26);
 
 -- --------------------------------------------------------
 
@@ -117,7 +171,35 @@ CREATE TABLE IF NOT EXISTS `itens_saida` (
   PRIMARY KEY (`id_item_pedido`),
   KEY `fk_pedido_item` (`id_pedido`),
   KEY `id_estoque` (`id_estoque`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `itens_saida`
+--
+
+INSERT INTO `itens_saida` (`id_item_pedido`, `quantidade`, `id_pedido`, `id_estoque`) VALUES
+(1, 10, 14, 18),
+(13, 12, 18, 10),
+(14, 12, 18, 7),
+(15, 12, 18, 4),
+(16, 12, 18, 10),
+(17, 12, 18, 7),
+(18, 12, 18, 4),
+(19, 12, 18, 10),
+(20, 12, 18, 7),
+(21, 12, 18, 4),
+(22, 12, 18, 7),
+(23, 12, 18, 4),
+(44, 9, 15, 2),
+(45, 9, 16, 2),
+(46, 9, 17, 2),
+(47, 9, 15, 2),
+(48, 9, 16, 2),
+(49, 9, 17, 2),
+(50, 9, 15, 2),
+(51, 9, 16, 2),
+(52, 9, 17, 2),
+(53, 9, 15, 2);
 
 -- --------------------------------------------------------
 
@@ -132,24 +214,22 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `deferido` tinyint(1) DEFAULT NULL,
   `id_usuario` int DEFAULT NULL,
   `quantidade` int DEFAULT NULL,
-  `descricao` text,
-  `data_validade` date DEFAULT NULL,
-  `tamanho` varchar(3) DEFAULT NULL,
-  `subtipo_doacao` varchar(255) DEFAULT NULL,
-  `nome` varchar(255) DEFAULT NULL,
+  `kit` varchar(24) NOT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `fk_usuario_pedido` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=17;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `pedido`
 --
 
-INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `deferido`, `id_usuario`, `quantidade`, `descricao`, `data_validade`, `tamanho`, `subtipo_doacao`, `nome`) VALUES
-(1, '2024-11-07 00:00:00', 0, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, '2024-11-09 17:28:00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(15, '2024-11-09 17:28:00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(16, '2024-11-09 18:11:00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `deferido`, `id_usuario`, `quantidade`, `kit`) VALUES
+(1, '2024-11-07 00:00:00', 0, 1, NULL, 'alimento'),
+(14, '2024-11-09 17:28:00', NULL, 1, NULL, 'alimento'),
+(15, '2024-11-09 17:28:00', 1, 1, NULL, 'roupa'),
+(16, '2024-11-09 18:11:00', 1, 1, NULL, 'roupa'),
+(17, '2024-12-02 09:43:00', 1, 11, 1, 'alimento'),
+(18, '2024-12-12 00:00:00', 1, 6, 10, 'alimento');
 
 -- --------------------------------------------------------
 
@@ -163,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `tipo_produto` varchar(255) DEFAULT NULL,
   `subtipo_produto` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=32;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `produto`
@@ -171,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
 
 INSERT INTO `produto` (`id_produto`, `tipo_produto`, `subtipo_produto`) VALUES
 (1, 'alimento', 'arroz'),
-(2, 'roupa', 'camiseta de manga longa'),
+(2, 'outro', NULL),
 (3, 'alimento', 'maionese'),
 (4, 'roupa', 'camiseta de manga curta'),
 (5, 'roupa', 'calça'),
@@ -211,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `recuperar_senha` (
   `token` char(100) NOT NULL,
   `data_criacao` datetime NOT NULL,
   `usado` tinyint(1) NOT NULL
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `recuperar_senha`
@@ -237,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `tipo_cliente` int DEFAULT NULL,
   `foto` varchar(255) NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=12;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -252,9 +332,10 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `endereco`, `tele
 (6, 'Juliana Lima', '111', 'juliana.lima@email.com', 'Rua F, 303, Salvador', '61987654321', 1, 'user.png'),
 (7, 'Roberto Pereira', '111', 'roberto.pereira@email.com', 'Rua G, 404, Fortaleza', '71987654321', 1, 'user.png'),
 (8, 'Fernanda Rodrigues', '111', 'fernanda.rodrigues@email.com', 'Rua H, 505, Recife', '81987654321', 1, 'user.png'),
-(9, 'Ricardo Almeida', '111', 'ricardo.almeida@email.com', 'Rua I, 606, Brasília', '91987654321', 1, 'user.png'),
 (10, 'Patricia Martins', '111', 'patricia.martins@email.com', 'Rua J, 707, Goiânia', '62987654321', 1, 'user.png'),
-(11, 'Administrador', '111', 'admin@gmail.com', '', '', 0, 'user.png');
+(11, 'Administrador', '111', 'admin@gmail.com', '', '', 0, 'user.png'),
+(12, 'camison', '111', 'camison@gmail.com', 'rua do camison', '99-9 1234-5678', 1, 'user.png'),
+(13, 'jecaTatu', '111', 'jeca@gmail.com', 'andratatu', '88-8 4321-4321', 1, 'user.png');
 
 --
 -- Restrições para despejos de tabelas
