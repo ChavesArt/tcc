@@ -29,7 +29,7 @@ header,.navbar{
 }
 
 main{
-    margin-top: 5%;
+    margin-top: 9%;
 }
 /*Slider*/
 
@@ -405,18 +405,18 @@ main{
     }
 }
 
-@media only screen and (max-width: 950px){
+/* @media only screen and (max-width: 950px){
     .card-form{
-        /* width: 85%; */
+        /* width: 85%; 
     }
 }
 
 @media only screen and (max-width: 600px){
     .main-form{
-    /* flex-direction: column; */
+    /* flex-direction: column; 
     }
     .esquerda-form h1 img{
-        /* display: none; */
+        /* display: none; 
     }
 
     .direita-form{
@@ -424,6 +424,12 @@ main{
         height: auto;
     }
     .card-form{
-        /* width: 90%; */
+        /* width: 90%; 
+    }
+} */
+
+@media screen and (max-width: 768px) {
+    body {
+        background-color: red;
     }
 }

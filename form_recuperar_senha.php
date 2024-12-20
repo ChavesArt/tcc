@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <main>
     <!-- <div class="container border my-5 border-dark text-center">
         
     <h1>Formulário de Recuperação de senha
@@ -54,6 +55,7 @@
 
         </div>
     </div>
+    </main>
 </body>
 
 </html>

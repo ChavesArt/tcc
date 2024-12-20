@@ -35,9 +35,9 @@ session_start();
             /* Sombras com a cor roxa quando o botão recebe foco */
         }
         .small-popup {
-  width: 500px !important; /* Ajuste a largura conforme necessário */
-  font-size: 14px;         /* Ajuste o tamanho da fonte */
-}
+            width: 500px !important; /* Ajuste a largura conforme necessário */
+             font-size: 14px;         /* Ajuste o tamanho da fonte */
+        }
     </style>
 
 </head>
@@ -46,7 +46,7 @@ session_start();
 
     <?php include('menu.php'); ?>
 
-    <main style="margin-top: 6.5%;" class="container ">
+    <main  class="container ">
 
     <?php if (isset($_SESSION['login_success']) && $_SESSION['login_success'] == true) { ?>
     <script>
