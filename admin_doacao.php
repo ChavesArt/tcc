@@ -1,6 +1,4 @@
 <?php
-
-/*fazendo a sessão*/
 session_start();
 include  "conecta.php";
 
@@ -8,45 +6,85 @@ $conexao = conectar();
 logar();
 $logado = $_SESSION['nome'];
 
-if ($_GET) {
-    /*barra de pesquisa*/
+$sql_seleciona_doacoes = "SELECT (total_entrada - total_saida) AS resultado,data_validade,descricao,tamanho,nome_produto,tipo_produto
+FROM (SELECT 
+e.id_estoque AS sid, SUM(s.quantidade) AS total_saida 
+FROM itens_saida s
+INNER JOIN estoque e ON s.id_estoque = e.id_estoque
+INNER JOIN pedido p ON p.id_pedido = s.id_pedido AND p.deferido = true
+GROUP BY e.id_estoque
+) AS saida
 
-    if (!empty($_GET['pesquisar'])) {
+INNER JOIN 
 
-        $data = $_GET['pesquisar'];
+(SELECT e.id_estoque AS eid, e.data_validade AS data_validade, SUM(ie.quantidade) AS total_entrada,en.descricao AS descricao,en.tamanho AS tamanho,pr.subtipo_produto AS nome_produto,pr.tipo_produto AS tipo_produto
+FROM itens_entrada ie
+INNER JOIN estoque e ON ie.id_estoque = e.id_estoque
+INNER JOIN produto pr ON e.id_produto = pr.id_produto
+INNER JOIN entrada en ON en.id_entrada = ie.id_entrada AND en.deferido = true
+GROUP BY e.id_estoque
+) AS entrada
+
+ON saida.sid = entrada.eid;
+";
+// if ($_GET) {
+//     /*barra de pesquisa*/
+
+//     if (!empty($_GET['pesquisar'])) {
+
+//         $data = $_GET['pesquisar'];
 
 
 
-        if (empty($_GET['tabela'])) {
+//         if (empty($_GET['tabela'])) {
 
-            $sql_doacao = "SELECT * FROM doacoes where nome LIKE '%$data%' or quantidade LIKE '%$data%' or descricao LIKE '%$data%' or  data_validade LIKE '%$data%' or tamanho LIKE '%$data%' or tipo_doacao LIKE '%$data%' order by nome DESC";
-        }
-    }
+//             $sql_doacao = "SELECT * FROM doacoes where nome LIKE '%$data%' or quantidade LIKE '%$data%' or descricao LIKE '%$data%' or  data_validade LIKE '%$data%' or tamanho LIKE '%$data%' or tipo_doacao LIKE '%$data%' order by nome DESC";
+//         }
+//     }
 
-    if (empty($_GET['pesquisar'])) {
-        $sql_doacao = "SELECT * FROM doacoes order by nome DESC";
-    }
+//     if (empty($_GET['pesquisar'])) {
 
-    $res = mysqli_affected_rows($conexao);
+// $sql_seleciona_doacoes = "SELECT (total_entrada - total_saida) AS resultado,data_validade,descricao,tamanho,nome_produto,tipo_produto
+// FROM (SELECT 
+// e.id_estoque AS sid, SUM(s.quantidade) AS total_saida 
+// FROM itens_saida s
+// INNER JOIN estoque e ON s.id_estoque = e.id_estoque
+// INNER JOIN pedido p ON p.id_pedido = s.id_pedido AND p.deferido = true
+// GROUP BY e.id_estoque
+// ) AS saida
 
-    if (!empty($_GET['tabela'])) {
-        // SELECIONA TODAS AS ROUPAS
-        if ($_GET['tabela'] == 'roupa') {
-            $tipo_doacao = $_GET['tabela'];
-            $sql_doacao = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
-        }
-        // SELECIONA TODOS OS OUTROS CADASTROS
-        if ($_GET['tabela'] == 'outro') {
-            $tipo_doacao = $_GET['tabela'];
-            $sql_doacao = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
-        }
-        // SELECIONA TODOS OS ALIMENTOS
-        if ($_GET['tabela'] == 'alimento') {
-            $tipo_doacao = $_GET['tabela'];
-            $sql_doacao = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
-        }
-    }
-}
+// INNER JOIN 
+
+// (SELECT e.id_estoque AS eid, e.data_validade AS data_validade, SUM(ie.quantidade) AS total_entrada,en.descricao AS descricao,en.tamanho AS tamanho,pr.subtipo_produto AS nome_produto,pr.tipo_produto AS tipo_produto
+// FROM itens_entrada ie
+// INNER JOIN estoque e ON ie.id_estoque = e.id_estoque
+// INNER JOIN produto pr ON e.id_produto = pr.id_produto
+// INNER JOIN entrada en ON en.id_entrada = ie.id_entrada AND en.deferido = true
+// GROUP BY e.id_estoque
+// ) AS entrada
+
+// ON saida.sid = entrada.eid;
+// ";
+//     }
+
+//     if (!empty($_GET['tabela'])) {
+//         // SELECIONA TODAS AS ROUPAS
+//         if ($_GET['tabela'] == 'roupa') {
+//             $tipo_doacao = $_GET['tabela'];
+//             $sql_doacao = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
+//         }
+//         // SELECIONA TODOS OS OUTROS CADASTROS
+//         if ($_GET['tabela'] == 'outro') {
+//             $tipo_doacao = $_GET['tabela'];
+//             $sql_doacao = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
+//         }
+//         // SELECIONA TODOS OS ALIMENTOS
+//         if ($_GET['tabela'] == 'alimento') {
+//             $tipo_doacao = $_GET['tabela'];
+//             $sql_doacao = "SELECT * FROM doacoes WHERE tipo_doacao = '$tipo_doacao'";
+//         }
+//     }
+// }
 
 
 
@@ -76,6 +114,7 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
     <div style="margin-top: 10%;" class="text-center">
         <h4>Olá, <?php echo $logado; ?></h4>
         <h1>Doações</h1>
+        <span class="text-muted">Tela das doações</span>
 
     </div>
 
@@ -103,103 +142,81 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                     <!-- grupo de botões -->
 
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-                      
-                        <a href = "admin_usuario.php" type="button" class="btn btn-outline-primary">Usuários</a>
-                        
+
+                        <a href="admin_usuario.php" type="button" class="btn btn-outline-primary">Usuários</a>
+
                         <a href="pedidos.php" class="btn btn-outline-primary">Pedidos</a>
-                        <a href="entradas.php"  class="btn btn-outline-primary">Entradas</a>
-                        
+                        <a href="entradas.php" class="btn btn-outline-primary">Entradas</a>
+
                         <form action="admin_doacao.php" method="GET">
                             <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
                             <div class="dropdown-menu">
-                                
+
                                 <input type="submit" class="dropdown-item" name="tabela" value="alimento">
                                 <input type="submit" class="dropdown-item" name="tabela" value="roupa">
                                 <input type="submit" class="dropdown-item" name="tabela" value="outro">
 
                             </div>
                         </form>
-                        
-                        
-                        
-                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Cadastrar</button>
+
+
+
+                        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Cadastrar</button>
                         <div class="dropdown-menu">
-                            
+
                             <a href="formdoar.php" class="dropdown-item">alimento</a>
                             <a href="formcad.php" class="dropdown-item">usuário</a>
                             <a href="formtipo.php" class="dropdown-item">tipo de doação</a>
 
                         </div>
                     </div>
+                </div>
+                <?php
+                // HEAD do Alimento
+                if (empty($_GET['tabela']) or $_GET['tabela'] == 'alimento' or $_GET['tabela'] == 'outro') {
 
-                    <!-- <div>
-                        <a href="formdoar.php">Cadastrar Alimento</a> <br>
-                        <a href="formcad.php">Cadastrar Usuário</a>
-                    </div>
+                    if (isset($_GET['pesquisar'])) {
 
-                    <div class="btn-group">
-                        <form action="admin_usuario.php" method="get">
-                            <input type="submit" class="btn btn-primary" value="Usuários">
-                        </form>
-                        <form action="admin_doacao.php" method="GET">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
-                                <div class="dropdown-menu">
-
-                                    <input type="submit" class="dropdown-item" name="tabela" value="alimento">
-                                    <input type="submit" class="dropdown-item" name="tabela" value="roupa">
-                                    <input type="submit" class="dropdown-item" name="tabela" value="outro">
-
-                                </div>
-                            </div>
-                        </form> -->
-                    </div>
-                    <?php
-                    // HEAD do Alimento
-                    if (empty($_GET['tabela']) or $_GET['tabela'] == 'alimento' or $_GET['tabela'] == 'outro') {
-
-                        if (isset($_GET['pesquisar'])) {
-
-                            echo "<tr>";
-                            echo "<th scope='col'>Nome</th>";
-                            echo "<th scope='col'>Quantidade</th>";
-                            echo "<th scope='col'>Descrição</th>";
-                            echo "<th scope='col'>Data de validade</th>";
-                            echo "<th scope='col'>Tamanho</th>";
-                            echo "<th scope='col'>Opções</th>";
-                            echo "</tr>";
-                        } else {
-                            echo "<tr>";
-                            echo "<th scope='col'>Nome</th>";
-                            echo "<th scope='col'>Quantidade</th>";
-                            echo "<th scope='col'>Descrição</th>";
-                            echo "<th scope='col'>Data de validade</th>";
-                            // verificando se é a tabela outro e diferenete de pesquisar para poder aparecer o tamanho na tabela 'outro'
-                            if (!empty($_GET) and !isset($_GET['pesquisar'])) {
-                                if ($_GET['tabela'] == 'outro') {
-                                    echo "<th scope='col'>Tamanho</th>";
-                                }
+                        echo "<tr>";
+                        echo "<th scope='col'>Nome</th>";
+                        echo "<th scope='col'>Quantidade</th>";
+                        echo "<th scope='col'>Descrição</th>";
+                        echo "<th scope='col'>Data de validade</th>";
+                        echo "<th scope='col'>Tamanho</th>";
+                        echo "<th scope='col'>Opções</th>";
+                        echo "</tr>";
+                    } else {
+                        echo "<tr>";
+                        echo "<th scope='col'>Nome</th>";
+                        echo "<th scope='col'>Quantidade</th>";
+                        echo "<th scope='col'>Descrição</th>";
+                        echo "<th scope='col'>Data de validade</th>";
+                        // verificando se é a tabela outro e diferenete de pesquisar para poder aparecer o tamanho na tabela 'outro'
+                        if (!empty($_GET) and !isset($_GET['pesquisar'])) {
+                            if ($_GET['tabela'] == 'outro') {
+                                echo "<th scope='col'>Tamanho</th>";
                             }
-                            echo "<th scope='col'>Opções</th>";
-                            echo "</tr>";
                         }
+                        echo "<th scope='col'>Opções</th>";
+                        echo "</tr>";
                     }
+                }
 
 
-                    if (!empty($_GET['tabela'])) {
+                if (!empty($_GET['tabela'])) {
 
-                        if ($_GET['tabela'] == 'roupa') {
+                    if ($_GET['tabela'] == 'roupa') {
 
-                            echo "<tr>";
-                            echo "<th scope='col'>Nome</th>";
-                            echo "<th scope='col'>Quantidade</th>";
-                            echo "<th scope='col'>Tamanho</th>";
-                            echo "<th scope='col'>Descrição</th>";
-                            echo "<th scope='col'>Opções</th>";
-                            echo "</tr>";
-                        }
+                        echo "<tr>";
+                        echo "<th scope='col'>Nome</th>";
+                        echo "<th scope='col'>Quantidade</th>";
+                        echo "<th scope='col'>Tamanho</th>";
+                        echo "<th scope='col'>Descrição</th>";
+                        echo "<th scope='col'>Opções</th>";
+                        echo "</tr>";
                     }
-                    ?>
+                }
+                ?>
             </thead>
             <tbody>
                 <?php
@@ -224,7 +241,7 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                         </svg>
                         </a>
                         
-                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-tipo-doacoes="' . $_GET['tabela']. '" data-id_doacoes=' . $info['id_doacoes'] . '>
+                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-tipo-doacoes="' . $_GET['tabela'] . '" data-id_doacoes=' . $info['id_doacoes'] . '>
                         
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
@@ -259,7 +276,7 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                         </svg>
                         </a>
                         
-                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-tipo-doacoes="' . $_GET['tabela']. '" data-id_doacoes =' . $info['id_doacoes'] . '>
+                        <a id="deleteButton"  class = "btn btn-sm btn-danger" data-tipo-doacoes="' . $_GET['tabela'] . '" data-id_doacoes =' . $info['id_doacoes'] . '>
                         
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
@@ -293,7 +310,7 @@ $resultado_doacao = mysqli_query($conexao, $sql_doacao);
                     </svg>
                     </a>
                     
-                    <a id="deleteButton"  class = "btn btn-sm btn-danger" data-tipo-doacoes="' . $_GET['tabela']. '" data-id_doacoes=' . $info['id_doacoes'] . '>
+                    <a id="deleteButton"  class = "btn btn-sm btn-danger" data-tipo-doacoes="' . $_GET['tabela'] . '" data-id_doacoes=' . $info['id_doacoes'] . '>
                     
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>

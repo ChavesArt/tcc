@@ -1,18 +1,18 @@
 <?php
-
-/*fazendo a sessão*/
 session_start();
 include  "conecta.php";
-
 $conexao = conectar();
+
 logar();
 $logado = $_SESSION['nome'];
+
 
 if ($_SESSION['tipo_cliente'] != 0) {
     header('location:login.php');
 }
 
 $sql_pesquisar = "SELECT * FROM usuario";
+
 /*barra de pesquisa*/
 if (!empty($_GET['pesquisar'])) {
 
@@ -45,12 +45,13 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 </head>
 
 <body>
-    <?php include('menu.php');
+    <?php  include('menu.php');
     ?>
 
     <div style="margin-top: 10%;" class="text-center">
         <h4>Olá, <?php echo $logado; ?></h4>
         <h1>Usuários</h1>
+        <span class="text-muted">Tela com informações dos usuários</span>
     </div>
 
 
@@ -67,20 +68,6 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 
         </form>
     </div>
-    <div class="text-center">
-
-        <!-- RADIO -->
-        <form action="" method="GET">
-
-            <input type="radio" id="todos" name="filtro" value="todos">
-            <label for="todos">Todos</label>
-            <input type="radio" id="voluntario" name="filtro" value="voluntarios">
-            <label for="voluntario">Voluntário</label><br>
-
-            <button>Enviar</button>
-        </form>
-    </div>
-
 
 
     <div class=" container p-5 ">

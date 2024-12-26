@@ -3,37 +3,32 @@ session_start();
 include "conecta.php";
 $conexao = conectar();
 $id_usuario = $_SESSION['id_usuario'];
-// logar();
+logar();
 
-
-// while ($i = 1;$i>10){
-// // Pega todos os IDs dos usuarios da tabela pedido
-// $sql = "SELECT id_usuario From pedido Where deferido IS NULL";
-// $resultado = mysqli_query($conexao, $sql);
-// $IDs = mysqli_fetch_assoc($resultado);
-
-// // Pega todos os detalhementos da tabela pedido
-// $sql_detalhamento = "SELECT detalhamento FROM pedido WHERE deferido IS NULL";
-// $resultado_detalhamento = mysqli_query($conexao,$sql_detalhamento);
-// $detalhamentos = mysqli_fetch_assoc($resultado_detalhamento);
-
-// // Pega todos os IDs da tabela pedido
-// $sql_id_pedido = "SELECT id_pedido FROM pedido WHERE deferido IS NULL";
-// $resultado_id_pedido = mysqli_query($conexao,$sql_id_pedido);
-// $IDs_pedido = mysqli_fetch_assoc($resultado_id_pedido);
-// }
-
-$sql ="SELECT * FROM entrada WHERE deferido IS null";
+$sql ="SELECT p.subtipo_produto,p.tipo_produto,ie.quantidade,en.descricao,en.tamanho,en.deferido,en.id_entrada,en.id_usuario,en.data_entrada,e.data_validade 
+FROM entrada en
+INNER JOIN itens_entrada ie
+ON en.id_entrada = ie.id_entrada
+INNER JOIN estoque e
+ON ie.id_estoque = e.id_estoque
+INNER JOIN produto p
+ON e.id_produto = p.id_produto
+WHERE deferido IS NULL";
+// var_dump($sql);die;
 $resultado = mysqli_query($conexao,$sql);
 
 while ($geral = mysqli_fetch_assoc($resultado)) {
+
   $sql_usuario = "SELECT * FROM usuario WHERE id_usuario = " . $geral['id_usuario'];
   $resultado_usuario = mysqli_query($conexao, $sql_usuario);
   $dados = mysqli_fetch_assoc($resultado_usuario);
+
   $date = date_create($geral['data_entrada']);
   $id_entrada = $geral['id_entrada'];
-?>
 
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -47,19 +42,33 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
 
 <body>
 
-  <section  class="vh-25" style="background-color: #f4f5f7;">
+<?php if (isset($_SESSION['alteração_success']) && $_SESSION['alteração_success'] == true) { ?>
+    <script>
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Alteração realizada com sucesso realizada com sucesso!",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    </script>
+    <?php
+    // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
+    unset($_SESSION['alteração_success']);
+    ?>
+<?php } ?>
+
+  <section class="vh-25" style="background-color: #f4f5f7;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-lg-6 mb-4 mb-lg-0">
-          <div class="card mb-3" style="border-radius: .5rem;">
+        <div class="col-12 d-flex justify-content-center"> <!-- Centraliza o card -->
+          <div class="card mb-3" style="border-radius: .5rem; width: 800px;"> <!-- Mantém a largura de 800px -->
             <div class="row g-0">
               <div class="col-md-4 gradient-custom text-center text-white"
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-
                   <tr><td><img class="my-4" src='img/<?php echo $dados['foto'] ?>' width='170px' height='170px'></td></tr>
                   <h5 class="text-dark"><?php echo $dados['nome'] ?></h5>
                   <i class="far fa-edit mb-5"></i>
-
               </div>
               <div class="col-md-8">
                 <div class="card-body p-4">
@@ -73,7 +82,6 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                     <div class="col-6 mb-3">
                       <h6>telefone</h6>
                       <p class="text-muted"> <?php echo  $dados['telefone'] . "</p>"; ?>
-                      <p class="text-muted"> <?php //echo "<a href='alterar.php?arquivo=$arq'>Alterar</a> </p>";?>
                     </div>
                   </div>
                   <div class="row pt-1">
@@ -84,46 +92,50 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
                   <div class="col-6 mb-3">
                     <h6>Email</h6>
                     <p class="text-muted"> <?php echo  $dados['email'] . "</p>"; ?>
-                    <p class="text-muted"> <?php //echo "<a href='alterar.php?arquivo=$arq'>Alterar</a> </p>";?>
                   </div>
-                  </div>
+                </div>
+
+
                   <hr class="mt-0 mb-4">
+
+
                   <div class="row pt-1">
-                    <div class="col-6 mb-3">
+                    <div class="col-6 mb-4">
                     <h6>Entrada:</h6>
                     <?php 
                     $date = date_create($geral['data_validade']);
-                    // exibe o tipo do produto 'alimento'
-                     echo"<b>Produto: </b>" . $geral['subtipo_doacao'] . "<br>";
-                    //  exibe o subtipo do produto 'casaco'
-                     echo"<b>Nome: </b>" . $geral['subtipo_doacao'] . "<br>";
-                    //  exibe data de validade se for alimento
-                     if($geral['subtipo_doacao'] == 'alimento'){echo"<b>Data de validade: </b>" . date_format($date,"d/m/Y") . "<br>";}
-                    //  exibe a quantidade entregada
-                     echo"<b>Quantidade: </b>" . $geral['quantidade'] . "<br>";
-                    //  exibe o tamanho ser for roupa
-                     if($geral['subtipo_doacao'] !='alimento'){echo"<b>Tamanho: </b>" . $geral['tamanho'] . "<br>";}
-                    //  exibe a descrição
-                     echo"<b>Descrição:</b> " . $geral['descricao'] . "<br>";
-                       ?>
+                    
+                    echo"<b>Produto: </b>" . $geral['tipo_produto'] . "<br>";
+                    echo"<b>Nome: </b>" . $geral['subtipo_produto'] . "<br>";
+                    if($geral['tipo_produto'] == 'alimento'){echo"<b>Data de validade: </b>" . date_format($date,"d/m/Y") . "<br>";}
+                    echo"<b>Quantidade: </b>" . $geral['quantidade'] . "<br>";
+                    if($geral['tipo_produto'] !='alimento'){echo"<b>Tamanho: </b>" . $geral['tamanho'] . "<br>";}
+                    echo"<b>Descrição:</b> " . $geral['descricao'] . "<br>";
+                    ?>
                     </div>
-                    <div class="col-6 mb-3">
+
+                    <div class="col-6 mb-2">
+
                       <h6>Ação</h6>
-                      <form action="crud/deferir.php?resposta=sim&movimentacao=entrada" method="POST">
-                        <!-- botão de deferir pega todas essas informações -->
-                        <input type="hidden" name="tipo_doacao" value="<?php echo $geral['subtipo_doacao'] ?>">
-                        <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['subtipo_doacao'] ?>">
-                        <input type="hidden" name="subtipo_doacao" value ="<?php echo $geral['quantidade'] ?>">
-                        <input type="hidden" name="id_entrada" value="<?php echo $id_entrada; ?>">
+
+
+                      <form action="crud/deferir.php?resposta_aceita=sim&id_entrada=<?= $id_entrada; ?>" method="POST">
                       <button class="btn btn-success mb-1">Deferir</button>
                     </form>
-                    <form action="crud/deferir.php?resposta=nao&movimentacao=entrada&id_entrada=<?php echo $id_entrada; ?>" method="POST">
-                       <!-- botão de indeferir pega todas essas informações -->
+
+                    <form action="crud/deferir.php?id_entrada=<?= $id_entrada; ?>" method="POST">
                     <button class="btn btn-danger mb-1">Indeferir</button>
                     </form>
-                    <!-- botão de alterar -->
-                    <a class="btn btn-primary" href="form-alterar-entrada.php?id_entrada=<?php echo $id_entrada; ?>">Alterar</a>
+
+                    <form action="form_alterar_entrada.php?id_entrada=<?= $id_entrada; ?>" method="POST">
+                        <input type="hidden" name="tamanho" value="<?= $geral['tamanho'] ?>">
+                        <input type="hidden" name="tipo_produto" value="<?= $geral['tipo_produto'] ?>">
+                        <input type="hidden" name="subtipo_produto" value ="<?= $geral['subtipo_produto'] ?>">
+                        <input type="hidden" name="quantidade" value ="<?= $geral['quantidade'] ?>">
+                      <button class="btn btn-primary">Alterar</button>
+                    </form>
                     </div>
+
                   </div>
                 </div>
               </div>

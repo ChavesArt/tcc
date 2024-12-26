@@ -18,6 +18,34 @@ if (!$_SESSION['email']) {
     <?php include('links.php'); ?>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 
+    <style>
+        .btn-outline-purple {
+            color: #6f42c1;
+            /* Cor roxa para o texto */
+            border-color: #6f42c1;
+            /* Cor roxa para a borda */
+        }
+
+        .btn-outline-purple:hover {
+            color: #fff;
+            /* Cor do texto em branco quando o botão é hover */
+            background-color: #6f42c1;
+            /* Cor de fundo roxa quando hover */
+            border-color: #6f42c1;
+            /* Mantém a borda roxa no hover */
+        }
+
+        .btn-outline-purple:focus,
+        .btn-outline-purple.focus {
+            box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5);
+            /* Sombras com a cor roxa quando o botão recebe foco */
+        }
+        .small-popup {
+            width: 500px !important; /* Ajuste a largura conforme necessário */
+             font-size: 14px;         /* Ajuste o tamanho da fonte */
+        }
+    </style>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $("#tipo").on("click", function() {
@@ -50,6 +78,26 @@ if (!$_SESSION['email']) {
 
 <body>
     <?php include_once('menu.php'); ?>
+
+      
+<?php if (isset($_SESSION['doacao_sucess']) && $_SESSION['doacao_sucess'] == true) { ?>
+    <script>
+        Swal.fire({
+            position: "top-middle",
+            icon: "success",
+            title: "Sua doação foi cadastrada com sucesso!",
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+            popup: 'small-popup'  // Aplique uma classe CSS personalizada
+  }
+        });
+    </script>
+    <?php
+    // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
+    unset($_SESSION['doacao_sucess']);
+    ?>
+<?php } ?>
 
     <main>
         <div style="margin-top: 10%;" class="container">
@@ -86,7 +134,7 @@ if (!$_SESSION['email']) {
                             <input class="form-control" type="text" name="nome" id="nome">
 
                             <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade">
+                            <input class="form-control" min="0" type="number" name="quantidade" id="quantidade">
 
                             <label class="form-label" for="descri">Descrição:</label>
                             <textarea name="descricao" class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
@@ -126,7 +174,7 @@ if (!$_SESSION['email']) {
                         
 
                             <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade">
+                            <input class="form-control" min="0" type="number" name="quantidade" id="quantidade">
 
                             <label class="form-label" for="nome">Tamanho:</label>
                             <input class="form-control" type="text" name="tamanho" id="tamanho">
@@ -153,7 +201,7 @@ if (!$_SESSION['email']) {
                             <label class="form-label" for="alimentos">Escolha o alimento:</label>
                             <select name="id_produto" id="alimentos" class="form-select" required>
                                 
-                                <?php
+                                <?php 
                                 while ($info = mysqli_fetch_assoc($resultado)) {
                                     echo "<option value=" . $info['id_produto'] . ">" . $info['subtipo_produto'] . "</option>";
                                 } 
@@ -161,7 +209,7 @@ if (!$_SESSION['email']) {
                             </select>
                             
                             <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade">
+                            <input class="form-control" min="0" type="number" name="quantidade" id="quantidade">
                             <label class="form-label" for="descri">Descrição:</label>
                             <textarea class="form-control" id="descri" name="descricao" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
                             

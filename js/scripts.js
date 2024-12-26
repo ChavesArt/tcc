@@ -2,7 +2,7 @@ function SelecionaEstoque(event, id_pedido) {
 
     event.preventDefault();
 
-
+ 
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -48,34 +48,50 @@ function listarTodos2() {
 
 }
 
-function listarTodos() {
-
-
+function cadastrar_itens_saida(event, id_pedido) {
+    event.preventDefault(); // Impede o comportamento padrão do formulário
     
-    // Obtém o select do produto
-    let selectKit = document.getElementById('kit');
-   
-   
-    // Adiciona um ouvinte de evento para o evento 'change'
-    selectKit.addEventListener('change', function () {
-        // Obtém o valor selecionado
-        let produtoId = selectKit.value;
+    // Obtém o tbody da tabela do pedido específico
+    let tbody = document.getElementById('cesta_basica-' + id_pedido);
+    let rows = tbody.getElementsByTagName('tr'); // Obtém todas as linhas da tabela
+    
+    // Inicializa um array para armazenar os dados dos itens
+    let itens = [];
 
-        // Se não houver valor selecionado, retorna
-        if (!produtoId) {
-            return;
-        }
+    // Percorre as linhas da tabela para obter as informações
+    Array.from(rows).forEach(function(row) {
+        let produto = row.querySelector('input[name="produto[]"]').value;  // Obtém o nome do produto
+        let estoque = row.querySelector('input[name="estoque[]"]').value;  // Obtém o estoque selecionado
+        // console.log(estoque);
+        let quantidade = row.querySelector('input[name="quantidade[]"]').value;  // Obtém a quantidade
 
-        fetch('crud/listar.php?id_produto=' + produtoId, {
-            method: "GET",
-            headers: { 'Content-Type': "application/json; charset=UTF-8" }
-        }
-        ).then(Response => Response.json())
-            .then(produtos => inserirProdutos(produtos))
-            // erro no http
-            .catch(error => console.log(error));
+        // Adiciona os dados ao array
+        itens.push({
+            produto: produto,
+            estoque: estoque,
+            quantidade: quantidade
+        });
     });
 
+    // Envia os dados para o backend via fetch
+    fetch('crud/cadastrar_itens_saida.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify({
+            id_pedido: id_pedido,
+            itens: itens  // Envia os itens no corpo da requisição
+        })
+    })
+    .then(() => {
+        // Após o envio, recarrega a página
+        location.reload();
+    })
+    .catch(error => {
+        console.error('Erro ao enviar os dados:', error);
+        alert("Erro na comunicação com o servidor.");
+    });
 }
 
 
@@ -116,40 +132,46 @@ function preencherSelectDoEstoque( idPedido){
 
     }
 
-function inserirProdutos(produtos, idPedido) {
-    let selectEstoque = document.getElementById('selectEstoque-' + idPedido); 
+    function inserirProdutos(produtos, idPedido) {
+        let selectEstoque = document.getElementById('selectEstoque-' + idPedido); 
+        
+        selectEstoque.innerHTML = ''; // Remove todas as opções
+        
+        for (const produto of produtos) {
+            let dataSelecionada = produto.edata ? produto.edata.toString().split("-") : null;
+            
+            // Se a dataSelecionada não for nula ou indefinida, formate-a
+            if (dataSelecionada) {
+                dataSelecionada = dataSelecionada[2] + "/" + dataSelecionada[1] + "/" + dataSelecionada[0];
+            } else {
+                dataSelecionada = ''; // Se for nula, deixe em branco
+            }
     
-    selectEstoque.innerHTML = ''; // Remove todas as opções
-
-    for (const produto of produtos) {
-
-        let dataSelecionada = produto.edata.toString().split("-");
-        dataSelecionada =  dataSelecionada[2] + "/" +   dataSelecionada[1]  + "/" + dataSelecionada[0] 
+            let option = document.createElement('option');
+            option.value = produto.id_estoque;
     
-        let option = document.createElement('option');
-        option.value = produto.id_estoque;
-        option.innerHTML = dataSelecionada + " Saldo: " + produto.resultado;
-        selectEstoque.appendChild(option);
-
+            // Se a dataSelecionada estiver vazia, apenas exiba o saldo
+            if (dataSelecionada) {
+                option.innerHTML = dataSelecionada + " Saldo: " + produto.resultado;
+            } else {
+                option.innerHTML = "Saldo: " + produto.resultado; // Não mostra a data
+            }
+    
+            selectEstoque.appendChild(option);
+        }
     }
-}
+    
 function inserirProduto(produto) {
+    console.log(produto + ' chegou');
     let select = document.getElementById('estoque');
     let option = document.createElement('option');
     option.value = produto.id_estoque;
     option.innerHTML = produto.data_validade;
     select.appendChild(option);
 }
-
-function AdicionaLinha(event) {
-
-    event.preventDefault();
-
-
-}
-
 function AdicionaLinha(id_pedido) {
-    let tbody = document.getElementById('cesta_basica');
+    // Seleciona o tbody do pedido específico
+    let tbody = document.getElementById('cesta_basica-' + id_pedido);
     let tr = document.createElement('tr');
 
     // Select the <select> element for produto
@@ -182,233 +204,99 @@ function AdicionaLinha(id_pedido) {
     inputEstoque.value = selectedEstoqueOptionText;
     tr.appendChild(inputEstoque); // Append the hidden input to the row
 
-    // Extract the stock balance from the selected option (e.g., "12/11/1200 Saldo: 63")
+
+    // Extraímos o saldo de estoque da opção selecionada
     let saldoEstoqueText = selectedEstoqueOptionText.split("Saldo: ");
-    let saldoEstoque = parseInt(saldoEstoqueText[1], 10);  // Get the number after "Saldo: "
+    let saldoEstoque = parseInt(saldoEstoqueText[1], 10);  // O número após "Saldo:"
 
-    // Get the input for quantidade
+    // Obtém a quantidade do campo input
     let inputQuantidade = document.getElementById('quantidade-' + id_pedido);
-    let quantidade = parseInt(inputQuantidade.value, 10);  // Get the quantity from the input
+    if (!inputQuantidade) {
+        console.error("Elemento quantidade-" + id_pedido + " não encontrado.");
+        return;
+    }
+    let quantidade = parseInt(inputQuantidade.value, 10);  // A quantidade inserida
 
-    // Ensure that quantity does not exceed the stock available
+    // Verifica se a quantidade não ultrapassa o estoque
     if (quantidade > saldoEstoque) {
         alert('Quantidade maior do que o saldo disponível!');
         return;
     }
 
-    // Update stock balance by subtracting the quantity
+    // Atualiza o saldo de estoque
     saldoEstoque -= quantidade;
-
-    // Update the "Saldo" in the stock info
     let updatedEstoqueText = saldoEstoqueText[0] + " Saldo: " + saldoEstoque;
     tdItemEstoque.innerHTML = updatedEstoqueText;
 
-    // Create the td for the quantity
+    // Cria a célula para a quantidade
     let tdQuantidade = document.createElement('td');
     tdQuantidade.innerHTML = quantidade;
 
-    // Create hidden input for quantidade
-    let inputQuantidadeHidden = document.createElement('input');
-    inputQuantidadeHidden.type = 'hidden';
-    inputQuantidadeHidden.name = 'quantidade[]';
-    inputQuantidadeHidden.value = quantidade;
-    tr.appendChild(inputQuantidadeHidden); // Append the hidden input to the row
-
-    // Create the td for the delete button
+    // Cria a célula para o botão de excluir
     let tdExcluir = document.createElement('td');
     let btnExcluir = document.createElement('button');
     btnExcluir.innerHTML = 'Excluir';
+    btnExcluir.classList.add('btn', 'btn-danger');  // Bootstrap classes
 
-    // Add Bootstrap classes to the button for styling
-    btnExcluir.classList.add('btn', 'btn-danger');  // Bootstrap classes for styling
-
-    // Event listener for delete button
+    // Evento para excluir a linha
     btnExcluir.addEventListener("click", function() {
-        tbody.removeChild(tr);  // Remove the row from the table
+        tbody.removeChild(tr);
     });
 
     tdExcluir.appendChild(btnExcluir);
 
-    // Append all the created elements to the new row
+    // Cria um input hidden com os dados do item
+    let inputHiddenProduto = document.createElement('input');
+    inputHiddenProduto.type = 'hidden';
+    inputHiddenProduto.name = 'produto[]';
+    inputHiddenProduto.value = selectedOption.value;
+
+    let inputHiddenEstoque = document.createElement('input');
+    inputHiddenEstoque.type = 'hidden';
+    inputHiddenEstoque.name = 'estoque[]';
+    inputHiddenEstoque.value = selectedEstoqueOption.value;
+
+    let inputHiddenQuantidade = document.createElement('input');
+    inputHiddenQuantidade.type = 'hidden';
+    inputHiddenQuantidade.name = 'quantidade[]';
+    inputHiddenQuantidade.value = quantidade;
+
+    // Adiciona os inputs hidden à linha
+    tr.appendChild(inputHiddenProduto);
+    tr.appendChild(inputHiddenEstoque);
+    tr.appendChild(inputHiddenQuantidade);
+
+    // Adiciona as células na nova linha
     tr.appendChild(tdItem);
     tr.appendChild(tdItemEstoque);
     tr.appendChild(tdQuantidade);
-    tr.appendChild(tdExcluir);  // Add the delete button column to the row
+    tr.appendChild(tdExcluir);
 
-    // Append the row to the table body
+    // Adiciona a nova linha na tabela
     tbody.appendChild(tr);
 
-    // Clear the input fields after adding the row
-    inputQuantidade.value = '';  // Clear the quantity input field
+    // Limpa o campo de quantidade
+    inputQuantidade.value = '';
 
-    // Reset the estoque select element (deselect the current option)
-    selectEstoque.selectedIndex = 0;  // Reset to the first option (or you can set it to a default one)
+    // Reseta o <select> de estoque
+    selectEstoque.selectedIndex = 0;
 
-    // Show the submit button after the first row is added
-    let submitBtn = document.getElementById('submitBtn');
-    submitBtn.style.display = 'block';  // Show the submit button
+    // Exibe o cabeçalho da tabela se ainda não estiver visível
+    let tabelaCabecalho = document.getElementById('tabela-cabecalho-' + id_pedido);
+    if (tabelaCabecalho) {
+        tabelaCabecalho.style.display = 'table-header-group';
+    }
 
-    // Show the table header after the first row is added
-    let tabelaCabecalho = document.getElementById('tabela-cabecalho');
-    tabelaCabecalho.style.display = 'table-header-group';  // Show the table header
+    // Exibe a tabela
+    let tabela = document.getElementById('tabela-' + id_pedido);
+    if (tabela) {
+        tabela.style.display = 'table';  // Torna a tabela visível
+    }
 
-    // Add the table to a form if not already present
-    let form = document.getElementById('formTabela');
-    if (!form) {
-        // Create a form if not exists
-        form = document.createElement('form');
-        form.id = 'formTabela';
-        
-        // Add the table to the form
-        let tabelaWrapper = document.createElement('div');
-        tabelaWrapper.appendChild(document.getElementById('tabela-wrapper'));
-
-        form.appendChild(tabelaWrapper);
-        
-        // Create and add submit button
-        let btnSubmit = document.createElement('input');
-        btnSubmit.type = 'submit';
-        btnSubmit.value = 'Enviar';
-        btnSubmit.classList.add('btn', 'btn-primary', 'mt-3');  // Bootstrap classes for styling the submit button
-        
-        form.appendChild(btnSubmit);
-        
-        // Add the form to the body or a specific section
-        document.body.appendChild(form);
+    // Exibe o botão "Enviar" após a adição de pelo menos uma linha
+    let submitBtn = document.getElementById('submitBtn-' + id_pedido);
+    if (submitBtn) {
+        submitBtn.style.display = 'inline-block';
     }
 }
 
-
-// function AdicionaLinha(id_pedido) {
-//     let tbody = document.getElementById('cesta_basica');
-//     let tr = document.createElement('tr');
-
-//     // Select the <select> element for produto
-//     let select = document.querySelector('select[name="produto"]');
-//     let selectedOption = select.options[select.selectedIndex];
-//     let selectedOptionText = selectedOption.innerHTML;
-
-//     let tdItem = document.createElement('td');
-//     tdItem.innerHTML = selectedOptionText;
-
-//     // Select the <select> element for estoque
-//     let selectEstoque = document.querySelector('select[name="estoque"]');
-//     let selectedEstoqueOption = selectEstoque.options[selectEstoque.selectedIndex];
-//     let selectedEstoqueOptionText = selectedEstoqueOption.innerHTML;
-    
-//     // Extract the stock balance from the selected option (e.g., "12/11/1200 Saldo: 63")
-//     let saldoEstoqueText = selectedEstoqueOptionText.split("Saldo: ");  // Split by "Saldo: "
-//     let saldoEstoque = parseInt(saldoEstoqueText[1], 10);  // Get the number after "Saldo: "
-
-//     let tdItemEstoque = document.createElement('td');
-//     tdItemEstoque.innerHTML = selectedEstoqueOptionText;
-
-//     // Get the input for quantidade
-//     let inputQuantidade = document.getElementById('quantidade-' + id_pedido);
-//     let quantidade = parseInt(inputQuantidade.value, 10);  // Get the quantity from the input
-
-//     // Ensure that quantity does not exceed the stock available
-//     if (quantidade > saldoEstoque) {
-//         alert('Quantidade maior do que o saldo disponível!');
-//         return;
-//     }
-
-//     // Update stock balance by subtracting the quantity
-//     saldoEstoque -= quantidade;
-
-//     // Update the "Saldo" in the stock info
-//     let updatedEstoqueText = saldoEstoqueText[0] + " Saldo: " + saldoEstoque;
-//     tdItemEstoque.innerHTML = updatedEstoqueText;
-
-//     // Create the td for the quantity
-//     let tdQuantidade = document.createElement('td');
-//     tdQuantidade.innerHTML = quantidade;
-
-//     // Create the td for the delete button
-//     let tdExcluir = document.createElement('td');
-//     let btnExcluir = document.createElement('button');
-//     btnExcluir.innerHTML = 'Excluir';
-
-//     // Add Bootstrap classes to the button for styling
-//     btnExcluir.classList.add('btn', 'btn-danger');  // Bootstrap classes for styling
-
-//     // Event listener for delete button
-//     btnExcluir.addEventListener("click", function() {
-//         tbody.removeChild(tr);  // Remove the row from the table
-//     });
-
-//     tdExcluir.appendChild(btnExcluir);
-
-//     // Append all the created elements to the new row
-//     tr.appendChild(tdItem);
-//     tr.appendChild(tdItemEstoque);
-//     tr.appendChild(tdQuantidade);
-//     tr.appendChild(tdExcluir);  // Add the delete button column to the row
-
-//     // Append the row to the table body
-//     tbody.appendChild(tr);
-
-//     // Clear the input fields after adding the row
-//     inputQuantidade.value = '';  // Clear the quantity input field
-
-//     // Reset the estoque select element (deselect the current option)
-//     selectEstoque.selectedIndex = 0;  // Reset to the first option (or you can set it to a default one)
-// }
-
-
-// function AdicionaLinha(id_pedido) {
-//     let tbody = document.getElementById('cesta_basica');
-
-//     let tr = document.createElement('tr');
-
-//     // Select the <select> element
-//     let select = document.querySelector('select[name="produto"]');
-
-//     // Get the selected <option>
-//     let selectedOption = select.options[select.selectedIndex];
-
-//     // Get the innerHTML of the selected option
-//     let selectedOptionText = selectedOption.innerHTML;
-
-//     let tdItem = document.createElement('td');
-//     tdItem.innerHTML = selectedOptionText;
-
-//     // Estoque
-//     let selectEstoque = document.querySelector('select[name="estoque"]');
-
-//     let selectedEstoqueOption = selectEstoque.options[selectEstoque.selectedIndex];
-    
-//     // Get the innerHTML of the selected option
-//     let selectedEstoqueOptionText = selectedEstoqueOption.innerHTML;
-//     let tdItemEstoque = document.createElement('td');
-//     tdItemEstoque.innerHTML = selectedEstoqueOptionText;
-    
-    
-//     let inputQuantidade = document.getElementById('quantidade-' + id_pedido);
-//     let Quantidade = inputQuantidade.value;
-
-
-//     let tdQuantidade = document.createElement('td');
-//     // let inputQuantidade = document.createElement('input');
-//     // inputQuantidade.type = 'number';
-//     tdQuantidade.innerHTML = Quantidade;
-
-//     /*let tdExcluir = document.createElement('td');
-//     let btnExcluir = document.createElement('button');
-//     btnExcluir.addEventListener("click", deleteRow(button), false);
-//     btnExcluir.id_produto = produto.id_produto;
-//     btnExcluir.innerHTML = "Excluir";
-//     tdExcluir.appendChild(btnExcluir);
-// */
-//     tr.appendChild(tdItem);
-//     tr.appendChild(tdItemEstoque);
-//     tr.appendChild(tdQuantidade);
-//     //tr.appendChild(tdExcluir);
-//     tbody.appendChild(tr);
-// }
-
-function deleteRow(button) {
-    // A linha (tr) é o elemento pai do botão clicado
-    let row = button.closest('tr');
-    row.remove(); // Remove a linha da tabela
-  } 

@@ -19,38 +19,59 @@ if (!$_SESSION['email']) {
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#tipo").on("click", function() {
-            hideShow();
-        });
-        hideShow();
-    });
+    <style>
+        .btn-outline-purple {
+            color: #6f42c1;
+            /* Cor roxa para o texto */
+            border-color: #6f42c1;
+            /* Cor roxa para a borda */
+        }
 
-    function hideShow() {
-        if ($('#alimento').is(':checked')) {
-            $('#inv').show();
-            $('#inv2').hide();
-            $('#inv3').hide();
+        .btn-outline-purple:hover {
+            color: #fff;
+            /* Cor do texto em branco quando o botão é hover */
+            background-color: #6f42c1;
+            /* Cor de fundo roxa quando hover */
+            border-color: #6f42c1;
+            /* Mantém a borda roxa no hover */
         }
-        if ($('#roupa').is(':checked')) {
 
-            $('#inv3').show();
-            $('#inv2').hide();
-            $('#inv').hide();
+        .btn-outline-purple:focus,
+        .btn-outline-purple.focus {
+            box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5);
+            /* Sombras com a cor roxa quando o botão recebe foco */
         }
-        if ($('#outro').is(':checked')) {
-            $('#inv2').show();
-            $('#inv').hide();
-            $('#inv3').hide();
+        .small-popup {
+            width: 500px !important; /* Ajuste a largura conforme necessário */
+             font-size: 14px;         /* Ajuste o tamanho da fonte */
         }
-    }
-</script>
-   
+    </style>
+    
 </head>
 
 <body>
     <?php include_once('menu.php'); ?>
+
+    
+<?php if (isset($_SESSION['receber_success']) && $_SESSION['receber_success'] == true) { ?>
+    <script>
+        Swal.fire({
+            position: "top-middle",
+            icon: "success",
+            title: "Seu pedido foi recebido com sucesso!",
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+            popup: 'small-popup'  // Aplique uma classe CSS personalizada
+  }
+        });
+    </script>
+    <?php
+    // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
+    unset($_SESSION['receber_success']);
+    ?>
+<?php } ?>
+
 
     <main>
         <div style="margin-top: 10%;" class="container">
@@ -59,127 +80,51 @@ if (!$_SESSION['email']) {
                     <h1>Bem-vindo</h1>
                 </div>
 
-                <div  class="col-md-6">
+                <div class="col-md-6">
                     <img class="img-fluid" src="img/receber.svg" alt="formulário de doações">
                 </div>
 
                 <div class="col-md-6">
+                    <form action="crud/receber.php" method="post" class="m-4 p-4 border rounded-3 shadow-lg bg-light">
+                        <!-- Seção do select e input de quantidade lado a lado -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Qual o kit de cesta básica você deseja receber?</h4>
+                            </div>
+                            <!-- Campo checkbox para o tipo de kit -->
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="tipo">Qual o tipo de kit?</label>
+                                <div>
+                                    <input type="checkbox" name="alimento" id="kit_alimento" value="alimento">
+                                    <label for="kit_alimento">Kit de alimento</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="roupa" id="kit_roupa" value="roupa">
+                                    <label for="kit_roupa">Kit de roupa</label>
+                                </div>
+                            </div>
 
-                    <div class="border bg-light">
+                            <!-- Campos de Quantidade lado a lado -->
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label" for="quantidade_alimento">Quantidade de alimento:</label>
+                                <input class="form-control" type="number" name="quantidade_alimento" id="quantidade_alimento" min="1" placeholder="Informe a quantidade desejada">
+                            </div>
 
-                        <h1 class="text-center">Formulário de recebimento</h1>
-
-
-
-                        <div id="tipo">
-                            <p>Tipo de doação:
-                                <input name="tipoDoacao" type="radio" value="alimento" id="alimento" checked> alimento
-                                <input name="tipoDoacao" type="radio" value="roupa" id="roupa"> Roupa
-                                <input name="tipoDoacao" type="radio" value="outro" id="outro"> Outro
-                            </p>
+                            <div class="mb-3 col-md-3">
+                                <label class="form-label" for="quantidade_roupa">Quantidade de roupa:</label>
+                                <input class="form-control" type="number" name="quantidade_roupa" id="quantidade_roupa" min="1" placeholder="Informe a quantidade desejada">
+                            </div>
                         </div>
 
-                        <form id="inv2" action="crud/receber.php?tipo_doacao=outro" method="post" class="m-4">
-
-                            <!-- OUTRO -->
-
-                            <label class="form-label" for="nome">Nome:</label>
-                            <input class="form-control" type="text" name="nome" id="nome">
-
-                            <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade">
-
-                            <label class="form-label" for="descri">Descrição:</label>
-                            <textarea name="descricao" class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
-
-                            <label class="form-label" for="nome">Tamanho:</label>
-                            <input class="form-control" type="text" name="tamanho" id="tamanho">
-
-                            <div class="col-12">
-                                <div class="row">
-                                    <input class="btn btn-primary my-2" type="submit" value="Enviar">
-                                </div>
-                            </div>
-
-                        </form>
-
-                        <!-- ROUPA -->
-                        <form id="inv3" action="crud/receber.php?tipo_doacao=roupa" method="post" class="m-4">
-                            
-                        
-                        <?php 
-                        $sql = "SELECT * FROM produto WHERE tipo_produto ='roupa' ORDER BY subtipo_produto ASC";
-                        $resultado = mysqli_query($conexao, $sql);
-                        ?>
-                        
-                        <label class="form-label" for="tipo">qual o tipo de roupa:</label>
-                            <select name="alimentos" id="tipo" class="form-select" required>
-
-                                <?php
-                                while ($info = mysqli_fetch_assoc($resultado)) {
-                                    echo "<option value=" . $info['subtipo_produto'] . ">" . $info['subtipo_produto'] . "</option>";
-                                }
-                                ?>
-                            </select>                        
-                        
-
-                            <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade">
-
-                            <label class="form-label" for="nome">Tamanho:</label>
-                            <input class="form-control" type="text" name="tamanho" id="tamanho">
-
-                            <label class="form-label" for="descri">Descrição:</label>
-                            <textarea name="descricao" class="form-control" id="descri" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
-
-                            <div class="col-12">
-                                <div class="row">
-                                    <input class="btn btn-primary my-2" type="submit" value="Enviar">
-                                </div>
-                            </div>
-                        </form>
-
-                        <!-- ALIMENTO -->
-                        <form id="inv" action="crud/receber.php?tipo_doacao=alimento" method="post" class="m-4">
-
-                        <?php 
-                        $sql = "SELECT * FROM produto WHERE tipo_produto ='alimento' ORDER BY subtipo_produto ASC";
-                        $resultado = mysqli_query($conexao, $sql);
-                        
-                        ?>
-
-                            <label class="form-label" for="alimentos">Escolha o alimento:</label>
-                            <select name="alimentos" id="alimentos" class="form-select" required>
-
-                                <?php
-                                while ($info = mysqli_fetch_assoc($resultado)) {
-                                    echo "<option value=" . $info['subtipo_produto'] . ">" . $info['subtipo_produto'] . "</option>";
-                                }
-                                ?>
-                            </select>
-
-                            <label class="form-label" for="quantidade">Quantidade:</label>
-                            <input class="form-control" type="number" name="quantidade" id="quantidade">
-                            <label class="form-label" for="descri">Descrição:</label>
-                            <textarea class="form-control" id="descri" name="descricao" rows="3" placeholder="Coisas referentes a localização ou expecificação da doação" aria-label="With textarea"></textarea>
-
-                            <div class="col-12">
-                                <div class="row">
-                                    <input class="btn btn-primary my-2" type="submit" value="Enviar">
-                                </div>
-                            </div>
-                        </form>
-
-
-
-
-                    </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary px-4 py-2" type="submit">Enviar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-
     </main>
 
 </body>
+
 </html>
