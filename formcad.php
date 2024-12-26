@@ -36,8 +36,8 @@
             ?>
         <?php } ?>
 
-        <div style="margin-top:9%;padding-right:50px;" class="container border border-dark rounded">
-            <div class="row">
+        <div  class="container border border-dark rounded">
+            <div id="formcad" class="row">
 
                 <div class="col-md-12 text-center">
                     <h1>Formulário de cadastro</h1>

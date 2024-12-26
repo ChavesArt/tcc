@@ -19,7 +19,7 @@
         </div>
 
         <!-- Seção: Precisa de doação -->
-        <div class="row align-items-center">
+        <div id="" class="row align-items-center mid">
         <div class="col-md-6">
                 <img src="img/receber.svg" alt="recepção de alimento" class="img-fluid">
             </div>

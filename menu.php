@@ -1,4 +1,4 @@
-<header  class="container">
+<header style="margin-bottom: 10%;"  class="container">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
         <a href="index.php" class="navbar-brand">
             <img  id="logo" src="img/logo.png" width="100px" height="90px" alt="logo SASIEQ">

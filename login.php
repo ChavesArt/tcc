@@ -17,10 +17,10 @@
     <?php include_once('menu.php'); ?>
 
   <main>
-    <div style="margin-top: 9%;" class="container border border-dark rounded">
-        <div class="row">
+    <div  class="container border border-dark rounded">
+        <div id="login" class="row">
             <div class="col-md-12 text-center pt-2">
-                <h1>Login</h1>
+                <h1>Logue-se para melhor experiência no site</h1>
             </div>
 
             <div class="col-xs-6 col-lg-6">

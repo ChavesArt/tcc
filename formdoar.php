@@ -100,7 +100,7 @@ if (!$_SESSION['email']) {
 <?php } ?>
 
     <main>
-        <div style="margin-top: 10%;" class="container">
+        <div id="formdoar"  class="container ">
             <div class="row">
                 <div class="col-md-12 text-center mb-4">
                     <h1 class="">Sua doação ajuda muito!</h1>

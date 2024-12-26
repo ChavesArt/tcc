@@ -1,77 +1,90 @@
 /*gerais*/
 body {
-    font-family: 'roboto',sans-serif;
+    font-family: 'roboto', sans-serif;
     width: 100%;
     height: 100%;
     text-decoration: none;
 }
-.row{
+
+.row {
     margin: 0;
 }
-p,li{
+
+p,
+li {
     font-size: 14px;
 }
 
 /*Barra de navegação*/
-header,.navbar{
+header,
+.navbar {
     background-color: #7e22ce;
 }
 
-.navbar-nav a{
+.navbar-nav a {
     color: white;
 }
+
 /* #nav-container{
     padding-top: 0;
     padding-bottom: 0;
 } */
-#logo{
+#logo {
     width: 75px;
 }
 
-main{
+main {
     margin-top: 9%;
 }
+
 /*Slider*/
 
 .carousel-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh; /* Ajuste a altura conforme necessário */
+    height: 90vh;
+    /* Ajuste a altura conforme necessário */
 }
 
 .carousel-item img {
-    max-height: 80vh; /* Garante que a imagem não exceda a altura do item do slider */
-    max-width: 100%; /* Mantém a imagem dentro do contêiner */
-    object-fit: cover; /* Corta a imagem para preencher o contêiner, mantendo a proporção */
+    max-height: 80vh;
+    /* Garante que a imagem não exceda a altura do item do slider */
+    max-width: 100%;
+    /* Mantém a imagem dentro do contêiner */
+    object-fit: cover;
+    /* Corta a imagem para preencher o contêiner, mantendo a proporção */
 }
 
-#mainSlider .carousel-caption{
+#mainSlider .carousel-caption {
     top: 20%;
 }
-#mainSlider a{
+
+#mainSlider a {
     text-decoration: none;
 }
 
-#mainSlider .carousel-indicators{
+#mainSlider .carousel-indicators {
 
     padding: 7.8%;
 }
-#mainSlider .carousel-caption h2{
-     font-size: 50px;
-     margin-bottom: 30px;
+
+#mainSlider .carousel-caption h2 {
+    font-size: 50px;
+    margin-bottom: 30px;
 }
 
 
-#mainSlider .carousel-caption p{
+#mainSlider .carousel-caption p {
     font-size: 22px;
-   font-weight: 300;
-   margin-bottom: 100px;
-   color: white;
+    font-weight: 300;
+    margin-bottom: 100px;
+    color: white;
 }
-.main-btn{
+
+.main-btn {
     background-color: darkblue;
-    color: white ;
+    color: white;
     text-transform: uppercase;
     width: 200px;
     height: 10px;
@@ -80,13 +93,15 @@ main{
     border: 3px solid transparent;
     transition: .5s;
 }
-.main-btn:hover{
+
+.main-btn:hover {
     text-decoration: none;
     color: white;
     background-color: transparent;
     border-color: blueviolet;
 }
-.carousel-indicators .active{
+
+.carousel-indicators .active {
     background-color: darkblue;
 }
 
@@ -110,32 +125,33 @@ main{
 
 /*Sobre*/
 
-#sobre-area{
+#sobre-area {
     background-color: white;
 }
-.main-title{
+
+.main-title {
     color: black;
     margin: 50px 0 65px 0;
     font-size: 40px;
     text-align: center;
-    position:relative;
-    
+    position: relative;
+
 }
 
-.main-title::after{
+.main-title::after {
     content: "";
     border-top: 2px solid #7e22ce;
     width: 40%;
-    position:absolute;
+    position: absolute;
     top: 60px;
     left: 30%;
-    }
-    
+}
 
-#p-sobre{
+
+#p-sobre {
     text-align: justify;
     color: black;
-    
+
 }
 
 #about title {
@@ -143,42 +159,48 @@ main{
     color: black;
     font-weight: bold;
     text-align: center;
-    
+
 }
 
 /* footer */
-#contact-area{
+#contact-area {
     text-align: center;
 }
-.contact-box{
+
+.contact-box {
     padding-bottom: 50px;
     margin-bottom: 50px;
-    border-bottom: 1px solid purple; 
+    border-bottom: 1px solid purple;
 }
-.contact-box i{
-  color: #444;
-  border: solid 1px #444;
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  line-height: 55px;
-  font-size: 24px;
-  margin-bottom: 20px;
+
+.contact-box i {
+    color: #444;
+    border: solid 1px #444;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
-.contact-box p{
+
+.contact-box p {
     font-size: 16px;
 }
-.contact-title{
+
+.contact-title {
     font-weight: bold;
 }
 
 /* copyright */
-#copy-area{
+#copy-area {
     background-color: #f1f1f1;
 }
-#copy-area.container{
+
+#copy-area.container {
     margin: auto;
 }
+
 #copy-area .container p {
     text-align: center;
     margin-bottom: 0;
@@ -186,7 +208,7 @@ main{
 
 /*formlulários*/
 
-.main-form{
+.main-form {
     margin-top: 100px;
     width: 100vw;
     height: 100vh;
@@ -195,7 +217,7 @@ main{
     align-items: center;
 }
 
-.esquerda-form{
+.esquerda-form {
     width: 50vw;
     height: 100vh;
     display: flex;
@@ -204,25 +226,25 @@ main{
     flex-direction: column;
 }
 
-.esquerda-form h1{
+.esquerda-form h1 {
     color: black;
     text-align: center;
 }
 
-.esquerda-img{
+.esquerda-img {
     width: 35vw;
 }
 
-.direita-form{
+.direita-form {
     width: 50vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.card-form{
+.card-form {
     width: 60%;
     display: flex;
     justify-content: center;
@@ -232,12 +254,14 @@ main{
     background: #581c87;
     border-radius: 20px;
 }
-.card-form h1{
-    color:white;
+
+.card-form h1 {
+    color: white;
     font-weight: 800;
     margin: 0;
 }
-.campo-texto{
+
+.campo-texto {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -245,14 +269,17 @@ main{
     justify-content: center;
     margin: 10px 0px;
 }
-.campo-texto input [type="placeholder"]{
-    color: black;
-}
-.campo-texto input [type="date"]{
+
+.campo-texto input [type="placeholder"] {
     color: black;
 }
 
-.campo-texto input, textarea{
+.campo-texto input [type="date"] {
+    color: black;
+}
+
+.campo-texto input,
+textarea {
     width: 90%;
     border: none;
     border-radius: 10px;
@@ -263,15 +290,17 @@ main{
     box-sizing: border-box;
 }
 
-.campo-texto > label{
+.campo-texto>label {
     color: white;
     margin-bottom: 10px;
 }
-.campo-texto textarea{
+
+.campo-texto textarea {
     width: 90%;
     margin: 25px 0;
 }
-.campo-texto input[type="submit"]{
+
+.campo-texto input[type="submit"] {
     width: 90%;
     padding: 16px;
     margin: 25px 0;
@@ -281,53 +310,59 @@ main{
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 2px;
-    background:  rgb(59, 2, 247);
+    background: rgb(59, 2, 247);
     cursor: pointer;
     color: white;
 }
 
-.campo-texto input[type="text"],input[type="password"],input[type="email"]{
+.campo-texto input[type="text"],
+input[type="password"],
+input[type="email"] {
     color: black;
 }
 
-#link-formcad{
+#link-formcad {
     color: white;
     outline: none;
 }
-.card-form p{
+
+.card-form p {
     color: white;
 }
 
 /*Barra de pesquisa*/
-.caixa-procura form{
+.caixa-procura form {
     display: flex;
-    gap:0.1%;
+    gap: 0.1%;
     padding: 20px;
     justify-content: center;
 }
-.caixa-procura input{
+
+.caixa-procura input {
     width: 500px;
-    
+
 }
 
 
 
 /*button do index*/
-.envia-form{
+.envia-form {
     padding: 50px;
     display: inline-block;
     justify-content: center;
     align-items: center;
     margin: 100px;
 }
-.envia-form img{
+
+.envia-form img {
     width: 100%;
     height: 250px;
 }
-.btn-index{
+
+.btn-index {
     justify-content: center;
     outline: none;
-    background-color: #3b0764; 
+    background-color: #3b0764;
     border: none;
     color: white;
     padding: 18px 35px;
@@ -336,70 +371,123 @@ main{
     display: inline-block;
     font-size: 16px;
     border-radius: 15px;
-    
+
 }
-.dir-form-envia{
+
+.dir-form-envia {
     justify-content: center;
     text-align: center;
 }
 
-#doar-receber{
+#doar-receber {
 
     justify-content: center;
     align-items: center;
 }
 
-#donation-area p{
-}
 
 
 /* slider */
 
- /* #mainSlider .carousel-inner, #mainSlider .carousel-item{
+/* #mainSlider .carousel-inner, #mainSlider .carousel-item{
     margin: 1000000px;
     height: 100000px;
 }  */
 
-#mainSlider .carousel-caption h2{
+#mainSlider .carousel-caption h2 {
     font-size: 28px;
 }
 
-#mainSlider .carousel-caption p{
+#mainSlider .carousel-caption p {
     font-size: 18px;
     margin-bottom: 40px;
 }
 
-.carousel-caption{
+.carousel-caption {
     left: 10%;
     right: 10%;
 }
 
 /* sobre */
 
-#sobre-area img{
+#sobre-area img {
     margin-top: 100px;
 }
 
+@media(max-width:1000px){
+    main{
+        margin-top: 10%;
+    }
+}
 
-@media(max-width:425px){
+@media(max-width:425px) {
 
-    #mainSlider
-    {
-     
-        & img
-        {
-            height: 400px;
+    #mainSlider {
+
+        & img {
+            margin-top: 10%;
+            height: 275px;
+            width: 300px;
+        }
+
+        & .carousel-caption{
+            top: 10%;
         }
     }
-    
-    main{
-        margin-top: 25%; 
+
+    main {
+        margin-top: 25%;
     }
 
-    #donation-area{
-        & img{
-            
-            height: 1000px;
+    #formcad{
+
+        
+        & h1 {
+            margin-top: 10%;
+        }
+        input::placeholder{
+            font-size: 12px;
+        }
+    }
+
+    #login {
+         & h1{
+            margin-top: 10%;
+         }
+    }
+
+    #formreceber{
+
+        & h1{
+            margin-top: 10%;
+        }
+    }
+
+    #formdoar{
+
+        & h1{
+            margin-top: 10%;
+        }
+    }
+
+    /* Trocar a ordem do conteúdo na segunda seção */
+    #donation-area .row.align-items-center.mid {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    /* Garantir que as imagens fiquem em ordem reversa */
+    #donation-area .row.align-items-center .col-md-6 img {
+        order: 0;
+    }
+
+    #donation-area .row.align-items-center .col-md-6.text-center {
+        order: 1;
+    }
+
+    #donation-area {
+        & img {
+
             width: 1000px;
         }
     }

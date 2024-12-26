@@ -74,8 +74,8 @@ if (!$_SESSION['email']) {
 
 
     <main>
-        <div style="margin-top: 10%;" class="container">
-            <div class="row">
+        <div  class="container">
+            <div id="formreceber" class="row">
                 <div class="col-md-12 text-center mb-4">
                     <h1>Bem-vindo</h1>
                 </div>
@@ -106,12 +106,12 @@ if (!$_SESSION['email']) {
 
                             <!-- Campos de Quantidade lado a lado -->
                             <div class="mb-3 col-md-3">
-                                <label class="form-label" for="quantidade_alimento">Quantidade de alimento:</label>
+                                <label class="form-label" for="quantidade_alimento">Quantidade de kit(s) de alimento:</label>
                                 <input class="form-control" type="number" name="quantidade_alimento" id="quantidade_alimento" min="1" placeholder="Informe a quantidade desejada">
                             </div>
 
                             <div class="mb-3 col-md-3">
-                                <label class="form-label" for="quantidade_roupa">Quantidade de roupa:</label>
+                                <label class="form-label" for="quantidade_roupa">Quantidade de kit(s) de roupa:</label>
                                 <input class="form-control" type="number" name="quantidade_roupa" id="quantidade_roupa" min="1" placeholder="Informe a quantidade desejada">
                             </div>
                         </div>
