@@ -5,6 +5,7 @@ $conexao = conectar();
 $id_usuario = $_SESSION['id_usuario'];
 logar();
 
+$tabela = $_GET['tabela'];
 $sql = "SELECT * FROM pedido WHERE deferido IS null";
 $resultado = mysqli_query($conexao, $sql);
 
@@ -135,6 +136,37 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
         </div>
       </div>
     </section>
+
+  <?php } ?>
+
+  <div style="left: 200px;" >
+
+<a class="btn btn-danger my-2" href="admin_doacao.php?tabela=<?= $tabela; ?>"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+
+</div>
+
+  <?php if($resultado->num_rows == 0){?>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mensagem - Sem Entradas</title>
+  <!-- Link do CSS do Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <!-- Alerta de "Sem Entradas" -->
+    <div class="alert alert-warning" role="alert">
+      Não há mais pedidos.
+    </div>
+  </div>
+
+  <!-- Link do JS do Bootstrap 5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 
   <?php } ?>
 

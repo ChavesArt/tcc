@@ -27,6 +27,11 @@ if ($result) {
 </head>
 
 <body>
+    <div style="left: 200px;" >
+
+        <a class="btn btn-danger my-2" href="admin_usuario.php"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+
+    </div>
 
     <div style="padding: 50px;" class="container border my-5 border-dark rounded">
         <div class="row">
@@ -66,7 +71,7 @@ if ($result) {
                                     <input class="btn btn-primary my-2" type="submit" value="Salvar">
                                 </div>
                             </div>
-                            
+
                     </div>
                 </div>
             </div>
@@ -74,11 +79,11 @@ if ($result) {
 
         </div>
         <div class="text-center">
-                                
-             <a class="btn btn-danger my-2" href="#"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
-   
+
+            <a class="btn btn-danger my-2" href="#"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+
         </div>
-   
+
     </div>
 
 

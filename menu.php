@@ -9,6 +9,12 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
             <div class="navbar-nav">
+                <?php if(isset($_SESSION['tipo_cliente'])){ 
+
+                    if ($_SESSION['tipo_cliente'] == 0){
+                    echo "<a href= 'admin_usuario.php' class='nav-item nav-link me-2' data-bs-toggle='tooltip' data-bs-placement='bottom' title='página de administrador' id='home-menu'><i class='fa-solid fa-user-tie'></i></i></a>";
+                } 
+                }?>
                 <a href="index.php" class="nav-item nav-link me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Início" id="home-menu"><i class="fa-solid fa-house"></i></a>
                 <a href="index.php#sobre-area" class="nav-item nav-link me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sobre nós" id="about-menu"><i class="fa-solid fa-address-card"></i></a>
                 <a href="formcad.php" class="nav-item nav-link me-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cadastrar-se" id="cad-menu"><i class="fa-solid fa-user-plus"></i></a>

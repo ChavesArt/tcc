@@ -81,6 +81,13 @@ if (!$_SESSION['email']) {
                 </div>
 
                 <div class="col-md-6">
+
+                <div style="left: 200px; margin-top:2%;">
+
+                        <a class="btn btn-danger my-2" href="index.php"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+
+                    </div>
+                    
                     <img class="img-fluid" src="img/receber.svg" alt="formulário de doações">
                 </div>
 
