@@ -129,7 +129,7 @@ session_start();
                 <!--banner3-->
                 <div class="carousel-item  ">
                     <div class="acima">
-                        <img src="img/mapa_noite.png" class=" w-100" alt="Manutenção de Software">
+                        <img src="img/fachada.jpg" class=" w-100" alt="Manutenção de Software">
                         <div class="carousel-caption  d-md-block">
                             <h2>Venha nos conhecer! Benjamin Constant 1991</h2>
                             <p>Nossa localização</p>
@@ -167,7 +167,7 @@ session_start();
                     </div>
                     <div class="col-md-6">
 
-                        <img class="img-fluid" src="img/fachada_igreja.jpg" alt="Igreja ieq flores">
+                        <img class="img-fluid" src="img/fachada.jpg" alt="Igreja ieq flores">
                     </div>
                     <div class="col-md-6">
                         <h3 class="about-title my-5 text-center">IEQ flores</h3>

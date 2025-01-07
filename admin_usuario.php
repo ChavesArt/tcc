@@ -21,16 +21,6 @@ if (!empty($_GET['pesquisar'])) {
     $sql_pesquisar = "SELECT * FROM usuario where nome LIKE '%$data%' or endereco LIKE '%$data%' or email LIKE '%$data%' or  telefone LIKE '%$data%' order by nome DESC";
 }
 
-if (isset($_GET['filtro'])) {
-    $filtro = $_GET['filtro'];   // todos  voluntarios
-
-    $sql_pesquisar = "SELECT * FROM usuario ";
-    if ($filtro == 'voluntarios') {
-        $sql_pesquisar    = $sql_pesquisar . " Where voluntario = true  ";
-    }
-    $sql_pesquisar .= " order by nome DESC";
-}
-
 $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 ?>
 
@@ -108,28 +98,7 @@ $resultado_pesquisar = mysqli_query($conexao, $sql_pesquisar);
 
                         </div>
                     </div>
-                        <!-- <div>
-                        <a href="formdoar.php">Cadastrar Alimento</a> <br>
-                        <a href="formcad.php">Cadastrar Usuário</a>
-                    </div>
 
-                    <div class="btn-group">
-                        <form action="#" method="get">
-                            <button type="button" class="btn btn-primary">Usuários</button>
-                        </form>
-                        <form action="admin_doacao.php" method="GET">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
-                                <div class="dropdown-menu">
-                                    
-                                    <input type="submit" class="dropdown-item" name="tabela" value="alimento">
-                                    <input type="submit" class="dropdown-item" name="tabela" value="roupa">
-                                    <input type="submit" class="dropdown-item" name="tabela" value="outro">
-                                    
-                                </div>
-                            </div>
-                        </form>
-                    </div> -->
                 </div>
 
                 <?php
