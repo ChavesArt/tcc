@@ -106,7 +106,7 @@ session_start();
                 <div class="carousel-item active">
 
                     <!--banner1-->
-                    <img src="img/banner_primeiro.jpg" class=" w-100" alt="fotos da igreja">
+                    <img  style="filter: brightness(90%);" src="img/banner_primeiro.jpg" class=" w-100" alt="fotos da igreja">
                     <div class="carousel-caption d-md-block">
                         <h2>Seja muito bem-vindo!</h2>
                         <p></p>
@@ -117,11 +117,11 @@ session_start();
 
                 <!--banner2-->
                 <div class="carousel-item  ">
-                    <img src="img/cidade.png" class="w-100" alt="fotos da igreja">
+                    <img src="img/banner_dois.jpg" style="filter: brightness(50%);" class="w-100" alt="fotos da igreja">
                     <div class="carousel-caption  d-md-block">
-                        <h2>conheça-nos</h2>
-                        <p></p>
-                        <a href="#" class="main-btn">ver mais</a>
+                        <h2>Ajude alguém hoje!</h2>
+                        <p style="font-size:16pt;font-weight:200;">Através do nosso site você doar ou receber algo.</p>
+                        <!-- <a href="#" class="main-btn">ver mais</a> -->
                     </div>
                 </div>
 
@@ -129,11 +129,11 @@ session_start();
                 <!--banner3-->
                 <div class="carousel-item  ">
                     <div class="acima">
-                        <img src="img/fachada.jpg" class=" w-100" alt="Manutenção de Software">
+                        <img  style="filter: brightness(70%);" src="img/fachada.jpg" height = "120%" class=" w-100" alt="Manutenção de Software">
                         <div class="carousel-caption  d-md-block">
                             <h2>Venha nos conhecer! Benjamin Constant 1991</h2>
                             <p>Nossa localização</p>
-                            <a href="https://www.google.com.br/maps/place/Uruguaiana,+RS/@-29.7571667,-57.0767681,3a,75y,98.68h,81.72t/data=!3m7!1e1!3m5!1snQEouBSTVpf591d7SI1jXw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D8.284238694355906%26panoid%3DnQEouBSTVpf591d7SI1jXw%26yaw%3D98.67963363626836!7i16384!8i8192!4m15!1m8!3m7!1s0x94535b163a1e867f:0x57e5d470593d67f4!2sUruguaiana,+RS!3b1!8m2!3d-29.7584058!4d-57.0863393!16zL20vMDMyc3o3!3m5!1s0x94535b163a1e867f:0x57e5d470593d67f4!8m2!3d-29.7584058!4d-57.0863393!16zL20vMDMyc3o3?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" class="main-btn">Conhecer</a>
+                            <a href="https://www.google.com.br/maps/place/Uruguaiana,+RS/@-29.7571667,-57.0767681,3a,75y,98.68h,81.72t/data=!3m7!1e1!3m5!1snQEouBSTVpf591d7SI1jXw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D8.284238694355906%26panoid%3DnQEouBSTVpf591d7SI1jXw%26yaw%3D98.67963363626836!7i16384!8i8192!4m15!1m8!3m7!1s0x94535b163a1e867f:0x57e5d470593d67f4!2sUruguaiana,+RS!3b1!8m2!3d-29.7584058!4d-57.0863393!16zL20vMDMyc3o3!3m5!1s0x94535b163a1e867f:0x57e5d470593d67f4!8m2!3d-29.7584058!4d-57.0863393!16zL20vMDMyc3o3?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" class="main-btn">Localizar</a>
                         </div>
                     </div>
                 </div>

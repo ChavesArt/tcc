@@ -84,7 +84,7 @@ if (!$_SESSION['email']) {
 
                 <div style="left: 200px; margin-top:2%;">
 
-                        <a class="btn btn-danger my-2" href="index.php"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+                        <a class="btn btn-danger my-2" href="admin_usuario.php"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
 
                     </div>
                     

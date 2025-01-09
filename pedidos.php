@@ -4,11 +4,33 @@ include "conecta.php";
 $conexao = conectar();
 $id_usuario = $_SESSION['id_usuario'];
 logar();
+if(empty($_GET['tabela'])){
+  $tabela = 'alimento';
+}else{
 
-$tabela = $_GET['tabela'];
+  $tabela = $_GET['tabela'];
+
+}
 $sql = "SELECT * FROM pedido WHERE deferido IS null";
 $resultado = mysqli_query($conexao, $sql);
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div style="position: relative;" class="div-pai">
 
+<div  style="left: 200px;" >
+
+<a class="btn btn-danger my-2" href="admin_doacao.php?tabela=<?= $tabela; ?>"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+
+</div>
+</body>
+</html>
+<?php
 while ($pedido = mysqli_fetch_assoc($resultado)) {
   $sql_usuario = "SELECT * FROM usuario WHERE id_usuario = " . $pedido['id_usuario'];
   $resultado_usuario = mysqli_query($conexao, $sql_usuario);
@@ -103,6 +125,10 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
                               <i class="bi bi-clipboard-plus"></i>
                             </button>
                           </div>
+
+                          <div class="col-md-12 py-4">
+                            <a href="crud/indeferir_pedido.php?id_pedido=<?= $id_pedido?>" class="btn btn-danger">Indeferir</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -139,11 +165,7 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
 
   <?php } ?>
 
-  <div style="left: 200px;" >
-
-<a class="btn btn-danger my-2" href="admin_doacao.php?tabela=<?= $tabela; ?>"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
-
-</div>
+ 
 
   <?php if($resultado->num_rows == 0){?>
     <!DOCTYPE html>
@@ -171,7 +193,7 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
   <?php } ?>
 
   <script src="js/scripts.js"></script>
-
+  </div>
   </body>
 
   </html>

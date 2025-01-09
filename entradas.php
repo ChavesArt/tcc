@@ -4,8 +4,12 @@ include "conecta.php";
 $conexao = conectar();
 $id_usuario = $_SESSION['id_usuario'];
 logar();
+if(empty($_GET['tabela'])){
+  $tabela = 'alimento';
+}else{
 
-$tabela = $_GET['tabela'];
+  $tabela = $_GET['tabela'];
+}
 $sql ="SELECT p.subtipo_produto,p.tipo_produto,ie.quantidade,en.descricao,en.tamanho,en.deferido,en.id_entrada,en.id_usuario,en.data_entrada,e.data_validade 
 FROM entrada en
 INNER JOIN itens_entrada ie
@@ -17,6 +21,26 @@ ON e.id_produto = p.id_produto
 WHERE deferido IS NULL";
 // var_dump($sql);die;
 $resultado = mysqli_query($conexao,$sql);
+
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div style="position: relative;" class="div-pai">
+
+<div  style="left: 200px;" >
+
+<a class="btn btn-danger my-2" href="admin_doacao.php?tabela=<?= $tabela; ?>"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+
+</div>
+</body>
+</html>
+<?php 
 while ($geral = mysqli_fetch_assoc($resultado)) {
 
   $sql_usuario = "SELECT * FROM usuario WHERE id_usuario = " . $geral['id_usuario'];
@@ -147,11 +171,6 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
   </section>
   <?php } ?>
 
-  <div style="left: 200px;" >
-
-<a class="btn btn-danger my-2" href="admin_doacao.php?tabela=<?= $tabela; ?>"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
-
-</div>
 
   <?php if($resultado->num_rows == 0){?>
     <!DOCTYPE html>
@@ -159,12 +178,11 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mensagem - Sem Entradas</title>
   <!-- Link do CSS do Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container mt-5">
+  <div  class="container mt-5">
     <!-- Alerta de "Sem Entradas" -->
     <div class="alert alert-warning" role="alert">
       Não há mais entradas.
@@ -180,6 +198,6 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
 
   
 
-
+  </div>
 </body>
 </html>

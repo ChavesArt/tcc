@@ -4,35 +4,42 @@ include  "conecta.php";
 
 $conexao = conectar();
 logar();
+if($_SESSION['tipo_cliente'] == 1){
+    header('Location:index.php');
+}
 $logado = $_SESSION['nome'];
 
-$sql_seleciona_doacoes = "SELECT(entrada.total_entrada - COALESCE(saida.total_saida, 0)) AS resultado,
-entrada.data_validade,entrada.descricao,entrada.tamanho,entrada.nome_produto,entrada.tipo_produto,entrada.id_estoque
-
+$sql_seleciona_doacoes = "SELECT 
+(entrada.total_entrada - COALESCE(saida.total_saida, 0)) AS resultado,
+entrada.data_validade,
+entrada.descricao,
+entrada.tamanho,
+entrada.nome_produto,
+entrada.tipo_produto,
+entrada.id_estoque
 FROM 
-
-(SELECT e.id_estoque AS sid,SUM(s.quantidade) AS total_saida
-FROM itens_saida s
-INNER JOIN estoque e ON s.id_estoque = e.id_estoque
-INNER JOIN pedido p ON p.id_pedido = s.id_pedido AND p.deferido = true
-GROUP BY sid) AS saida
-
+(SELECT e.id_estoque AS id_estoque_saida, 
+        SUM(s.quantidade) AS total_saida
+ FROM itens_saida s
+ INNER JOIN estoque e ON s.id_estoque = e.id_estoque
+ INNER JOIN pedido p ON p.id_pedido = s.id_pedido AND p.deferido = true
+ GROUP BY e.id_estoque) AS saida
 RIGHT JOIN 
-(SELECT e.id_estoque AS eid,
- e.data_validade,SUM(ie.quantidade) AS total_entrada,
- en.descricao AS descricao,
- en.tamanho AS tamanho,
- pr.subtipo_produto AS nome_produto,
- pr.tipo_produto AS tipo_produto,
- e.id_estoque AS id_estoque,
- ROW_NUMBER() OVER (PARTITION BY pr.subtipo_produto, e.data_validade ORDER BY eid) AS row_num
- 
-FROM itens_entrada ie
-INNER JOIN estoque e ON ie.id_estoque = e.id_estoque
-INNER JOIN produto pr ON e.id_produto = pr.id_produto
-INNER JOIN entrada en ON en.id_entrada = ie.id_entrada AND en.deferido = true
-GROUP BY  id_estoque,descricao,tamanho, nome_produto, tipo_produto) AS entrada
-ON saida.sid = entrada.eid
+(SELECT e.id_estoque AS id_estoque_entrada,
+        e.data_validade,
+        SUM(ie.quantidade) AS total_entrada,
+        en.descricao AS descricao,
+        en.tamanho AS tamanho,
+        pr.subtipo_produto AS nome_produto,
+        pr.tipo_produto AS tipo_produto,
+        e.id_estoque AS id_estoque,
+        ROW_NUMBER() OVER (PARTITION BY pr.subtipo_produto, e.data_validade ORDER BY e.id_estoque) AS row_num
+ FROM itens_entrada ie
+ INNER JOIN estoque e ON ie.id_estoque = e.id_estoque
+ INNER JOIN produto pr ON e.id_produto = pr.id_produto
+ INNER JOIN entrada en ON en.id_entrada = ie.id_entrada AND en.deferido = true
+ GROUP BY e.id_estoque, e.data_validade, en.descricao, en.tamanho, pr.subtipo_produto, pr.tipo_produto) AS entrada
+ON saida.id_estoque_saida = entrada.id_estoque_entrada
 WHERE entrada.row_num = 1 AND entrada.tipo_produto ='". $_GET['tabela'] ."'";
 // var_dump($sql_seleciona_doacoes);die;
 $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);

@@ -27,6 +27,7 @@ GROUP BY e.id_estoque
 
 ON saida.sid = entrada.eid;
 ";
+
 // if ($_GET) {
 //     /*barra de pesquisa*/
 
