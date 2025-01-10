@@ -24,7 +24,7 @@
 
           <div class="card-body">
             <p class="card-text text-center">Rede de homens.</p>
-            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia maiores rerum totam corporis neque optio harum eius atque. Repellendus atque vero et amet accusantium provident nobis dolores tenetur sequi soluta!</p>
+            <p class="text-muted">Junte-se à Rede de Homens e fortaleça sua jornada de crescimento pessoal! Aqui, compartilhamos experiências, nos apoiamos e buscamos ser versões mais conscientes e responsáveis de nós mesmos. Venha fazer parte dessa transformação!</p>
             <div class="d-flex justify-content-center align-items-center">
               <!-- <div class="btn-group ">
                   <button  type="button" class="btn btn-sm btn-outline-purple ">Veja mais!</button>
@@ -58,7 +58,7 @@
           <img src="img/jovens.jpg" width="100%" height="225px" alt="banner dos jovens">
           <div class="card-body">
             <p class="card-text text-center">Rede Teens.</p>
-            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia maiores rerum totam corporis neque optio harum eius atque. Repellendus atque vero et amet accusantium provident nobis dolores tenetur sequi soluta!</p>
+            <p class="text-muted">Venha fazer parte dessa galerinha apaixonada por JESUS!!!!</p>
             <div class="d-flex justify-content-center align-items-center">
               <!-- <div class="btn-group ">
                   <button  type="button" class="btn btn-sm btn-outline-purple ">Veja mais!</button>
