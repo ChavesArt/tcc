@@ -136,16 +136,12 @@
           <!-- <strong class="d-inline-block mb-2 text-primary">World</strong> -->
           <h3 class="mb-0">Terça-feira</h3>
           <div class="mb-1 text-muted">Culto de oração</div>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <p class="card-text mb-auto">O culto de oração é um momento poderoso em que nos unimos para buscar a presença de Deus e interceder uns pelos outros. A oração tem o poder de transformar, fortalecer e trazer paz ao coração.
+
+Venha se unir a nós nesse tempo de comunhão.</p>
           <!-- <a href="#" class="stretched-link">Continue reading</a> -->
         </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-          </svg>
-
-        </div>
+ 
       </div>
     </div>
     <div class="col-md-6">
@@ -154,16 +150,10 @@
           <!-- <strong class="d-inline-block mb-2 text-success">Design</strong> -->
           <h3 class="mb-0">Domingo</h3>
           <div class="mb-1 text-muted">Culto da família</div>
-          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <p class="mb-auto">O culto da família é uma oportunidade especial para fortalecer os laços com aqueles que amamos e crescer espiritualmente juntos. Ao trazer sua família, vocês terão a chance de compartilhar momentos de oração, reflexão e união na presença de Deus.</p>
           <!-- <a href="#" class="stretched-link">Continue reading</a> -->
         </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-          </svg>
 
-        </div>
       </div>
     </div>
 
@@ -173,16 +163,10 @@
           <!-- <strong class="d-inline-block mb-2 text-success">Design</strong> -->
           <h3 class="mb-0">Sexta-feira</h3>
           <div class="mb-1 text-muted">Culto do renovo espiritual</div>
-          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <p class="mb-auto">Venha experimentar esse momento transformador no culto de renovo espiritual, onde nos aproximamos de Deus, renovamos nossa fé e recebemos Sua paz. Deixe que o Senhor renove seu espírito e fortaleça sua caminhada. Estamos esperando por você!</p>
           <!-- <a href="#" class="stretched-link">Continue reading</a> -->
         </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-          </svg>
-
-        </div>
+       
       </div>
     </div>
 
@@ -192,16 +176,10 @@
           <!-- <strong class="d-inline-block mb-2 text-success">Design</strong> -->
           <h3 class="mb-0">Quarta-feira</h3>
           <div class="mb-1 text-muted">Tarde da benção</div>
-          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <p class="mb-auto">O culto da tarde da bênção é um momento especial para recebermos de Deus, fortalecer nossa fé e renovar nossas esperanças. Confie que Ele está conosco a cada momento. Venha receber essa bênção única e transformar sua tarde com a presença de Deus!</p>
           <!-- <a href="#" class="stretched-link">Continue reading</a> -->
         </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-          </svg>
-
-        </div>
+       
       </div>
     </div>
 

@@ -10,6 +10,11 @@ body {
     margin: 0;
 }
 
+.navbar-nav i {
+    font-size: 1.2rem; /* Tamanho maior do ícone */
+}
+
+
 p,
 li {
     font-size: 14px;
@@ -43,7 +48,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 65vh;
+    height: 75vh;
     /* Ajuste a altura conforme necessário */
 }
 
