@@ -423,9 +423,11 @@ input[type="email"] {
     main{
         margin-top: 10%;
     }
+    
+    
 }
 
-@media(max-width:425px) {
+@media(max-width:435px) {
 
     #mainSlider {
 
@@ -506,12 +508,12 @@ input[type="email"] {
     }
 
     /* Garantir que as imagens fiquem em ordem reversa */
-    #donation-area .row.align-items-center .col-md-6 img {
-        order: 0;
-    }
-
-    #donation-area .row.align-items-center .col-md-6.text-center {
+    #donation-area.mid.imagem {
         order: 1;
+    }
+ 
+    #donation-area.mid.texto {
+        order: 0;
     }
 
     #donation-area {
@@ -519,6 +521,10 @@ input[type="email"] {
 
             width: 1000px;
         }
+    }
+
+    #contact-area .main-title::after{
+        top: 100px;
     }
 }
 

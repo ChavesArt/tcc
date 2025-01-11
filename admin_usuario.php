@@ -8,7 +8,7 @@ $logado = $_SESSION['nome'];
 
 
 if ($_SESSION['tipo_cliente'] != 0) {
-    header('location:login.php');
+    header('location:index.php');
 }
 
 $sql_pesquisar = "SELECT * FROM usuario";

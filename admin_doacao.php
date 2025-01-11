@@ -4,6 +4,7 @@ include  "conecta.php";
 
 $conexao = conectar();
 logar();
+
 if($_SESSION['tipo_cliente'] == 1){
     header('Location:index.php');
 }

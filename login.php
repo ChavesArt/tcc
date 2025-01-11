@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="col-12 text-center">
-                            <p>Ainda não é cadastrado?<a href="formcad.php">Cadastre-se</a></p>
+                            <p>Ainda não é cadastrado? <a href="formcad.php">Cadastre-se</a></p>
                             </div>
                     </div>
 

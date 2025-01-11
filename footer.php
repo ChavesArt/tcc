@@ -29,7 +29,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>Desenvolvido por mim &copy;2024</p>
+                    <p>Desenvolvido por ACS &copy;2025</p>
                 </div>
             </div>
         </div>
