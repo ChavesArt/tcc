@@ -109,7 +109,6 @@ session_start();
                     <img  style="filter: brightness(90%);" src="img/banner_primeiro.jpg" class=" w-100" alt="fotos da igreja">
                     <div class="carousel-caption d-md-block">
                         <h2>Seja muito bem-vindo!</h2>
-                        <p></p>
                         <!-- <a href="#" class="main-btn">Ver mais</a> -->
                     </div>
                 </div>

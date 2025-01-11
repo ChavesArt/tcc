@@ -431,8 +431,32 @@ input[type="email"] {
         }
 
         & .carousel-caption{
-            top: 10%;
+            /* top: 10%; */
+            padding: 0;
+            /* width: 0%; */
+            height: 10%;
+            
+            & p{
+                margin-bottom: 20px;
+            }
+            & h2{
+                font-size: 27px;
+            }
         }
+        & .carousel-item{
+            height: 60%;
+        }
+        & .main-btn{
+            font-size: 10pt;
+            padding: 5px 10px;
+        }
+        & .carousel-indicators{
+            top: 82%;
+        }
+    }
+   
+    section .main-title::after{
+        top: 100px;
     }
 
     main {
