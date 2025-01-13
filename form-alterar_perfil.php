@@ -86,12 +86,6 @@ if ($result) {
             </form>
 
         </div>
-        <div class="text-center">
-
-            <a class="btn btn-danger my-2" href="#"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
-
-        </div>
-
     </div>
 
 

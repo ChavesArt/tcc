@@ -2,7 +2,6 @@
 session_start();
 include "conecta.php";
 $conexao = conectar();
-// logar();
 $id_usuario = $_SESSION['id_usuario'];
 
 $sql = "SELECT * FROM usuario WHERE id_usuario = $id_usuario";
