@@ -66,6 +66,45 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
 
 <body>
 
+<?php if (isset($_SESSION['deferido']) && $_SESSION['deferido'] == true) { ?>
+            <script>
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Entrada deferida com sucesso!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    customClass: {
+                        popup: 'small-popup' // Aplique uma classe CSS personalizada
+                    }
+                });
+            </script>
+            <?php
+            // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
+            unset($_SESSION['deferido']);
+            ?>
+        <?php } ?>
+
+        <?php if (isset($_SESSION['indeferido']) && $_SESSION['indeferido'] == true) { ?>
+            <script>
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Entrada indeferida com sucesso!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    customClass: {
+                        popup: 'small-popup' // Aplique uma classe CSS personalizada
+                    }
+                });
+            </script>
+            <?php
+            // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
+            unset($_SESSION['indeferido']);
+            ?>
+        <?php } ?>
+
+
 <?php if (isset($_SESSION['alteração_success']) && $_SESSION['alteração_success'] == true) { ?>
     <script>
         Swal.fire({
