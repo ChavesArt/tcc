@@ -174,8 +174,9 @@ function AdicionaLinha(id_pedido) {
     let tbody = document.getElementById('cesta_basica-' + id_pedido);
     let tr = document.createElement('tr');
 
+
     // Select the <select> element for produto
-    let select = document.querySelector('select[name="produto"]');
+    let select = document.getElementById('selectProduto-' + id_pedido);
     let selectedOption = select.options[select.selectedIndex];
     let selectedOptionText = selectedOption.innerHTML;
 
@@ -190,7 +191,9 @@ function AdicionaLinha(id_pedido) {
     tr.appendChild(inputProduto); // Append the hidden input to the row
 
     // Select the <select> element for estoque
-    let selectEstoque = document.querySelector('select[name="estoque"]');
+    //let selectEstoque = document.querySelector('select[name="estoque"]');
+    let selectEstoque = document.getElementById('selectEstoque-' + id_pedido);
+    
     let selectedEstoqueOption = selectEstoque.options[selectEstoque.selectedIndex];
     let selectedEstoqueOptionText = selectedEstoqueOption.innerHTML;
 

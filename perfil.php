@@ -6,6 +6,21 @@ $id_usuario = $_SESSION['id_usuario'];
 
 $sql = "SELECT * FROM usuario WHERE id_usuario = $id_usuario";
 $resultado = mysqli_query($conexao, $sql);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include "links.php"; ?>
+</head>
+<body>
+    <section class="vh-100" style="background-color: #f4f5f7;">
+<a class="btn btn-danger my-2" href="index.php"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+
+</body>
+</html>
+<?php
 while ($geral = mysqli_fetch_assoc($resultado)) {
     $sql_usuario = "SELECT * FROM usuario WHERE id_usuario = " . $geral['id_usuario'];
     $resultado_usuario = mysqli_query($conexao, $sql_usuario);
@@ -22,7 +37,6 @@ while ($geral = mysqli_fetch_assoc($resultado)) {
     </head>
 
     <body>
-        <section class="vh-100" style="background-color: #f4f5f7;">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col col-lg-6 mb-4 mb-lg-0">

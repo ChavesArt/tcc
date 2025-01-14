@@ -58,9 +58,6 @@ if ($result) {
                             <label class="form-label" for="email">Email:</label>
                             <input class="form-control" type="email" name="email" id="email" value="<?php echo  $usuario['email']; ?>"><br>
 
-                            <label class="form-label" for="senha">Senha:</label>
-                            <input class="form-control" type="password" name="senha" id="senha" value="<?php echo  $usuario['senha']; ?>"><br>
-
                             <label class="form-label" for="telefone">Telefone:</label>
                             <input class="form-control" type="text" name="telefone" id="telefone" value="<?php echo  $usuario['telefone']; ?>"><br>
 
@@ -76,11 +73,6 @@ if ($result) {
                 </div>
             </div>
             </form>
-
-        </div>
-        <div class="text-center">
-
-            <a class="btn btn-danger my-2" href="#"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
 
         </div>
 

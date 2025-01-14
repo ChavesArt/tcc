@@ -5,10 +5,14 @@ include  "conecta.php";
 $conexao = conectar();
 logar();
 
-if($_SESSION['tipo_cliente'] == 1){
+if ($_SESSION['tipo_cliente'] == 1) {
     header('Location:index.php');
 }
 $logado = $_SESSION['nome'];
+$pesquisar = "";
+if (isset($_GET['pesquisar'])) {
+    $pesquisar = $_GET['pesquisar'];
+}
 
 $sql_seleciona_doacoes = "SELECT 
 (entrada.total_entrada - COALESCE(saida.total_saida, 0)) AS resultado,
@@ -41,8 +45,9 @@ RIGHT JOIN
  INNER JOIN entrada en ON en.id_entrada = ie.id_entrada AND en.deferido = true
  GROUP BY e.id_estoque, e.data_validade, en.descricao, en.tamanho, pr.subtipo_produto, pr.tipo_produto) AS entrada
 ON saida.id_estoque_saida = entrada.id_estoque_entrada
-WHERE entrada.row_num = 1 AND entrada.tipo_produto ='". $_GET['tabela'] ."'";
-// var_dump($sql_seleciona_doacoes);die;
+WHERE entrada.row_num = 1 AND entrada.tipo_produto ='" . $_GET['tabela'] . "'
+      AND (data_validade LIKE '%$pesquisar%' OR descricao LIKE '%$pesquisar%' OR tamanho LIKE '%$pesquisar%' OR nome_produto LIKE '%$pesquisar%');";
+//echo($sql_seleciona_doacoes);die;
 $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);
 ?>
 
@@ -60,27 +65,27 @@ $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);
     <?php include('menu.php');
     ?>
 
-<?php if (isset($_SESSION['exclusao_sucess']) && $_SESSION['exclusao_sucess'] == true) { ?>
-    <script>
-        Swal.fire({
-            position: "top-middle",
-            icon: "success",
-            title: "Exclusão feita com sucesso!",
-            showConfirmButton: false,
-            timer: 1500,
-            customClass: {
-    popup: 'small-popup'  // Aplique uma classe CSS personalizada
-  }
-        });
-    </script>
-    <?php
-    // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
-    unset($_SESSION['exclusao_sucess']);
-    ?>
-<?php } ?>
+    <?php if (isset($_SESSION['exclusao_sucess']) && $_SESSION['exclusao_sucess'] == true) { ?>
+        <script>
+            Swal.fire({
+                position: "top-middle",
+                icon: "success",
+                title: "Exclusão feita com sucesso!",
+                showConfirmButton: false,
+                timer: 1500,
+                customClass: {
+                    popup: 'small-popup' // Aplique uma classe CSS personalizada
+                }
+            });
+        </script>
+        <?php
+        // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
+        unset($_SESSION['exclusao_sucess']);
+        ?>
+    <?php } ?>
 
     <br>
-    <div  class="text-center">
+    <div class="text-center">
         <h4>Olá, <?php echo $logado; ?></h4>
         <h1>Doações</h1>
         <span class="text-muted">Tela das doações</span>
@@ -92,8 +97,9 @@ $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);
     <div class="caixa-procura">
 
         <form action="" method="get">
-            <input disabled type="search" class="form-control" placeholder="(nome, quantidade, descrição, data de validade, tamanho)" name="pesquisar" id="pesquisar">
-            <button disabled class="btn btn-primary btn-btn">
+            <input type="hidden" name="tabela" value="<?= $_GET['tabela'] ?>">
+            <input type="search" class="form-control" placeholder="(nome, quantidade, descrição, data de validade, tamanho)" name="pesquisar" id="pesquisar">
+            <button class="btn btn-primary btn-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                 </svg>
@@ -144,14 +150,14 @@ $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);
                     <th>Nome</th>
                     <th>Data de validade</th>
                     <th>Quantidade</th>
-                    <th >Opção</th>
+                    <th>Opção</th>
                 <?php } ?>
 
                 <?php if ($_GET['tabela'] == 'roupa') { ?>
                     <th>Nome</th>
                     <th>Quantidade</th>
                     <th>Tamanho</th>
-                    <th >Opção</th>
+                    <th>Opção</th>
                 <?php } ?>
 
                 <?php if ($_GET['tabela'] == 'outro') { ?>
@@ -159,7 +165,7 @@ $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);
                     <th>Quantidade</th>
                     <th>Tamanho</th>
                     <th>Data de validade</th>
-                    <th >Opção</th>
+                    <th>Opção</th>
                 <?php } ?>
             </thead>
             <tbody>
@@ -187,7 +193,7 @@ $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);
                         echo '</tr>';
                     }
                 }
-                
+
                 if ($_GET['tabela'] == 'roupa') {
                     // tabela com as informaçoes do banco sobre a roupas
                     while ($info = mysqli_fetch_assoc($resultado_todas)) {
@@ -204,11 +210,11 @@ $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);
                         </svg>
                         </a>
                         </td>';
-                        
+
                         echo '</tr>';
                     }
                 }
-                
+
                 if ($_GET['tabela'] == 'outro') {
                     // tabela com as informaçoes do banco sobre a roupas
                     while ($info = mysqli_fetch_assoc($resultado_todas)) {
