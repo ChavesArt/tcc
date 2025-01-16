@@ -21,12 +21,12 @@ $resultado = mysqli_query($conexao, $sql);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div style="position: relative;" class="div-pai">
-
-<div  style="left: 200px;" >
-
-<a class="btn btn-danger my-2" href="admin_doacao.php?tabela=<?= $tabela; ?>"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
-
+  <section class="vh-25" style="background-color: #f4f5f7;">
+  
+  <div  style="left: 200px;" >
+    
+  <a class="btn btn-danger my-2" href="admin_doacao.php?tabela=<?= $tabela; ?>"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+  
 </div>
 </body>
 </html>
@@ -50,7 +50,6 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
   </head>
 
   <body>
-    <section class="vh-25" style="background-color: #f4f5f7;">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-md-6 mb-4 mb-lg-0">
@@ -161,9 +160,9 @@ while ($pedido = mysqli_fetch_assoc($resultado)) {
           </div>
         </div>
       </div>
+      
+      <?php } ?>
     </section>
-
-  <?php } ?>
 
  
 

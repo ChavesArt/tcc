@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -12,11 +13,62 @@ $sql = "SELECT * FROM usuario WHERE email='$email'";
 $resultado = executarSQL($conexao, $sql);
 
 $usuario = mysqli_fetch_assoc($resultado);
-if ($usuario == null) {
-    echo "Email não cadastrado! Faça o cadastro e 
-          em seguida realize o login.";
-    die();
-}
+if ($usuario == null) { ?>
+    <!DOCTYPE html>
+    <html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php include "links.php"; ?>
+    </head>
+
+    <body>
+
+    </body>
+
+    </html>
+    <div class="container mt-5">
+
+        <!-- Condição para verificar se o erro ocorreu -->
+        <?php
+        $erro = true;  // Simulando erro, substitua conforme sua lógica
+
+        if ($erro) {
+            echo '
+                <!-- Modal -->
+                <div class="modal fade show" id="erroModal" tabindex="-1" aria-labelledby="erroModalLabel" aria-hidden="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="erroModalLabel">Erro</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Email não cadastrado! Faça o cadastro e em seguida realize o login.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="formcad.php" class="btn btn-primary">Cadastrar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ';
+        }
+        ?>
+
+    </div>
+    <script>
+        var myModal = new bootstrap.Modal(document.getElementById('erroModal'), {
+            keyboard: false
+        });
+        myModal.show();
+    </script>
+</body>
+</html>
+
+    <?php }
+// die();
 //gerar um token unico
 $token = bin2hex(random_bytes(50));
 
@@ -72,7 +124,28 @@ try {
         Equipe do sistema...';
 
     $mail->send();
-    echo 'Email enviado com sucesso!<br>Confira o seu email.';
+?>
+    <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include "links.php"; ?>
+</head>
+<body class="d-flex justify-content-center align-items-center" style="height: 100vh; background-color: #f8f9fa;">
+
+    <div class="card shadow-lg p-4" >
+        <div class="card-body text-center">
+            <h5 class="card-title">Verifique seu email</h5>
+            <p class="card-text">Por favor, verifique sua caixa de entrada e siga as instruções enviadas.</p>
+            <a href="form_recuperar_senha.php" class="btn btn-primary">Voltar</a>
+        </div>
+    </div>
+
+</body>
+</html>
+<?php
+    $_SESSION['recuperar_senha'] = true;
 
     // gravar as informações na tabela recuperar-senha
     date_default_timezone_set('America/Sao_Paulo');

@@ -6,10 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Recuperação de Senha</title>
     <?php include_once("links.php"); ?>
+    <style>
+               .small-popup {
+            width: 500px !important;
+            /* Ajuste a largura conforme necessário */
+            font-size: 14px;
+            /* Ajuste o tamanho da fonte */
+        }
+    </style>
 </head>
 
 <body>
     <main>
+    <?php if (isset($_SESSION['recuperar_senha']) && $_SESSION['recuperar_senha'] == true) { ?>
+            <script>
+                Swal.fire({
+                    position: "top-middle",
+                    icon: "success",
+                    title: "Verifique seu email!",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    customClass: {
+                        popup: 'small-popup' // Aplique uma classe CSS personalizada
+                    }
+                });
+            </script>
+            <?php
+            // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
+            unset($_SESSION['login_success']);
+            ?>
+        <?php } ?>
     <!-- <div class="container border my-5 border-dark text-center">
         
     <h1>Formulário de Recuperação de senha

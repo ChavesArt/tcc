@@ -62,41 +62,35 @@ if ($recuperar == null) {
         <input type="submit" value="Salvar nova senha">
     </form> -->
 
-    <div style="margin-top:30%; padding: 90px;" class="container border my-5 border-dark rounded d-center m-auto">
-        <div class="row">
-            <div class="col-12 text-center my-1">
-                <h1>Formulário para nova senha</h1>
-                <p>Digite seu email e nova senha.<br></p>
-            </div>
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card shadow-lg" style="width: 100%; max-width: 500px;">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">Formulário para Nova Senha</h1>
+                <p class="text-center">Digite sua nova senha.</p>
 
-            <div class="col-12">
+                <!-- Formulário de recuperação de senha -->
+                <form action="recuperar.php" method="post">
+                    <input type="hidden" name="email" value="<?= $email ?>">
+                    <input type="hidden" name="token" value="<?= $token ?>">
 
-                <div>
                     <div class="mb-3">
-                        <form action="recuperar.php" method="post">
-
-                            <input type="hidden" name="email" value="<?= $email ?>">
-                            <input type="hidden" name="token" value="<?= $token ?>">
-
-                            Email: <?= $email ?><br>
-                            <label for="senha">Senha:</label> 
-                            <input type="password" id="senha" name="senha"><br>
-
-                            <label for="repete">Repita a senha:</label> 
-                            <input id="repete" type="password"  name="repetirSenha"><br>
-
+                        <label for="senha" class="form-label">Nova Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha" required>
                     </div>
-                    <div class="col-12">
-                        <div class="row">
-                            <input class="btn btn-primary" type="submit" value="Salvar nova senha"><br>
-                        </div>
+
+                    <div class="mb-3">
+                        <label for="repete" class="form-label">Repita a Senha</label>
+                        <input type="password" class="form-control" id="repete" name="repetirSenha" required>
                     </div>
-                </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Salvar Nova Senha</button>
+                    </div>
+                </form>
             </div>
-            </form>
-
         </div>
     </div>
+
 </body>
 
 </html>

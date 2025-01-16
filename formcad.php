@@ -17,6 +17,17 @@
 
     <main>
 
+        <?php if (isset($_SESSION['tipo_cliente'])) { ?>
+        <?php if ($_SESSION['tipo_cliente'] == 0) { ?>
+
+            <div style="left: 200px;">
+
+                <a class="btn btn-danger my-2" href="admin_usuario.php"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+
+            </div>
+        <?php } ?>
+        <?php } ?>
+
         <?php if (isset($_SESSION['cadastrar_success']) && $_SESSION['cadastrar_success'] == false) { ?>
             <script>
                 Swal.fire({
@@ -36,7 +47,7 @@
             ?>
         <?php } ?>
 
-        <div  class="container border border-dark rounded">
+        <div class="container border border-dark rounded">
             <div id="formcad" class="row">
 
                 <div class="col-md-12 text-center">
@@ -86,21 +97,21 @@
     </main>
 
     <script>
-    // Função para verificar se as senhas coincidem
-    document.getElementById("senha_confirm").addEventListener("input", function() {
-        var senha = document.getElementById("senha").value;
-        var senhaConfirm = document.getElementById("senha_confirm").value;
-        var errorMessage = document.getElementById("error-message");
+        // Função para verificar se as senhas coincidem
+        document.getElementById("senha_confirm").addEventListener("input", function() {
+            var senha = document.getElementById("senha").value;
+            var senhaConfirm = document.getElementById("senha_confirm").value;
+            var errorMessage = document.getElementById("error-message");
 
-        if (senha !== senhaConfirm) {
-            // Exibe a mensagem de erro caso as senhas não coincidam
-            errorMessage.style.display = "block";
-        } else {
-            // Esconde a mensagem de erro caso as senhas coincidam
-            errorMessage.style.display = "none";
-        }
-    });
-</script>
+            if (senha !== senhaConfirm) {
+                // Exibe a mensagem de erro caso as senhas não coincidam
+                errorMessage.style.display = "block";
+            } else {
+                // Esconde a mensagem de erro caso as senhas coincidam
+                errorMessage.style.display = "none";
+            }
+        });
+    </script>
 
 </body>
 
