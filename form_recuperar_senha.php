@@ -20,6 +20,11 @@
 
 <body>
     <main>
+    <div style="left: 200px;">
+
+<a class="btn btn-danger my-2" href="login.php"> <img class="material-icons" style="color: white;" src="img/voltar.svg" alt="voltar"> Voltar</a>
+
+</div>
     <?php if (isset($_SESSION['recuperar_senha']) && $_SESSION['recuperar_senha'] == true) { ?>
             <script>
                 Swal.fire({

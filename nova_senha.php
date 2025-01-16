@@ -69,7 +69,7 @@ if ($recuperar == null) {
                 <p class="text-center">Digite sua nova senha.</p>
 
                 <!-- Formulário de recuperação de senha -->
-                <form action="recuperar.php" method="post">
+                <form action="salvar_nova_senha.php" method="post">
                     <input type="hidden" name="email" value="<?= $email ?>">
                     <input type="hidden" name="token" value="<?= $token ?>">
 

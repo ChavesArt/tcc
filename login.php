@@ -17,6 +17,26 @@
     <?php include_once('menu.php'); ?>
 
   <main>
+
+  <?php if (isset($_SESSION['nova_senha']) && $_SESSION['nova_senha'] == true) { ?>
+            <script>
+                Swal.fire({
+                    position: "top-middle",
+                    icon: "success",
+                    title: "Senha trocada com sucesso!",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    customClass: {
+                        popup: 'small-popup' // Aplique uma classe CSS personalizada
+                    }
+                });
+            </script>
+            <?php
+            // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
+            unset($_SESSION['nova_senha']);
+            ?>
+        <?php } ?>
+
     <div  class="container border border-dark rounded">
         <div id="login" class="row">
             <div class="col-md-12 text-center pt-2">

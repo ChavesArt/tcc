@@ -1,4 +1,5 @@
 <?php
+session_start();
 $email = $_POST['email'];
 $token = $_POST['token'];
 $senha = $_POST['senha'];
@@ -54,7 +55,7 @@ if ($recuperar == null) {
              email='$email' AND token='$token'";
     executarSQL($conexao, $sql3);
 
-    echo "Nova senha cadastrada com sucesso! Faça o login para 
-          acessar o sistema.<br>";
-    echo "<a href='login.php'>Acessar sistema</a>";
+$_SESSION['nova_senha'] = true;
+
+   header('Location: login.php');
 }
