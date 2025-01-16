@@ -85,8 +85,8 @@ try {
     $mail->CharSet = 'UTF-8';
     $mail->Encoding = 'base64';
     $mail->setLanguage('br');
-    //$mail->SMTPDebug = SMTP::DEBUG_OFF;  //tira as mensagens
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER; //imprime as mensagens
+    $mail->SMTPDebug = SMTP::DEBUG_OFF;  //tira as mensagens
+    //$mail->SMTPDebug = SMTP::DEBUG_SERVER; //imprime as mensagens
     $mail->isSMTP();                       //envia o email usando SMTP
     $mail->Host = 'smtp.gmail.com';        //Set the SMTP server to send through
     $mail->SMTPAuth = true;                //Enable SMTP authentication
@@ -124,27 +124,8 @@ try {
         Equipe do sistema...';
 
     $mail->send();
-?>
-    <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include "links.php"; ?>
-</head>
-<body class="d-flex justify-content-center align-items-center" style="height: 100vh; background-color: #f8f9fa;">
 
-    <div class="card shadow-lg p-4" >
-        <div class="card-body text-center">
-            <h5 class="card-title">Verifique seu email</h5>
-            <p class="card-text">Por favor, verifique sua caixa de entrada e siga as instruções enviadas.</p>
-            <a href="form_recuperar_senha.php" class="btn btn-primary">Voltar</a>
-        </div>
-    </div>
 
-</body>
-</html>
-<?php
     $_SESSION['recuperar_senha'] = true;
 
     // gravar as informações na tabela recuperar-senha
@@ -162,3 +143,4 @@ try {
     echo "Não foi possível enviar o email. 
           Mailer Error: {$mail->ErrorInfo}";
 }
+header('Location: form_recuperar_senha.php');

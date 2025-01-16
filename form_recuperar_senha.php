@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -25,7 +27,7 @@
                     icon: "success",
                     title: "Verifique seu email!",
                     showConfirmButton: false,
-                    timer: 2000,
+                    timer: 3500,
                     customClass: {
                         popup: 'small-popup' // Aplique uma classe CSS personalizada
                     }
@@ -33,7 +35,7 @@
             </script>
             <?php
             // Apagar a variável de sessão para evitar que o alerta apareça novamente após a próxima atualização da página
-            unset($_SESSION['login_success']);
+            unset($_SESSION['recuperar_senha']);
             ?>
         <?php } ?>
     <!-- <div class="container border my-5 border-dark text-center">
