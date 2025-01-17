@@ -75,7 +75,7 @@
                             <label class="form-label" for="telefone">Telefone:</label>
                             <input class="form-control" type="text" name="telefone" id="telefone" placeholder="Formato: XX-X XXXX-XXXX" pattern="^\d{2}-\d \d{4}-\d{4}$" required><br>
 
-                            <label class="form-label" for="senha">Senha:</label>
+                            <label class="form-label" for="senha">Senha: <span class="text-muted">mínimo 3 caracteres</span></label>
                             <input class="form-control" placeholder="Deve conter: 1 número maiúscula, 1 minúscula, 1 caracter especial" type="password" name="senha" id="senha" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[\W_]).+$" required><br>
 
                             <label class="form-label" for="senha_confirm">Confirmar senha:</label>

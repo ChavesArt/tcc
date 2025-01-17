@@ -61,7 +61,7 @@
 
                             <div style="padding-right: 15px; padding-left:15px;" class="col-12 ">
                                 <div class="row">
-                                    <input  class="btn btn-primary my-2" type="submit" value="Salvar">
+                                    <input  class="btn btn-primary my-2" type="submit" value="Entrar">
                                 </div>
                             </div>
 

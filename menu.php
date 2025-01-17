@@ -3,6 +3,12 @@
         <a href="index.php" class="navbar-brand">
             <img  id="logo" src="img/logo.png" width="100px" height="90px" alt="logo SASIEQ">
         </a>
+        <?php if(isset($_SESSION['email'])){ 
+            $nome = explode(" ",$_SESSION['nome']);?>
+
+            <h4 class="text-white">Bem-vindo  <?= $nome[0]; ?>!</h4>
+
+            <?php } ?>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links"
             aria-controls="navbar-links" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
