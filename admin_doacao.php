@@ -47,6 +47,7 @@ RIGHT JOIN
 ON saida.id_estoque_saida = entrada.id_estoque_entrada
 WHERE entrada.row_num = 1 AND entrada.tipo_produto ='" . $_GET['tabela'] . "'
       AND (data_validade LIKE '%$pesquisar%' OR descricao LIKE '%$pesquisar%' OR tamanho LIKE '%$pesquisar%' OR nome_produto LIKE '%$pesquisar%');";
+    //   echo $sql_seleciona_doacoes; die;
 //echo($sql_seleciona_doacoes);die;
 $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);
 ?>
@@ -119,31 +120,32 @@ $resultado_todas = mysqli_query($conexao, $sql_seleciona_doacoes);
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
 
                         <a href="admin_usuario.php" type="button" class="btn btn-outline-primary">Usuários</a>
-
+                        
                         <a href="pedidos.php?tabela=<?= $_GET['tabela']; ?>" class="btn btn-outline-primary">Pedidos</a>
                         <a href="entradas.php?tabela=<?= $_GET['tabela']; ?>" class="btn btn-outline-primary">Entradas</a>
-
+                        
                         <form action="admin_doacao.php" method="GET">
                             <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Doações</button>
                             <div class="dropdown-menu">
-
+                                
                                 <input type="submit" class="dropdown-item" name="tabela" value="alimento">
                                 <input type="submit" class="dropdown-item" name="tabela" value="roupa">
                                 <input type="submit" class="dropdown-item" name="tabela" value="outro">
-
+                                
                             </div>
                         </form>
-
-
-
+                        
+                        
+                        
                         <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">Cadastrar</button>
                         <div class="dropdown-menu">
 
                             <a href="formdoar.php" class="dropdown-item">alimento</a>
                             <a href="formcad.php" class="dropdown-item">usuário</a>
                             <a href="formtipo.php" class="dropdown-item">tipo de doação</a>
-
+                            
                         </div>
+                        <a href="relatorio.php?tabela=<?= $_GET['tabela']; ?>" type="button" class="btn btn-outline-primary">Gerar relatorio</a>
                     </div>
                 </div>
                 <?php if ($_GET['tabela'] == 'alimento') { ?>
